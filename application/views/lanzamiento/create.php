@@ -4,11 +4,11 @@
 
 <?php echo form_open('lanzamiento/create'); ?>
 
-    <label for="title">Title</label>
-    <input type="input" name="title" /><br />
+    <label for="nombre">Nombre</label>
+    <input type="input" name="nombre" /><br />
 
     <label for="text">Text</label>
-    <textarea name="text"></textarea><br />
+    <input type="input" name="title" /><br />
 
     <input type="submit" name="submit" value="Create news item" />
 

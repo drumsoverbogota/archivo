@@ -17,18 +17,23 @@ class Lanzamiento_model extends CI_Model {
 				$query = $this->db->get_where('lanzamiento', array('id' => $id));
 				return $query->row_array();
 		}
-		public function set_news()
+		public function set_lanzamiento()
 		{
 			$this->load->helper('url');
 
-			$slug = url_title($this->input->post('title'), 'dash', TRUE);
+			//$slug = url_title($this->input->post('title'), 'dash', TRUE);
 
 			$data = array(
-				'title' => $this->input->post('title'),
-				'slug' => $slug,
-				'text' => $this->input->post('text')
+				//'slug' => $slug,
+				'nombre' => $this->input->post('nombre'),				
+				'referencia' => $this->input->post('referencia'),
+				'formato' => $this->input->post('formato'),
+				'anho' => $this->input->post('anho'),
+				'creditos' => $this->input->post('creditos'),
+				'notas' => $this->input->post('notas')			
 			);
 
-			return $this->db->insert('news', $data);
+			$this->db->insert('lanzamiento', $data);
+			return $this->db->insert_id();
 		}		
 }

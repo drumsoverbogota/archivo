@@ -42,10 +42,11 @@ class Lanzamiento extends CI_Controller {
 			$data['title'] = 'Crear un nuevo Lanzamiento';
 
 			$this->form_validation->set_rules('nombre', 'Nombre', 'required');
-			$this->form_validation->set_rules('formato', 'Formato', 'required');
-			$this->form_validation->set_rules('anho', 'Año', 'required');
-			$this->form_validation->set_rules('creditos', 'Creditos', 'required');
-			$this->form_validation->set_rules('notas', 'Notas', 'required');
+			$this->form_validation->set_rules('referencia', 'Referencia', '');
+			$this->form_validation->set_rules('formato', 'Formato', '');
+			$this->form_validation->set_rules('anho', 'Año', '');
+			$this->form_validation->set_rules('creditos', 'Creditos', '');
+			$this->form_validation->set_rules('notas', 'Notas', '');
 			
 
 			if ($this->form_validation->run() === FALSE)
@@ -57,8 +58,12 @@ class Lanzamiento extends CI_Controller {
 			}
 			else
 			{
-				$this->news_model->set_news();
-				$this->load->view('lanzamiento/success');
+				$id = $this->lanzamiento_model->set_lanzamiento();
+				//$this->load->view('lanzamiento/' + $id);
+				
+				
+				$this->view($id);
+				
 			}
 		}		
 }
