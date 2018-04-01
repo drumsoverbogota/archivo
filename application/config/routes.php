@@ -50,6 +50,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |		my-controller/my-method	-> my_controller/my_method
 */
 
+$route['banda/create'] = 'banda/create';
+$route['banda/(:any)'] = 'banda/view/$1';
+$route['banda'] = 'banda';
 $route['lanzamiento/create'] = 'lanzamiento/create';
 $route['lanzamiento/(:any)'] = 'lanzamiento/view/$1';
 $route['lanzamiento'] = 'lanzamiento';
