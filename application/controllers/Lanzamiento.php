@@ -45,6 +45,7 @@ class Lanzamiento extends CI_Controller {
 			$this->form_validation->set_rules('referencia', 'Referencia', '');
 			$this->form_validation->set_rules('formato', 'Formato', '');
 			$this->form_validation->set_rules('anho', 'Año', '');
+			$this->form_validation->set_rules('tracklist', 'Tracklist', '');
 			$this->form_validation->set_rules('creditos', 'Creditos', '');
 			$this->form_validation->set_rules('notas', 'Notas', '');
 			

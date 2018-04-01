@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1:3306
--- Tiempo de generación: 31-03-2018 a las 22:08:29
+-- Tiempo de generación: 01-04-2018 a las 02:05:15
 -- Versión del servidor: 5.7.19
 -- Versión de PHP: 5.6.31
 
@@ -25,16 +25,32 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `bandas`
+-- Estructura de tabla para la tabla `banda`
 --
 
-DROP TABLE IF EXISTS `bandas`;
-CREATE TABLE IF NOT EXISTS `bandas` (
+DROP TABLE IF EXISTS `banda`;
+CREATE TABLE IF NOT EXISTS `banda` (
   `id` int(100) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(100) NOT NULL,
+  `otros` text NOT NULL,
+  `integrantes` text,
   `comentarios` text,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `banda_lanzamiento`
+--
+
+DROP TABLE IF EXISTS `banda_lanzamiento`;
+CREATE TABLE IF NOT EXISTS `banda_lanzamiento` (
+  `banda_id` int(11) NOT NULL,
+  `lanzamiento_id` int(11) NOT NULL,
+  KEY `banda_lanzamiento_ibfk_1` (`banda_id`),
+  KEY `lanzamiento_id` (`lanzamiento_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -46,20 +62,24 @@ DROP TABLE IF EXISTS `lanzamiento`;
 CREATE TABLE IF NOT EXISTS `lanzamiento` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` text NOT NULL,
-  `referencia` text NOT NULL,
-  `formato` text NOT NULL,
-  `anho` text NOT NULL,
-  `creditos` text NOT NULL,
-  `notas` text NOT NULL,
+  `referencia` text,
+  `formato` text,
+  `anho` text,
+  `creditos` text,
+  `notas` text,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Volcado de datos para la tabla `lanzamiento`
+-- Restricciones para tablas volcadas
 --
 
-INSERT INTO `lanzamiento` (`id`, `nombre`, `referencia`, `formato`, `anho`, `creditos`, `notas`) VALUES
-(1, 'cerdo', 'CH-00', 'lp', '1990', '', '');
+--
+-- Filtros para la tabla `banda_lanzamiento`
+--
+ALTER TABLE `banda_lanzamiento`
+  ADD CONSTRAINT `banda_lanzamiento_ibfk_1` FOREIGN KEY (`banda_id`) REFERENCES `banda` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `banda_lanzamiento_ibfk_2` FOREIGN KEY (`lanzamiento_id`) REFERENCES `lanzamiento` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

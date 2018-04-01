@@ -27,8 +27,8 @@ class Banda_model extends CI_Model {
 				//'slug' => $slug,
 				'nombre' => $this->input->post('nombre'),				
 				'otros' => nl2br($this->input->post('otros')),				
-				'integrantes' => $this->input->post('integrantes'),
-				'comentarios' => $this->input->post('comentarios')				
+				'integrantes' => nl2br($this->input->post('integrantes')),
+				'comentarios' => nl2br($this->input->post('comentarios'))				
 			);
 
 			$this->db->insert('banda', $data);
