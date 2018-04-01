@@ -11,6 +11,7 @@ class Lanzamiento extends CI_Controller {
 
         public function index()
         {
+			
                 $data['lanzamiento'] = $this->lanzamiento_model->get_lanzamiento();
 				$data['title'] = 'Lista de lanzamientos';
 
