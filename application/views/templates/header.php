@@ -28,6 +28,10 @@
 			padding: 0;
 		}		
 		*/
+		
+		table {
+			border-collapse: collapse;
+		}
 		table, th, td {
 			border: 1px solid black;
 		}		
@@ -42,8 +46,15 @@
 
 <ul>
 
-  <li><a href="<?php echo site_url('lanzamiento/'); ?>">Inicio</a></li>  
+  <li><a href="<?php echo site_url('paginas'); ?>">Inicio</a></li>  
   <li><a href="<?php echo site_url('paginas/about'); ?>">Acerca de</a></li>
+  <li> Archivo  
+	  <ul>
+			<li><a href="<?php echo site_url('lanzamiento/'); ?>">Lanzamientos</a></li>
+			<li><a href="<?php echo site_url('banda/'); ?>">Bandas</a></li>
+			<li><a href="<?php echo site_url('paginas/buscar/'); ?>">Buscar en el archivo</a></li>
+	  </ul>
+  </li>
   <li><a href="<?php echo site_url('paginas/contact'); ?>">Contacto</a></li>
   
 </ul>

@@ -1,5 +1,4 @@
 
-<!-- begin page content -->
 <p><b>Acerca de</b></p>
 
 <p>
@@ -12,13 +11,10 @@ Con el tiempo hacer estas cosas consumían mucho tiempo y no era tan fácil enco
 </p>
 
 <p>
-Este es un proyecto autogestionado. El material acá presente se ha conseguido entre prestamos de amigos o amigos de amigos y partes de las (pequeñas) colecciones personales. Por tanto si usted, persona lectora de estas líneas, tiene algo que no se encuentre acá que quiera ora prestarnos (¡prometemos cuidarlo muy bien!) ora donarnos, <a href="contact.php">acá nos puede contactar</a>. 
+Este es un proyecto autogestionado. El material acá presente se ha conseguido entre prestamos de amigos o amigos de amigos y partes de las (pequeñas) colecciones personales. Por tanto si usted, persona lectora de estas líneas, tiene algo que no se encuentre acá que quiera ora prestarnos (¡prometemos cuidarlo muy bien!) ora donarnos, <a href="<?php echo site_url('paginas/contact'); ?>">acá nos puede contactar</a>. 
 </p>
 
 
 <p>
 Ningún derecho reservado, todo el material acá publicado es propiedad de sus compositor@s o autor@s. Por tanto,<b> no podemos dar la autorización de uso de nada de lo que está acá. Contacte a los autores o a sus representanets para obtener permiso.</b>
 </p>
-
-<!-- end page content -->
-
