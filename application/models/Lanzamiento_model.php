@@ -31,7 +31,8 @@ class Lanzamiento_model extends CI_Model {
 				'anho' => $this->input->post('anho'),
 				'tracklist' => nl2br($this->input->post('tracklist')),
 				'creditos' => nl2br($this->input->post('creditos')),
-				'notas' => nl2br($this->input->post('notas'))			
+				'notas' => nl2br($this->input->post('notas')),
+				'link' => $this->input->post('link'),
 			);
 
 			$this->db->insert('lanzamiento', $data);

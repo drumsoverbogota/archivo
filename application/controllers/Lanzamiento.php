@@ -49,6 +49,7 @@ class Lanzamiento extends CI_Controller {
 			$this->form_validation->set_rules('tracklist', 'Tracklist', '');
 			$this->form_validation->set_rules('creditos', 'Creditos', '');
 			$this->form_validation->set_rules('notas', 'Notas', '');
+			$this->form_validation->set_rules('link', 'Link', '');
 			
 
 			if ($this->form_validation->run() === FALSE)

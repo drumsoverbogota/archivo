@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1:3306
--- Tiempo de generación: 01-04-2018 a las 02:05:15
+-- Tiempo de generación: 24-04-2018 a las 01:14:40
 -- Versión del servidor: 5.7.19
 -- Versión de PHP: 5.6.31
 
@@ -65,10 +65,12 @@ CREATE TABLE IF NOT EXISTS `lanzamiento` (
   `referencia` text,
   `formato` text,
   `anho` text,
+  `tracklist` text NOT NULL,
   `creditos` text,
   `notas` text,
+  `link` text,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 --
 -- Restricciones para tablas volcadas

@@ -22,8 +22,11 @@
     <label for="creditos">Creditos</label>
     <textarea name="creditos"></textarea><br />	
 
-	 <label for="notas">Notas</label>
+	<label for="notas">Notas</label>
     <textarea name="notas"></textarea><br />	
+	
+	<label for="link">Link</label>
+    <input type="input" name="link"><br />		
 
     <input type="submit" name="submit" value="Create news item" />
 
