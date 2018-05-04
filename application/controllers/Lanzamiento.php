@@ -7,6 +7,7 @@ class Lanzamiento extends CI_Controller {
                 $this->load->model('lanzamiento_model');
                 $this->load->helper('url_helper');
 				$this->load->helper('url');
+				$this->load->library('ion_auth');
         }
 
         public function index()

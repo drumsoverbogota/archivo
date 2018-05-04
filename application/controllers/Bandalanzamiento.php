@@ -9,6 +9,7 @@ class Bandalanzamiento extends CI_Controller {
 				$this->load->model('bandalanzamiento_model');
                 $this->load->helper('url_helper');
 				$this->load->helper('url');
+				$this->load->library('ion_auth');
         }
 
 

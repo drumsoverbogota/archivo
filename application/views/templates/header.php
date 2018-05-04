@@ -1,3 +1,6 @@
+<?php 		
+
+?>
 <html>
 <head>
     <title><?php echo $title; ?></title>
@@ -39,6 +42,14 @@
 	
 </head>
 <body>
+<?php 	
+if ($this->ion_auth->logged_in()){
+?>
+<div align="right"><h5>Hola, <a href="<?php echo site_url('auth/logout'); ?>">Salir</a></h5></div>
+<?php
+}
+?>
+
 <div align="center"><h5>Un archivo de Punk Colombiano</h5></div>
 <div align="center"><h2>Sintoma de última década</h2></div>
 

@@ -16,3 +16,12 @@
 
 <?php echo $lanzamiento_item['creditos'];?>
 <?php echo $lanzamiento_item['notas'];?>
+
+
+<?php 	
+if ($this->ion_auth->logged_in()){
+?>
+<div align="right"><h5><a href="<?php echo site_url('auth/logout'); ?>">Editar</a></h5></div>
+<?php
+}
+?>
