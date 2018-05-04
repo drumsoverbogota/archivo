@@ -12,7 +12,7 @@ class Bandalanzamiento extends CI_Controller {
         }
 
 
-		public function asignar()
+		public function asignar_banda()
 		{
 			$this->load->helper('form');
 			$this->load->library('form_validation');
@@ -28,34 +28,19 @@ class Bandalanzamiento extends CI_Controller {
 			else{ 	
 				$data['banda_id'] = $this->input->post('banda_id');
 				$data['lanzamiento'] = $this->lanzamiento_model->get_lanzamiento();
-				
-				
-				$lanzamiento_bandaid = $this->bandalanzamiento_model->get_lanzamiento_bandaid($data['banda_id']);
-				
-				$data['asignados'] = [];
-				
-				
-				foreach ($lanzamiento_bandaid as $row)
-				{
-					array_push($data['asignados'] , $row->lanzamiento_id);
-				}
-				
-				
-
-											
-				
+				$data['asignados'] = $this->bandalanzamiento_model->get_lanzamiento_bandaid_array($data['banda_id']);	
 				$data['title'] = 'Asigne el disco';		
+				
 				$this->load->view('templates/header', $data);
 				$this->load->view('bandalanzamiento/lanzamientos', $data);
 				$this->load->view('templates/footer');
 			}
 		}		
-		public function create()
+		public function create_banda()
 		{
-			if(!empty($this->input->post('banda')) and !empty($this->input->post('lanzamientos'))){				
-				$this->bandalanzamiento_model->set_lanzamiento();	
-				
+			if(!empty($this->input->post('banda'))){				
+				$this->bandalanzamiento_model->set_lanzamiento($this->input->post('banda'));				
 			}
-			$this->asignar();
+			$this->asignar_banda();
 		}			
 }

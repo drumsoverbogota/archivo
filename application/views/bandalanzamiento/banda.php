@@ -2,7 +2,7 @@
 
 <?php echo validation_errors(); ?>
 
-<?php echo form_open('bandalanzamiento/asignar'); ?>
+<?php echo form_open('bandalanzamiento/asignar_banda'); ?>
 
 <select name="banda_id">
 

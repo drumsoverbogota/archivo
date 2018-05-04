@@ -1,15 +1,8 @@
 <h2><?php echo $title; ?></h2>
 
-
-<?php 
-print_r ($asignados);
-
-
-?>
-
 <?php echo validation_errors(); ?>
 
-<?php echo form_open('bandalanzamiento/create'); ?>
+<?php echo form_open('bandalanzamiento/create_banda'); ?>
 
 
 
@@ -21,7 +14,7 @@ print_r ($asignados);
 	
 	<input type="checkbox" name="lanzamientos[]" value="<?php echo $lanzamiento_item['id']; ?>"
 	<?php
-		
+			
 		if (in_array($lanzamiento_item['id'], $asignados)) {
 			echo "checked";
 		}
