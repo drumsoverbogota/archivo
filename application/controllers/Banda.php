@@ -76,7 +76,7 @@ class Banda extends CI_Controller {
 			}
 		}		
 		
-		public function edit()
+		public function edit($id)
 		{
 			if (!$this->ion_auth->logged_in())
 			{
@@ -90,10 +90,13 @@ class Banda extends CI_Controller {
 			}
 			else
 			{			
+		
+				$data['banda_item'] = $this->banda_model->get_banda($id);
+				
 				$this->load->helper('form');
 				$this->load->library('form_validation');
 
-				$data['title'] = 'Crear un nuevo Lanzamiento';
+				$data['title'] = 'Editar un nuevo Lanzamiento';
 
 				$this->form_validation->set_rules('nombre', 'Nombre', 'required');
 				$this->form_validation->set_rules('otros', 'Otros nombres', '');
@@ -104,13 +107,13 @@ class Banda extends CI_Controller {
 				if ($this->form_validation->run() === FALSE)
 				{
 					$this->load->view('templates/header', $data);
-					$this->load->view('banda/create');
+					$this->load->view('banda/edit');
 					$this->load->view('templates/footer');
 
 				}
 				else
 				{
-					$id = $this->banda_model->set_banda();				
+					$id = $this->banda_model->edit_banda();				
 					$this->view($id);
 					
 				}
