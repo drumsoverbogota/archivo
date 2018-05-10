@@ -37,29 +37,83 @@ class Banda extends CI_Controller {
 		
 		public function create()
 		{
-			$this->load->helper('form');
-			$this->load->library('form_validation');
-
-			$data['title'] = 'Crear un nuevo Lanzamiento';
-
-			$this->form_validation->set_rules('nombre', 'Nombre', 'required');
-			$this->form_validation->set_rules('otros', 'Otros nombres', '');
-			$this->form_validation->set_rules('integrantes', 'Integrantes', '');
-			$this->form_validation->set_rules('comentarios', 'Comentarios', '');
-			
-
-			if ($this->form_validation->run() === FALSE)
+			if (!$this->ion_auth->logged_in())
 			{
-				$this->load->view('templates/header', $data);
-				$this->load->view('banda/create');
-				$this->load->view('templates/footer');
-
+				// redirect them to the login page
+				redirect('auth/login', 'refresh');
+			}
+			else if (!$this->ion_auth->is_admin()) // remove this elseif if you want to enable this for non-admins
+			{
+				// redirect them to the home page because they must be an administrator to view this
+				return show_error('You must be an administrator to view this page.');
 			}
 			else
-			{
-				$id = $this->banda_model->set_banda();				
-				$this->view($id);
+			{			
+				$this->load->helper('form');
+				$this->load->library('form_validation');
+
+				$data['title'] = 'Crear un nuevo Lanzamiento';
+
+				$this->form_validation->set_rules('nombre', 'Nombre', 'required');
+				$this->form_validation->set_rules('otros', 'Otros nombres', '');
+				$this->form_validation->set_rules('integrantes', 'Integrantes', '');
+				$this->form_validation->set_rules('comentarios', 'Comentarios', '');
 				
+
+				if ($this->form_validation->run() === FALSE)
+				{
+					$this->load->view('templates/header', $data);
+					$this->load->view('banda/create');
+					$this->load->view('templates/footer');
+
+				}
+				else
+				{
+					$id = $this->banda_model->set_banda();				
+					$this->view($id);
+					
+				}
+			}
+		}		
+		
+		public function edit()
+		{
+			if (!$this->ion_auth->logged_in())
+			{
+				// redirect them to the login page
+				redirect('auth/login', 'refresh');
+			}
+			else if (!$this->ion_auth->is_admin()) // remove this elseif if you want to enable this for non-admins
+			{
+				// redirect them to the home page because they must be an administrator to view this
+				return show_error('You must be an administrator to view this page.');
+			}
+			else
+			{			
+				$this->load->helper('form');
+				$this->load->library('form_validation');
+
+				$data['title'] = 'Crear un nuevo Lanzamiento';
+
+				$this->form_validation->set_rules('nombre', 'Nombre', 'required');
+				$this->form_validation->set_rules('otros', 'Otros nombres', '');
+				$this->form_validation->set_rules('integrantes', 'Integrantes', '');
+				$this->form_validation->set_rules('comentarios', 'Comentarios', '');
+				
+
+				if ($this->form_validation->run() === FALSE)
+				{
+					$this->load->view('templates/header', $data);
+					$this->load->view('banda/create');
+					$this->load->view('templates/footer');
+
+				}
+				else
+				{
+					$id = $this->banda_model->set_banda();				
+					$this->view($id);
+					
+				}
 			}
 		}		
 }

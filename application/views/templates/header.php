@@ -45,7 +45,9 @@
 <?php 	
 if ($this->ion_auth->logged_in()){
 ?>
-<div align="right"><h5>Hola, <a href="<?php echo site_url('auth/logout'); ?>">Salir</a></h5></div>
+<div align="right"><h5>Hola,
+<a href="<?php echo site_url('admin'); ?>">Admin</a> 
+<a href="<?php echo site_url('auth/logout'); ?>">Salir</a></h5></div>
 <?php
 }
 ?>

@@ -31,4 +31,26 @@ class Paginas extends CI_Controller {
 				$this->load->view('paginas/'.$page, $data);
 				$this->load->view('templates/footer', $data);
 		}
+		
+		
+        public function admin()
+        {
+					
+				if (!$this->ion_auth->logged_in())
+				{
+					// redirect them to the login page
+					redirect('auth/login', 'refresh');
+				}
+				else if (!$this->ion_auth->is_admin()) // remove this elseif if you want to enable this for non-admins
+				{
+					// redirect them to the home page because they must be an administrator to view this
+					return show_error('You must be an administrator to view this page.');
+				}
+
+				$data['title'] = 'admin'; // Capitalize the first letter
+
+				$this->load->view('templates/header', $data);
+				$this->load->view('paginas/admin', $data);
+				$this->load->view('templates/footer', $data);
+		}		
 }
