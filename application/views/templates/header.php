@@ -50,6 +50,11 @@ if ($this->ion_auth->logged_in()){
 <a href="<?php echo site_url('auth/logout'); ?>">Salir</a></h5></div>
 <?php
 }
+else{
+?>
+<div align="right"><a href="<?php echo site_url('admin'); ?>">Iniciar sesión</a></div>
+<?php
+}
 ?>
 
 <div align="center"><h5>Un archivo de Punk Colombiano</h5></div>
