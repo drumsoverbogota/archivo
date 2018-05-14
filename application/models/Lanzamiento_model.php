@@ -38,4 +38,27 @@ class Lanzamiento_model extends CI_Model {
 			$this->db->insert('lanzamiento', $data);
 			return $this->db->insert_id();
 		}		
+		
+		public function edit_lanzamiento()
+		{
+			$this->load->helper('url');
+
+			//$slug = url_title($this->input->post('title'), 'dash', TRUE);
+
+			$data = array(
+				//'slug' => $slug,
+				'id' => $this->input->post('id'),		
+				'nombre' => $this->input->post('nombre'),				
+				'referencia' => $this->input->post('referencia'),
+				'formato' => $this->input->post('formato'),
+				'anho' => $this->input->post('anho'),
+				'tracklist' => nl2br($this->input->post('tracklist')),
+				'creditos' => nl2br($this->input->post('creditos')),
+				'notas' => nl2br($this->input->post('notas')),
+				'link' => $this->input->post('link'),
+			);
+
+			$this->db->replace('lanzamiento', $data);
+			return $this->input->post('id');
+		}						
 }

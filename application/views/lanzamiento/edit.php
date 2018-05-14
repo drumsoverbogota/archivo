@@ -17,13 +17,13 @@
 	<input type="input" name="anho" value ="<?php echo $lanzamiento_item['anho'] ?>"/><br />
 	
     <label for="tracklist">Tracklist</label>
-    <textarea name="tracklist"><?php echo $lanzamiento_item['tracklist'] ?></textarea><br />		
+    <textarea name="tracklist"><?php echo str_replace("<br />", "", $lanzamiento_item['tracklist']) ?></textarea><br />		
 	
     <label for="creditos">Creditos</label>
-    <textarea name="creditos"><?php echo $lanzamiento_item['creditos'] ?></textarea><br />	
+    <textarea name="creditos"><?php echo str_replace("<br />", "", $lanzamiento_item['creditos']) ?></textarea><br />	
 
 	<label for="notas">Notas</label>
-    <textarea name="notas"><?php echo $lanzamiento_item['notas'] ?></textarea><br />	
+    <textarea name="notas"><?php echo str_replace("<br />", "", $lanzamiento_item['notas']) ?></textarea><br />	
 	
 	<label for="link">Link</label>
     <input type="input" name="link" value ="<?php echo $lanzamiento_item['link'] ?>"><br />		

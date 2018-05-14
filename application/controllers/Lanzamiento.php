@@ -81,5 +81,54 @@ class Lanzamiento extends CI_Controller {
 					
 				}
 			}
-		}		
+		}
+		
+		public function edit($id)
+		{
+			if (!$this->ion_auth->logged_in())
+			{
+				// redirect them to the login page
+				redirect('auth/login', 'refresh');
+			}
+			else if (!$this->ion_auth->is_admin()) // remove this elseif if you want to enable this for non-admins
+			{
+				// redirect them to the home page because they must be an administrator to view this
+				return show_error('You must be an administrator to view this page.');
+			}
+			else
+			{			
+		
+				$data['lanzamiento_item'] = $this->lanzamiento_model->get_lanzamiento($id);
+				
+				$this->load->helper('form');
+				$this->load->library('form_validation');
+
+				$data['title'] = 'Editar un nuevo Lanzamiento';
+
+				$this->form_validation->set_rules('nombre', 'Nombre', 'required');
+				$this->form_validation->set_rules('referencia', 'Referencia', '');
+				$this->form_validation->set_rules('formato', 'Formato', '');
+				$this->form_validation->set_rules('anho', 'Año', '');
+				$this->form_validation->set_rules('tracklist', 'Tracklist', '');
+				$this->form_validation->set_rules('creditos', 'Creditos', '');
+				$this->form_validation->set_rules('notas', 'Notas', '');
+				$this->form_validation->set_rules('link', 'Link', '');
+				
+
+				if ($this->form_validation->run() === FALSE)
+				{
+					$this->load->view('templates/header', $data);
+					$this->load->view('lanzamiento/edit');
+					$this->load->view('templates/footer');
+
+				}
+				else
+				{
+					$id = $this->lanzamiento_model->edit_lanzamiento();				
+					$this->view($id);
+					
+				}
+			}
+		}				
+		
 }
