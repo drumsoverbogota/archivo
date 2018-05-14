@@ -61,4 +61,9 @@ class Lanzamiento_model extends CI_Model {
 			$this->db->replace('lanzamiento', $data);
 			return $this->input->post('id');
 		}						
+
+		public function delete_lanzamiento($id)
+		{
+			$this->db->delete('lanzamiento', array('id' => $id));
+		}		
 }

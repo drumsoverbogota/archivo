@@ -1,3 +1,13 @@
+<script type="text/javascript">
+    
+    function borrar(){
+		var r=confirm("Do you want to delete this?")
+		if (r==true)
+			window.location = "<?php echo site_url('lanzamiento/delete/'.$lanzamiento_item['id']); ?>";
+		else
+			return false;
+	} 
+</script>
 
 
 <P><IMG SRC="<?php echo base_url('images/placeholder.jpg'); ?>" ALIGN="RIGHT"><B>Banda</B></P>
@@ -21,7 +31,15 @@
 <?php 	
 if ($this->ion_auth->logged_in()){
 ?>
-<div align="right"><h5><a href="<?php echo site_url('lanzamiento/edit/'.$lanzamiento_item['id']); ?>">Editar</a></h5></div>
+<div align="right"><h5><a href="<?php echo site_url('lanzamiento/edit/'.$lanzamiento_item['id']); ?>">Editar</a>|
+<a href="javascript:void(0);" onclick="borrar()">Borrar</a>
+
+
+</h5></div>
 <?php
 }
 ?>
+
+
+
+

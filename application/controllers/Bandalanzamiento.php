@@ -33,7 +33,7 @@ class Bandalanzamiento extends CI_Controller {
 				$data['title'] = 'Asigne el disco';		
 				
 				$this->load->view('templates/header', $data);
-				$this->load->view('bandalanzamiento/lanzamientos', $data);
+				$this->load->view('bandalanzamiento/banda_lanzamientos', $data);
 				$this->load->view('templates/footer');
 			}
 		}		
@@ -43,5 +43,39 @@ class Bandalanzamiento extends CI_Controller {
 				$this->bandalanzamiento_model->set_lanzamiento($this->input->post('banda'));				
 			}
 			$this->asignar_banda();
-		}			
+		}		
+
+		public function asignar_lanzamiento()
+		{
+			$this->load->helper('form');
+			$this->load->library('form_validation');
+			
+			if (empty($this->input->post('lanzamiento_id'))){
+				
+				$data['lanzamiento'] = $this->lanzamiento_model->get_lanzamiento();
+				$data['title'] = 'Escoga el lanzamiento';		
+				$this->load->view('templates/header', $data);
+				$this->load->view('bandalanzamiento/lanzamiento', $data);
+				$this->load->view('templates/footer');	
+			}
+			else{ 	
+				$data['lanzamiento_id'] = $this->input->post('lanzamiento_id');
+				$data['banda'] = $this->banda_model->get_banda();
+				$data['asignados'] = $this->bandalanzamiento_model->get_banda_lanzamientoid_array($data['lanzamiento_id']);	
+				$data['title'] = 'Asigne la banda';		
+				
+				$this->load->view('templates/header', $data);
+				$this->load->view('bandalanzamiento/lanzamiento_bandas', $data);
+				$this->load->view('templates/footer');
+			}
+		}		
+		
+		public function create_lanzamiento()
+		{
+			if(!empty($this->input->post('lanzamiento'))){				
+				$this->bandalanzamiento_model->set_banda($this->input->post('lanzamiento'));				
+			}
+			$this->asignar_lanzamiento();
+		}				
+		
 }
