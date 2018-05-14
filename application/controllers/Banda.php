@@ -7,7 +7,9 @@ class Banda extends CI_Controller {
                 $this->load->model('banda_model');
                 $this->load->helper('url_helper');
 				$this->load->helper('url');
+				$this->load->helper(array('form', 'url'));
 				$this->load->library('ion_auth');
+				
         }
 
         public function index()
@@ -138,5 +140,69 @@ class Banda extends CI_Controller {
 				$this->index();
 			}		
 		}
+		
+        public function upload()		
+        {
+			if (!$this->ion_auth->logged_in())
+			{
+				// redirect them to the login page
+				redirect('auth/login', 'refresh');
+			}
+			else if (!$this->ion_auth->is_admin()) // remove this elseif if you want to enable this for non-admins
+			{
+				// redirect them to the home page because they must be an administrator to view this
+				return show_error('You must be an administrator to view this page.');
+			}
+			else
+			{
+				$data['title'] = 'Subir imagen de banda';
+				$data['error'] = '';
+				$this->load->view('templates/header', $data);
+				$this->load->view('banda/upload_form');
+				$this->load->view('templates/footer');		
+              
+			}
+        }		
+		
+		
+		public function do_upload()
+		{
+			if (!$this->ion_auth->logged_in())
+			{
+				// redirect them to the login page
+				redirect('auth/login', 'refresh');
+			}
+			else if (!$this->ion_auth->is_admin()) // remove this elseif if you want to enable this for non-admins
+			{
+				// redirect them to the home page because they must be an administrator to view this
+				return show_error('You must be an administrator to view this page.');
+			}
+			else
+			{
+				$data['title'] = 'Editar un nuevo Lanzamiento';
+                $config['upload_path']          = './images/';
+                $config['allowed_types']        = 'gif|jpg|png';
+                $config['max_size']             = 100;
+                $config['max_width']            = 1024;
+                $config['max_height']           = 768;
+
+                $this->load->library('upload', $config);
+				echo 'perro';
+                if ( ! $this->upload->do_upload('userfile'))
+                {
+						
+                        $error = array('error' => $this->upload->display_errors());
+                        $this->load->view('banda/upload_form', $error);
+						echo 'gonorrea';
+                }
+                else
+                {
+						
+                        $data = array('upload_data' => $this->upload->data());
+                        $this->index();
+						echo 'carechimba';
+                }
+			}		
+		}		
 		
 }

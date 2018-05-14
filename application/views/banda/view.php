@@ -26,6 +26,7 @@ if ($this->ion_auth->logged_in()){
 ?>
 <div align="right"><h5>
 <a href="<?php echo site_url('banda/edit/'.$banda_item['id']); ?>">Editar</a>|
+<a href="<?php echo site_url('banda/upload/'.$banda_item['id']); ?>">Subir imagen</a>|
 <a href="javascript:void(0);" onclick="borrar()">Borrar</a>
 
 </h5></div>
