@@ -53,4 +53,9 @@ class Banda_model extends CI_Model {
 			$this->db->replace('banda', $data);
 			return $this->input->post('id');
 		}				
+		
+		public function delete_banda($id)
+		{
+			$this->db->delete('banda', array('id' => $id));
+		}
 }
