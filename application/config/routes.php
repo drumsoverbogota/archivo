@@ -52,7 +52,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $route['admin'] = 'paginas/admin';
 $route['bandalanzamiento/asignar_banda'] = 'bandalanzamiento/asignar_banda';
 $route['banda/create'] = 'banda/create';
-$route['banda/upload'] = 'banda/upload';
 $route['banda/(:any)'] = 'banda/view/$1';
 $route['banda'] = 'banda';
 $route['lanzamiento/create'] = 'lanzamiento/create';

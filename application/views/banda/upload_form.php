@@ -1,6 +1,6 @@
 <?php echo $error;?>
 
-<?php echo form_open_multipart('banda/do_upload/1');?>
+<?php echo form_open_multipart('banda/do_upload/'.$id);?>
 
 <input type="file" name="userfile" size="20" />
 

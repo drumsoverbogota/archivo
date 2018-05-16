@@ -1,6 +1,13 @@
 <?php
 class Banda extends CI_Controller {
 
+		
+		public function clean($string) {
+		   
+		   return preg_replace('/[^A-Za-z0-9]/', '', $string); // Removes special chars.
+		}		
+
+
         public function __construct()
         {
                 parent::__construct();
@@ -141,7 +148,7 @@ class Banda extends CI_Controller {
 			}		
 		}
 		
-        public function upload()		
+        public function upload($id)		
         {
 			if (!$this->ion_auth->logged_in())
 			{
@@ -156,6 +163,7 @@ class Banda extends CI_Controller {
 			else
 			{
 				$data['title'] = 'Subir imagen de banda';
+				$data['id'] = $id;
 				$data['error'] = '';
 				$this->load->view('templates/header', $data);
 				$this->load->view('banda/upload_form');
@@ -165,7 +173,7 @@ class Banda extends CI_Controller {
         }		
 		
 		
-		public function do_upload()
+		public function do_upload($id)
 		{
 			if (!$this->ion_auth->logged_in())
 			{
@@ -179,30 +187,36 @@ class Banda extends CI_Controller {
 			}
 			else
 			{
-				$data['title'] = 'Editar un nuevo Lanzamiento';
-                $config['upload_path']          = './images/';
-                $config['allowed_types']        = 'gif|jpg|png';
-                $config['max_size']             = 100;
-                $config['max_width']            = 1024;
-                $config['max_height']           = 768;
+				if($id != NULL){
+					$data['title'] = 'Editar un nuevo Lanzamiento';
+				
+					$banda = $this->banda_model->get_banda($id);
+					
+					
+					$config['upload_path']		= './images/';
+					$config['allowed_types']	= 'gif|jpg|png';
+					$config['max_size']			= 1024;
+					$config['file_name']			= strtolower(preg_replace('/[^A-Za-z0-9]/', '',str_replace(' ', '-', $banda['id'].$banda['nombre'].'image')));
+					
 
-                $this->load->library('upload', $config);
-				echo 'perro';
-                if ( ! $this->upload->do_upload('userfile'))
-                {
+					$this->load->library('upload', $config);
+				
+					if ( ! $this->upload->do_upload('userfile'))
+					{						
+						$error = array('error' => $this->upload->display_errors());
+						$this->load->view('banda/upload_form', $error);
+					}
+					else
+					{						
+						$data = array('upload_data' => $this->upload->data());
+						echo print_r($data['upload_data']['file_name']);
 						
-                        $error = array('error' => $this->upload->display_errors());
-                        $this->load->view('banda/upload_form', $error);
-						echo 'gonorrea';
-                }
-                else
-                {
 						
-                        $data = array('upload_data' => $this->upload->data());
-                        $this->index();
-						echo 'carechimba';
-                }
+						
+						$this->view($id);
+					}					
+				
+				}
 			}		
 		}		
-		
 }

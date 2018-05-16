@@ -58,4 +58,10 @@ class Banda_model extends CI_Model {
 		{
 			$this->db->delete('banda', array('id' => $id));
 		}
+		
+		public function set_image($id, $link){
+			$data = $this->db->get_where('banda', array('id' => $id))->row_array();
+			$data['imagen'] = $link;
+			$this->db->replace('table', $data);
+		}			
 }
