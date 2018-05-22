@@ -11,6 +11,7 @@ class Banda extends CI_Controller {
         public function __construct()
         {
                 parent::__construct();
+                $this->load->model('bandalanzamiento_model');
                 $this->load->model('banda_model');
                 $this->load->helper('url_helper');
 				$this->load->helper('url');

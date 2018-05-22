@@ -6,30 +6,45 @@ class Bandalanzamiento_model extends CI_Model {
                 $this->load->database();
         }
 		
+        
+
+
+		//Dado un id de una banda, muestra todos sus lanzamientos
 		public function get_lanzamiento_bandaid_array($id)
 		{
-				$query = $this->db->query("SELECT `lanzamiento_id` FROM `banda_lanzamiento` WHERE `banda_id` = ".$id);
+
+				$query = $this->db->query("SELECT `lanzamiento`.`id`, `lanzamiento`.`nombre`
+				FROM `lanzamiento`
+				LEFT JOIN `banda_lanzamiento` ON `lanzamiento`.`id` = `banda_lanzamiento`.`lanzamiento_id` 
+				WHERE (( `banda_id` = ".$id."))");
+				//$query = $this->db->query("SELECT `lanzamiento_id` FROM `banda_lanzamiento` WHERE `banda_id` = ".$id);
 				$lanzamiento_bandaid = $query->result();
 				
 				$result = [];
 				
 				foreach ($lanzamiento_bandaid as $row)
 				{
-					array_push($result , $row->lanzamiento_id);
+					array_push($result , array($row->id, $row->nombre));
 				}				
 				return $result;
 		}				
 		
+		//Dado un id de una lanzamiento, muestra todos sus bandas asociadas
 		public function get_banda_lanzamientoid_array($id)
 		{
-				$query = $this->db->query("SELECT `banda_id` FROM `banda_lanzamiento` WHERE `lanzamiento_id` = ".$id);
+				$query = $this->db->query("SELECT `banda`.`id`, `banda`.`nombre`
+				FROM `lanzamiento`
+				LEFT JOIN `banda_lanzamiento` ON `lanzamiento`.`id` = `banda_lanzamiento`.`lanzamiento_id` 
+				LEFT JOIN `banda` ON `banda_lanzamiento`.`banda_id` = `banda`.`id` 
+				WHERE (( `lanzamiento_id` = ".$id."))");
+				//$query = $this->db->query("SELECT `banda_id` FROM `banda_lanzamiento` WHERE `lanzamiento_id` = ".$id);
 				$banda_lanzamientoid = $query->result();
 				
 				$result = [];
 				
 				foreach ($banda_lanzamientoid as $row)
 				{
-					array_push($result , $row->banda_id);
+					array_push($result , array($row->id, $row->nombre));
 				}				
 				return $result;
 		}		
@@ -46,8 +61,14 @@ class Bandalanzamiento_model extends CI_Model {
 			$nuevo_lan = [];
 			if(!empty($this->input->post('lanzamientos'))){
 				$nuevo_lan = $this->input->post('lanzamientos');
-			}			
-			$viejo_lan = $this->get_lanzamiento_bandaid_array($id);
+			}		
+
+			$lanzamientos = $this->get_lanzamiento_bandaid_array($id); 	
+			$viejo_lan = [];
+
+			for($i=0 ; $i < count($lanzamientos) ; $i++){
+				array_push($viejo_lan , $lanzamientos[$i][0]);
+			}	
 			
 			
 			$quitar = array_values(array_diff($viejo_lan, $nuevo_lan));
@@ -79,8 +100,14 @@ class Bandalanzamiento_model extends CI_Model {
 			if(!empty($this->input->post('bandas'))){
 				$nuevo_ban = $this->input->post('bandas');
 			}			
-			$viejo_ban = $this->get_banda_lanzamientoid_array($id);
+			$bandas = $this->get_banda_lanzamientoid_array($id);
+			$viejo_ban = [];
+
+			for($i=0 ; $i < count($bandas) ; $i++){
+				array_push($viejo_ban , $bandas[$i][0]);
+			}	
 			
+
 			
 			$quitar = array_values(array_diff($viejo_ban, $nuevo_ban));
 			$agregar = array_values(array_diff($nuevo_ban, $viejo_ban));
@@ -94,8 +121,7 @@ class Bandalanzamiento_model extends CI_Model {
 				$this->db->insert('banda_lanzamiento', $data);
 			}			
 			
-			print_r($agregar);
-			print_r($quitar);
+
 			for($i=0 ; $i < count($quitar) ; $i++){
 				$data = array(
 					'banda_id' =>  $quitar[$i],				

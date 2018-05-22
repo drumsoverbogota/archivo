@@ -29,7 +29,12 @@ class Bandalanzamiento extends CI_Controller {
 			else{ 	
 				$data['banda_id'] = $this->input->post('banda_id');
 				$data['lanzamiento'] = $this->lanzamiento_model->get_lanzamiento();
-				$data['asignados'] = $this->bandalanzamiento_model->get_lanzamiento_bandaid_array($data['banda_id']);	
+				$data['asignados'] = [];
+				$bandalanzamiento = $this->bandalanzamiento_model->get_lanzamiento_bandaid_array($data['banda_id']);
+				for($i=0 ; $i < count($bandalanzamiento) ; $i++){
+					array_push($data['asignados'] , $bandalanzamiento[$i][0]);
+				}
+				
 				$data['title'] = 'Asigne el disco';		
 				
 				$this->load->view('templates/header', $data);
@@ -61,8 +66,13 @@ class Bandalanzamiento extends CI_Controller {
 			else{ 	
 				$data['lanzamiento_id'] = $this->input->post('lanzamiento_id');
 				$data['banda'] = $this->banda_model->get_banda();
-				$data['asignados'] = $this->bandalanzamiento_model->get_banda_lanzamientoid_array($data['lanzamiento_id']);	
+				$data['asignados'] = [];
+				$lanzamientobandas = $this->bandalanzamiento_model->get_banda_lanzamientoid_array($data['lanzamiento_id']);	
 				$data['title'] = 'Asigne la banda';		
+
+				for($i=0 ; $i < count($lanzamientobandas) ; $i++){
+					array_push($data['asignados'] , $lanzamientobandas[$i][0]);
+				}				
 				
 				$this->load->view('templates/header', $data);
 				$this->load->view('bandalanzamiento/lanzamiento_bandas', $data);
