@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1:3306
--- Tiempo de generación: 24-04-2018 a las 01:14:40
+-- Tiempo de generación: 23-05-2018 a las 13:13:20
 -- Versión del servidor: 5.7.19
 -- Versión de PHP: 5.6.31
 
@@ -35,8 +35,9 @@ CREATE TABLE IF NOT EXISTS `banda` (
   `otros` text NOT NULL,
   `integrantes` text,
   `comentarios` text,
+  `imagen` text,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -70,7 +71,7 @@ CREATE TABLE IF NOT EXISTS `lanzamiento` (
   `notas` text,
   `link` text,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 --
 -- Restricciones para tablas volcadas
