@@ -2,9 +2,8 @@
 -- version 4.5.4.1deb2ubuntu2
 -- http://www.phpmyadmin.net
 --
-
 -- Host: localhost
--- Generation Time: May 25, 2018 at 06:00 PM
+-- Generation Time: May 25, 2018 at 06:12 PM
 -- Server version: 5.7.22-0ubuntu0.16.04.1
 -- PHP Version: 7.0.30-0ubuntu0.16.04.1
 
@@ -34,7 +33,7 @@ CREATE TABLE `banda` (
   `otros` text NOT NULL,
   `integrantes` text,
   `comentarios` text,
-  `imagen` text,
+  `imagen` text
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -89,7 +88,6 @@ ALTER TABLE `banda_lanzamiento`
 --
 ALTER TABLE `lanzamiento`
   ADD PRIMARY KEY (`id`);
-
 
 --
 -- AUTO_INCREMENT for dumped tables
