@@ -11,7 +11,12 @@
     <input type="input" name="referencia" /><br />
 
     <label for="formato">Formato</label>
-	<input type="input" name="formato" /><br />
+    <select name="formato">
+        <?php for($i = 0; $i < count($formatos); ++$i) { ?>
+            <option value="<?php echo $i+1 ?>"><?php echo $formatos[$i]; ?></option>          
+        <?php } ?>
+
+    </select><br />
 	
     <label for="anho">Año</label>
 	<input type="input" name="anho" /><br />

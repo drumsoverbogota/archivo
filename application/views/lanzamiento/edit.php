@@ -11,7 +11,16 @@
     <input type="input" name="referencia" value ="<?php echo $lanzamiento_item['referencia'] ?>"/><br />
 
     <label for="formato">Formato</label>
-	<input type="input" name="formato" value ="<?php echo $lanzamiento_item['formato'] ?>"/><br />
+    <select name="formato">
+        <?php for($i = 0; $i < count($formatos); ++$i) { ?>
+            <?php if ($lanzamiento_item['formato'] == $formatos[$i]) {?>
+                <option value="<?php echo $i+1 ?>" selected = "selected"><?php echo $formatos[$i]; ?></option> 
+            <?php } else{ ?>                         
+                <option value="<?php echo $i+1 ?>"><?php echo $formatos[$i]; ?></option>
+            <?php } ?>     
+        <?php } ?>
+
+    </select><br />    
 	
     <label for="anho">Año</label>
 	<input type="input" name="anho" value ="<?php echo $lanzamiento_item['anho'] ?>"/><br />

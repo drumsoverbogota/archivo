@@ -14,10 +14,14 @@ class Lanzamiento extends CI_Controller {
         {			
                 $data['lanzamiento'] = $this->lanzamiento_model->get_lanzamiento();
 				$data['title'] = 'Lista de lanzamientos';
+				
 
+    			
+				
 				$this->load->view('templates/header', $data);
 				$this->load->view('lanzamiento/index', $data);
-				$this->load->view('templates/footer');				
+				$this->load->view('templates/footer');
+
         }
 
         public function view($id = NULL)
@@ -53,6 +57,9 @@ class Lanzamiento extends CI_Controller {
 				$this->load->library('form_validation');
 
 				$data['title'] = 'Crear un nuevo Lanzamiento';
+				$data['formatos'] = $this->lanzamiento_model->get_formatos();
+
+
 
 				$this->form_validation->set_rules('nombre', 'Nombre', 'required');
 				$this->form_validation->set_rules('referencia', 'Referencia', '');
@@ -104,7 +111,8 @@ class Lanzamiento extends CI_Controller {
 				$this->load->library('form_validation');
 
 				$data['title'] = 'Editar un nuevo Lanzamiento';
-
+				$data['formatos'] = $this->lanzamiento_model->get_formatos();
+				
 				$this->form_validation->set_rules('nombre', 'Nombre', 'required');
 				$this->form_validation->set_rules('referencia', 'Referencia', '');
 				$this->form_validation->set_rules('formato', 'Formato', '');

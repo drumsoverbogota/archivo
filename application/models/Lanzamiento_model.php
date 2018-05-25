@@ -5,6 +5,15 @@ class Lanzamiento_model extends CI_Model {
         {
                 $this->load->database();
         }
+
+        public function get_formatos()
+        {
+        	$query = $this->db->query("SHOW COLUMNS FROM lanzamiento WHERE Field = 'formato'");
+        	$formatos_array = $query->row( 0 )->Type;
+			preg_match("/^enum\(\'(.*)\'\)$/", $formatos_array, $matches);
+			$enum = explode("','", $matches[1]);        	
+			return $enum;
+        }
 		
 		public function get_lanzamiento($id = FALSE)
 		{
