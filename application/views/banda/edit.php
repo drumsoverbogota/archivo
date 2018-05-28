@@ -18,10 +18,7 @@
 
     <label for="extranjera">¿Es extranjera?</label>
     <input name="extranjera" type="checkbox"
-    
-    <?php if($banda_item['extranjera'] != 0) echo "checked";?>
-        
-
+        <?php if($banda_item['extranjera'] != 0) echo "checked";?>
     ><br />
 
 	<input type="hidden" name="id" value="<?php echo $banda_item['id']; ?>" />

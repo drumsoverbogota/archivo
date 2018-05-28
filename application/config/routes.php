@@ -54,6 +54,7 @@ $route['bandalanzamiento/asignar_banda'] = 'bandalanzamiento/asignar_banda';
 $route['banda/create'] = 'banda/create';
 $route['banda/(:any)'] = 'banda/view/$1';
 $route['banda'] = 'banda';
+$route['todasbanda'] = 'banda/index/true';
 $route['lanzamiento/create'] = 'lanzamiento/create';
 $route['lanzamiento/(:any)'] = 'lanzamiento/view/$1';
 $route['lanzamientos/(:any)'] = 'lanzamiento/index/$1';

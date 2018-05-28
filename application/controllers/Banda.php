@@ -19,10 +19,14 @@ class Banda extends CI_Controller {
 				
         }
 
-        public function index()
+        public function index($extranjera = 'false')
         {
                 $data['banda'] = $this->banda_model->get_banda();
 				$data['title'] = 'Lista de bandas';
+				$data['extranjera'] = 'false';
+				if ($extranjera == 'true'){
+					$data['extranjera'] = 'true';
+				}
 
 				$this->load->view('templates/header', $data);
 				$this->load->view('banda/index', $data);
