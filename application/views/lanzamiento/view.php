@@ -10,28 +10,32 @@
 </script>
 
 
-<P><IMG SRC="<?php echo base_url('images/placeholder.jpg'); ?>" ALIGN="RIGHT"><B>Banda</B></P>
-
+<?php if ($lanzamiento_item['imagen'] == NULL){ ?>
+	<P><IMG SRC="<?php echo base_url('images/placeholder.jpg'); ?>" ALIGN="RIGHT"><B>Banda</B></P>
+<?php } else{?>
+	<P><IMG SRC="<?php echo base_url('images/'.$lanzamiento_item['imagen']); ?>" ALIGN="RIGHT"><B>Banda</B></P>
+<?php }?>
 <p><H3><?php echo $lanzamiento_item['nombre'];?> (<?php echo $lanzamiento_item['anho'];?>)</H3></p>
-
 <P><?php echo $lanzamiento_item['referencia'];?><BR CLEAR="ALL">
 
 
 
 <hr>
 
-<?php echo $lanzamiento_item['tracklist'];?>
+<?php echo nl2br($lanzamiento_item['tracklist']);?>
 
 <hr>
 
-<?php echo $lanzamiento_item['creditos'];?>
-<?php echo $lanzamiento_item['notas'];?>
+<?php echo nl2br($lanzamiento_item['creditos']);?>
+<?php echo nl2br($lanzamiento_item['notas']);?>
 
 
 <?php 	
 if ($this->ion_auth->logged_in()){
 ?>
-<div align="right"><h5><a href="<?php echo site_url('lanzamiento/edit/'.$lanzamiento_item['id']); ?>">Editar</a>|
+<div align="right"><h5>
+<a href="<?php echo site_url('lanzamiento/edit/'.$lanzamiento_item['id']); ?>">Editar</a>|
+<a href="<?php echo site_url('lanzamiento/upload/'.$lanzamiento_item['id']); ?>">Subir imagen</a>|
 <a href="javascript:void(0);" onclick="borrar()">Borrar</a>
 
 

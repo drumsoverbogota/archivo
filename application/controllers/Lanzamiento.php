@@ -1,12 +1,19 @@
 <?php
 class Lanzamiento extends CI_Controller {
 
+		public function clean($string) {
+		   
+		   return preg_replace('/[^A-Za-z0-9]/', '', $string); // Removes special chars.
+		}		
+
+
         public function __construct()
         {
                 parent::__construct();
                 $this->load->model('lanzamiento_model');
                 $this->load->helper('url_helper');
 				$this->load->helper('url');
+				$this->load->helper(array('form', 'url'));
 				$this->load->library('ion_auth');
         }
 
@@ -157,5 +164,80 @@ class Lanzamiento extends CI_Controller {
 				$this->index();
 			}		
 		}		
+
 		
+        public function upload($id)		
+        {
+			if (!$this->ion_auth->logged_in())
+			{
+				// redirect them to the login page
+				redirect('auth/login', 'refresh');
+			}
+			else if (!$this->ion_auth->is_admin()) // remove this elseif if you want to enable this for non-admins
+			{
+				// redirect them to the home page because they must be an administrator to view this
+				return show_error('You must be an administrator to view this page.');
+			}
+			else
+			{
+				$data['title'] = 'Subir imagen de lanzamiento';
+				$data['id'] = $id;
+				$data['error'] = '';
+				$this->load->view('templates/header', $data);
+				$this->load->view('lanzamiento/upload_form');
+				$this->load->view('templates/footer');		
+              
+			}
+        }				
+		
+
+		
+		public function do_upload($id)
+		{
+			if (!$this->ion_auth->logged_in())
+			{
+				// redirect them to the login page
+				redirect('auth/login', 'refresh');
+			}
+			else if (!$this->ion_auth->is_admin()) // remove this elseif if you want to enable this for non-admins
+			{
+				// redirect them to the home page because they must be an administrator to view this
+				return show_error('You must be an administrator to view this page.');
+			}
+			else
+			{
+				if($id != NULL){
+					$data['title'] = 'Editar una nuevo lanzamiento';
+				
+					$lanzamiento = $this->lanzamiento_model->get_lanzamiento($id);
+					
+					//Configuraciones de la subida
+					$config['upload_path']		= './images/';
+					$config['allowed_types']	= 'gif|jpg|png';
+					$config['max_size']			= 2048;
+					$config['file_name']		= strtolower(preg_replace('/[^A-Za-z0-9]/', '',str_replace(' ', '-', $lanzamiento['id'].$lanzamiento['nombre'].'image')));
+					$config['overwrite'] = TRUE;
+					//$config[''] = ; 
+
+					$data['id'] = $id;
+
+					$this->load->library('upload', $config);
+				
+					if ( ! $this->upload->do_upload('userfile'))
+					{						
+						$error = array('error' => $this->upload->display_errors());
+						$this->load->view('templates/header', $data);
+						$this->load->view('lanzamiento/upload_form', $error);
+						$this->load->view('templates/footer');	
+					}
+					else
+					{						
+						$data = array('upload_data' => $this->upload->data());
+						$this->lanzamiento_model->update_image($id, $data['upload_data']['file_name']);					
+						$this->view($id);
+					}					
+				
+				}
+			}		
+		}				
 }

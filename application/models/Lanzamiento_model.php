@@ -6,6 +6,21 @@ class Lanzamiento_model extends CI_Model {
                 $this->load->database();
         }
 
+        public function update_image($id = NULL, $imagen = NULL)
+        {
+        	if($id == NULL){
+        		return FALSE;
+        	}
+        	else{
+        		$data = array(
+			        'imagen'  => $imagen
+				);
+
+				$this->db->where('id', $id);
+				$this->db->update('lanzamiento', $data);
+        	}
+        }
+
         public function get_formatos()
         {
         	$query = $this->db->query("SHOW COLUMNS FROM lanzamiento WHERE Field = 'formato'");
@@ -38,9 +53,9 @@ class Lanzamiento_model extends CI_Model {
 				'referencia' => $this->input->post('referencia'),
 				'formato' => $this->input->post('formato'),
 				'anho' => $this->input->post('anho'),
-				'tracklist' => nl2br($this->input->post('tracklist')),
-				'creditos' => nl2br($this->input->post('creditos')),
-				'notas' => nl2br($this->input->post('notas')),
+				'tracklist' => $this->input->post('tracklist'),
+				'creditos' => $this->input->post('creditos'),
+				'notas' => $this->input->post('notas'),
 				'link' => $this->input->post('link'),
 			);
 
@@ -61,9 +76,9 @@ class Lanzamiento_model extends CI_Model {
 				'referencia' => $this->input->post('referencia'),
 				'formato' => $this->input->post('formato'),
 				'anho' => $this->input->post('anho'),
-				'tracklist' => nl2br($this->input->post('tracklist')),
-				'creditos' => nl2br($this->input->post('creditos')),
-				'notas' => nl2br($this->input->post('notas')),
+				'tracklist' => $this->input->post('tracklist'),
+				'creditos' => $this->input->post('creditos'),
+				'notas' => $this->input->post('notas'),
 				'link' => $this->input->post('link'),
 			);
 

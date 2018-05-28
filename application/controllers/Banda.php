@@ -1,6 +1,5 @@
 <?php
 class Banda extends CI_Controller {
-
 		
 		public function clean($string) {
 		   
@@ -193,27 +192,29 @@ class Banda extends CI_Controller {
 				
 					$banda = $this->banda_model->get_banda($id);
 					
-					
+					//Configuraciones de la subida
 					$config['upload_path']		= './images/';
 					$config['allowed_types']	= 'gif|jpg|png';
-					$config['max_size']			= 1024;
-					$config['file_name']			= strtolower(preg_replace('/[^A-Za-z0-9]/', '',str_replace(' ', '-', $banda['id'].$banda['nombre'].'image')));
-					
+					$config['max_size']			= 2048;
+					$config['file_name']		= strtolower(preg_replace('/[^A-Za-z0-9]/', '',str_replace(' ', '-', $banda['id'].$banda['nombre'].'image')));
+					$config['overwrite'] = TRUE;
+					//$config[''] = ; 
+
+					$data['id'] = $id;
 
 					$this->load->library('upload', $config);
 				
 					if ( ! $this->upload->do_upload('userfile'))
 					{						
 						$error = array('error' => $this->upload->display_errors());
+						$this->load->view('templates/header', $data);
 						$this->load->view('banda/upload_form', $error);
+						$this->load->view('templates/footer');	
 					}
 					else
 					{						
 						$data = array('upload_data' => $this->upload->data());
-						echo print_r($data['upload_data']['file_name']);
-						
-						
-						
+						$this->banda_model->update_image($id, $data['upload_data']['file_name']);					
 						$this->view($id);
 					}					
 				

@@ -6,6 +6,21 @@ class Banda_model extends CI_Model {
                 $this->load->database();
         }
 		
+        public function update_image($id = NULL, $imagen = NULL)
+        {
+        	if($id == NULL){
+        		return FALSE;
+        	}
+        	else{
+        		$data = array(
+			        'imagen'  => $imagen
+				);
+
+				$this->db->where('id', $id);
+				$this->db->update('banda', $data);
+        	}
+        }
+
 		public function get_banda($id = FALSE)
 		{
 				if ($id === FALSE)
@@ -23,12 +38,20 @@ class Banda_model extends CI_Model {
 
 			//$slug = url_title($this->input->post('title'), 'dash', TRUE);
 
-			$data = array(
+			/*$data = array(
 				//'slug' => $slug,
 				'nombre' => $this->input->post('nombre'),				
 				'otros' => nl2br($this->input->post('otros')),				
 				'integrantes' => nl2br($this->input->post('integrantes')),
 				'comentarios' => nl2br($this->input->post('comentarios'))				
+			);*/
+
+			$data = array(
+				//'slug' => $slug,
+				'nombre' => $this->input->post('nombre'),				
+				'otros' => $this->input->post('otros'),				
+				'integrantes' => $this->input->post('integrantes'),
+				'comentarios' => $this->input->post('comentarios')				
 			);
 
 			$this->db->insert('banda', $data);
@@ -45,9 +68,9 @@ class Banda_model extends CI_Model {
 				//'slug' => $slug,
 				'id' => $this->input->post('id'),		
 				'nombre' => $this->input->post('nombre'),				
-				'otros' => nl2br($this->input->post('otros')),				
-				'integrantes' => nl2br($this->input->post('integrantes')),
-				'comentarios' => nl2br($this->input->post('comentarios'))				
+				'otros' => $this->input->post('otros'),				
+				'integrantes' => $this->input->post('integrantes'),
+				'comentarios' => $this->input->post('comentarios')				
 			);
 
 			$this->db->replace('banda', $data);

@@ -10,11 +10,13 @@
 </script>
 
 
-
-<P><IMG SRC="<?php echo base_url('images/placeholder.jpg'); ?>" ALIGN="RIGHT"><B>Banda</B></P>
-
+<?php if ($banda_item['imagen'] == NULL){ ?>
+	<P><IMG SRC="<?php echo base_url('images/placeholder.jpg'); ?>" ALIGN="RIGHT"><B>Banda</B></P>
+<?php } else{?>
+	<P><IMG SRC="<?php echo base_url('images/'.$banda_item['imagen']); ?>" ALIGN="RIGHT"><B>Banda</B></P>
+<?php }?>
 <p><H3><?php echo $banda_item['nombre'];?></H3></p>
-<p><H3><?php echo $banda_item['otros'];?></H3></p>
+<p><H3><?php echo nl2br($banda_item['otros']);?></H3></p>
 
 <hr/>
 
