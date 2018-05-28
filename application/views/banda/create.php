@@ -16,6 +16,9 @@
     <label for="comentarios">Comentarios</label>
     <textarea name="comentarios"></textarea><br />	
 
+    <label for="extranjera">¿Es extranjera?</label>
+    
+
     <input type="submit" name="submit" value="Insertar nueva banda" />
 
 </form>

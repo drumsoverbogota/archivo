@@ -29,6 +29,25 @@ class Lanzamiento_model extends CI_Model {
 			$enum = explode("','", $matches[1]);        	
 			return $enum;
         }
+
+        public function get_lanzamientos($limit = 10, $page = 1)
+        {
+			/*
+			SELECT `lanzamiento`.*, group_concat(DISTINCT `banda`.`nombre` ORDER BY `banda`.`nombre` DESC SEPARATOR ', ')
+			FROM `lanzamiento`
+			INNER JOIN `banda_lanzamiento` ON `lanzamiento`.`id` = `banda_lanzamiento`.`lanzamiento_id` 
+			INNER JOIN `banda` ON `banda_lanzamiento`.`banda_id` = `banda`.`id`  
+			GROUP BY `lanzamiento`.`id`
+			*/
+
+        	$query = $this->db->query('SELECT `lanzamiento`.*, group_concat(DISTINCT `banda`.`nombre` ORDER BY `banda`.`nombre` DESC SEPARATOR \'\n \') AS `bandas`
+			FROM `lanzamiento`
+			LEFT JOIN `banda_lanzamiento` ON `lanzamiento`.`id` = `banda_lanzamiento`.`lanzamiento_id` 
+			LEFT JOIN `banda` ON `banda_lanzamiento`.`banda_id` = `banda`.`id`  
+			GROUP BY `lanzamiento`.`id` ORDER BY `lanzamiento`.`nombre`
+        		LIMIT '.$limit.' OFFSET '.(($page-1)*$limit));
+			return $query->result_array();
+        }
 		
 		public function get_lanzamiento($id = FALSE)
 		{

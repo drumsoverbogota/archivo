@@ -56,6 +56,7 @@ $route['banda/(:any)'] = 'banda/view/$1';
 $route['banda'] = 'banda';
 $route['lanzamiento/create'] = 'lanzamiento/create';
 $route['lanzamiento/(:any)'] = 'lanzamiento/view/$1';
+$route['lanzamientos/(:any)'] = 'lanzamiento/index/$1';
 $route['lanzamiento'] = 'lanzamiento';
 $route['paginas/(:any)'] = 'paginas/view/$1';
 $route['paginas'] = 'paginas';
