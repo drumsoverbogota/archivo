@@ -14,7 +14,16 @@
     <textarea name="integrantes"><?php echo str_replace("<br />", "", $banda_item['integrantes']); ?></textarea><br />
 	
     <label for="comentarios">Comentarios</label>
-    <textarea name="comentarios"><?php echo str_replace("<br />", "", $banda_item['comentarios']); ?></textarea><br />	
+    <textarea name="comentarios"><?php echo str_replace("<br />", "", $banda_item['comentarios']); ?></textarea><br />
+
+    <label for="extranjera">¿Es extranjera?</label>
+    <input name="extranjera" type="checkbox"
+    
+    <?php if($banda_item['extranjera'] != 0) echo "checked";?>
+        
+
+    ><br />
+
 	<input type="hidden" name="id" value="<?php echo $banda_item['id']; ?>" />
     <input type="submit" name="submit" value="Edit" />
 

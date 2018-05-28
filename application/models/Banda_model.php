@@ -47,12 +47,18 @@ class Banda_model extends CI_Model {
 				'comentarios' => nl2br($this->input->post('comentarios'))				
 			);*/
 
+			$extranjera = 0;
+			if ($this->input->post('extranjera') == 'on'){
+				$extranjera = 1;
+			}
+
 			$data = array(
 				//'slug' => $slug,
 				'nombre' => $this->input->post('nombre'),				
 				'otros' => $this->input->post('otros'),				
 				'integrantes' => $this->input->post('integrantes'),
-				'comentarios' => $this->input->post('comentarios')				
+				'comentarios' => $this->input->post('comentarios'),
+				'extranjera' => $extranjera			
 			);
 
 			$this->db->insert('banda', $data);
@@ -64,6 +70,10 @@ class Banda_model extends CI_Model {
 			$this->load->helper('url');
 
 			//$slug = url_title($this->input->post('title'), 'dash', TRUE);
+			$extranjera = 0;
+			if ($this->input->post('extranjera') == 'on'){
+				$extranjera = 1;
+			}			
 
 			$data = array(
 				//'slug' => $slug,
@@ -71,7 +81,8 @@ class Banda_model extends CI_Model {
 				'nombre' => $this->input->post('nombre'),				
 				'otros' => $this->input->post('otros'),				
 				'integrantes' => $this->input->post('integrantes'),
-				'comentarios' => $this->input->post('comentarios')				
+				'comentarios' => $this->input->post('comentarios'),
+				'extranjera' => $extranjera				
 			);
 
 			$this->db->replace('banda', $data);
