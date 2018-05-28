@@ -25,6 +25,7 @@ class Banda_model extends CI_Model {
 		{
 				if ($id === FALSE)
 				{
+						$this->db->order_by('nombre', 'ASC');
 						$query = $this->db->get('banda');
 						return $query->result_array();
 				}
