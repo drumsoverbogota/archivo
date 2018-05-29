@@ -36,7 +36,7 @@ class Banda_model extends CI_Model {
 		public function set_banda()
 		{
 			$this->load->helper('url');
-
+			date_default_timezone_set('America/Bogota');
 			//$slug = url_title($this->input->post('title'), 'dash', TRUE);
 
 			/*$data = array(
@@ -51,14 +51,16 @@ class Banda_model extends CI_Model {
 			if ($this->input->post('extranjera') == 'on'){
 				$extranjera = 1;
 			}
-
+			
 			$data = array(
 				//'slug' => $slug,
 				'nombre' => $this->input->post('nombre'),				
 				'otros' => $this->input->post('otros'),				
 				'integrantes' => $this->input->post('integrantes'),
 				'comentarios' => $this->input->post('comentarios'),
-				'extranjera' => $extranjera			
+				'extranjera' => $extranjera,
+				'fecha_creacion' => date('Y-m-d H:i:s'),
+				'fecha_modificacion' => date('Y-m-d H:i:s')
 			);
 
 			$this->db->insert('banda', $data);
@@ -68,24 +70,23 @@ class Banda_model extends CI_Model {
 		public function edit_banda()
 		{
 			$this->load->helper('url');
+			date_default_timezone_set('America/Bogota');
 
-			//$slug = url_title($this->input->post('title'), 'dash', TRUE);
 			$extranjera = 0;
 			if ($this->input->post('extranjera') == 'on'){
 				$extranjera = 1;
 			}			
-
+			$id = $this->input->post('id');	
 			$data = array(
-				//'slug' => $slug,
-				'id' => $this->input->post('id'),		
 				'nombre' => $this->input->post('nombre'),				
 				'otros' => $this->input->post('otros'),				
 				'integrantes' => $this->input->post('integrantes'),
 				'comentarios' => $this->input->post('comentarios'),
-				'extranjera' => $extranjera				
+				'extranjera' => $extranjera,
+				'fecha_modificacion' => date('Y-m-d H:i:s')
 			);
-
-			$this->db->replace('banda', $data);
+			$this->db->where('id', $id);
+			$this->db->update('banda', $data);
 			return $this->input->post('id');
 		}				
 		

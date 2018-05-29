@@ -63,8 +63,8 @@ class Lanzamiento_model extends CI_Model {
 		public function set_lanzamiento()
 		{
 			$this->load->helper('url');
-
-			//$slug = url_title($this->input->post('title'), 'dash', TRUE);
+			date_default_timezone_set('America/Bogota');
+			
 
 			$data = array(
 				//'slug' => $slug,
@@ -76,6 +76,8 @@ class Lanzamiento_model extends CI_Model {
 				'creditos' => $this->input->post('creditos'),
 				'notas' => $this->input->post('notas'),
 				'link' => $this->input->post('link'),
+				'fecha_creacion' => date('Y-m-d H:i:s'),
+				'fecha_modificacion' => date('Y-m-d H:i:s')
 			);
 
 			$this->db->insert('lanzamiento', $data);
@@ -85,12 +87,10 @@ class Lanzamiento_model extends CI_Model {
 		public function edit_lanzamiento()
 		{
 			$this->load->helper('url');
-
-			//$slug = url_title($this->input->post('title'), 'dash', TRUE);
-
-			$data = array(
-				//'slug' => $slug,
-				'id' => $this->input->post('id'),		
+			date_default_timezone_set('America/Bogota');
+			
+			$id = $this->input->post('id');
+			$data = array(									
 				'nombre' => $this->input->post('nombre'),				
 				'referencia' => $this->input->post('referencia'),
 				'formato' => $this->input->post('formato'),
@@ -99,9 +99,11 @@ class Lanzamiento_model extends CI_Model {
 				'creditos' => $this->input->post('creditos'),
 				'notas' => $this->input->post('notas'),
 				'link' => $this->input->post('link'),
+				'fecha_modificacion' => date('Y-m-d H:i:s')
 			);
 
-			$this->db->replace('lanzamiento', $data);
+			$this->db->where('id', $id);
+			$this->db->update('lanzamiento', $data);
 			return $this->input->post('id');
 		}						
 
