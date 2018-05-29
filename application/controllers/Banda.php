@@ -75,9 +75,6 @@ class Banda extends CI_Controller {
 				$this->form_validation->set_rules('comentarios', 'Comentarios', '');
 				$this->form_validation->set_rules('extranjera', 'Comentarios', '');
 
-				echo $this->input->post('nombre');
-				echo '-'.$this->input->post('extranjera').'-';
-
 				if ($this->form_validation->run() === FALSE)
 				{
 					$this->load->view('templates/header', $data);
