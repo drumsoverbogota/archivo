@@ -5,7 +5,7 @@
 
   <tr>
     <th>Nombre</th>
-	<th>Banda</th>  
+	<th>Banda(s)</th>  
 	<th>Referencia</th>  	
     <th>Formato</th> 
     <th>Año</th>

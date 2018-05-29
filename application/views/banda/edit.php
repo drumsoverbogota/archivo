@@ -22,6 +22,6 @@
     ><br />
 
 	<input type="hidden" name="id" value="<?php echo $banda_item['id']; ?>" />
-    <input type="submit" name="submit" value="Edit" />
+    <input type="submit" name="submit" value="Editar banda" />
 
 </form>

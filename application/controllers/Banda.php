@@ -67,7 +67,7 @@ class Banda extends CI_Controller {
 				$this->load->helper('form');
 				$this->load->library('form_validation');
 
-				$data['title'] = 'Crear un nuevo Lanzamiento';
+				$data['title'] = 'Crear una nueva banda';
 
 				$this->form_validation->set_rules('nombre', 'Nombre', 'required');
 				$this->form_validation->set_rules('otros', 'Otros nombres', '');
@@ -111,7 +111,7 @@ class Banda extends CI_Controller {
 				$this->load->helper('form');
 				$this->load->library('form_validation');
 
-				$data['title'] = 'Editar un nuevo Lanzamiento';
+				$data['title'] = 'Editar Banda';
 
 				$this->form_validation->set_rules('nombre', 'Nombre', 'required');
 				$this->form_validation->set_rules('otros', 'Otros nombres', '');

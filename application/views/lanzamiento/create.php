@@ -33,6 +33,6 @@
 	<label for="link">Link</label>
     <input type="input" name="link"><br />		
 
-    <input type="submit" name="submit" value="Create news item" />
+    <input type="submit" name="submit" value="Crear nuevo lanzamiento" />
 
 </form>
