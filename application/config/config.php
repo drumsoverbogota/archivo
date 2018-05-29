@@ -521,3 +521,9 @@ $config['rewrite_short_tags'] = FALSE;
 | Array:		array('10.0.1.200', '192.168.5.0/24')
 */
 $config['proxy_ips'] = '';
+
+#Añadido para que sirva en el godaddy, descomentar o modificar si es necesario
+#$config['sess_save_path'] = sys_get_temp_dir();
+#$config['base_url'] = 'http://volcanmudo.com/archivo/';
+#$config['index_page'] = 'index.php?';
+#$config['uri_protocol']	= 'QUERY_STRING';

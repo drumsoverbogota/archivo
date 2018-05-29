@@ -59,7 +59,7 @@ class Bandalanzamiento_model extends CI_Model {
 		{
 			$this->load->helper('url');
 			$nuevo_lan = [];
-			if(!empty($this->input->post('lanzamientos'))){
+			if($this->input->post('lanzamientos')){
 				$nuevo_lan = $this->input->post('lanzamientos');
 			}		
 
@@ -97,7 +97,7 @@ class Bandalanzamiento_model extends CI_Model {
 		{
 			$this->load->helper('url');
 			$nuevo_ban = [];
-			if(!empty($this->input->post('bandas'))){
+			if($this->input->post('bandas')){
 				$nuevo_ban = $this->input->post('bandas');
 			}			
 			$bandas = $this->get_banda_lanzamientoid_array($id);
