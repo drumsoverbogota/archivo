@@ -16,12 +16,18 @@
 	<P><IMG SRC="<?php echo base_url('images/'.$banda_item['imagen']); ?>" ALIGN="RIGHT"><B>Banda</B></P>
 <?php }?>
 <p><H3><?php echo $banda_item['nombre'];?></H3></p>
-<p><H3><?php echo nl2br($banda_item['otros']);?></H3></p>
+<p><H3><?php echo nl2br($banda_item['otros']);?></H3></p><BR CLEAR="ALL">
 
-<hr/>
-
-
-
+<hr>
+Lanzamientos
+<ul>
+<?php foreach ($lanzamiento as $lanzamiento_item): ?>
+	<li>
+		<a href="<?php echo site_url('lanzamiento/'.$lanzamiento_item['id']); ?>"><?php echo $lanzamiento_item['nombre']; ?></a>
+	</li>	
+<?php endforeach; ?>
+</ul>
+<hr>
 
 <?php 	
 if ($this->ion_auth->logged_in()){

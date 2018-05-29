@@ -41,6 +41,8 @@ class Banda extends CI_Controller {
 						show_404();
 				}
 
+				$data['lanzamiento'] = $this->banda_model->get_lanzamientos_bandaid($id);
+
 				$data['title'] = $data['banda_item']['nombre'];
 
 				$this->load->view('templates/header', $data);

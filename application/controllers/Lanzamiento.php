@@ -41,7 +41,7 @@ class Lanzamiento extends CI_Controller {
 				}
 
 				$data['title'] = $data['lanzamiento_item']['nombre'];
-
+				$data['banda'] = $this->lanzamiento_model->get_bandas_lanzamientoid($id);
 				$this->load->view('templates/header', $data);
 				$this->load->view('lanzamiento/view', $data);
 				$this->load->view('templates/footer');

@@ -18,8 +18,6 @@
 <p><H3><?php echo $lanzamiento_item['nombre'];?> (<?php echo $lanzamiento_item['anho'];?>)</H3></p>
 <P><?php echo $lanzamiento_item['referencia'];?><BR CLEAR="ALL">
 
-
-
 <hr>
 
 <?php echo nl2br($lanzamiento_item['tracklist']);?>
@@ -28,7 +26,13 @@
 
 <?php echo nl2br($lanzamiento_item['creditos']);?>
 <?php echo nl2br($lanzamiento_item['notas']);?>
-
+	<ul>
+		<?php foreach ($banda as $banda_item): ?>
+			<li>	
+				<a href="<?php echo site_url('banda/'.$banda_item['id']); ?>"><?php echo $banda_item['nombre']; ?></a>			
+			</li>		
+		<?php endforeach; ?>
+	</ul>
 
 <?php 	
 if ($this->ion_auth->logged_in()){

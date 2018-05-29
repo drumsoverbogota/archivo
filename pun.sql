@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1:3306
--- Tiempo de generación: 28-05-2018 a las 04:02:42
+-- Tiempo de generación: 29-05-2018 a las 02:56:07
 -- Versión del servidor: 5.7.19
 -- Versión de PHP: 5.6.31
 
@@ -12,12 +12,6 @@ SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
 
 --
 -- Base de datos: `pun`
@@ -38,6 +32,8 @@ CREATE TABLE IF NOT EXISTS `banda` (
   `comentarios` text,
   `imagen` text,
   `extranjera` tinyint(1) NOT NULL,
+  `fecha_creacion` datetime DEFAULT NULL,
+  `fecha_modificacion` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -73,6 +69,8 @@ CREATE TABLE IF NOT EXISTS `lanzamiento` (
   `notas` text,
   `link` text,
   `imagen` text,
+  `fecha_creacion` datetime DEFAULT NULL,
+  `fecha_modificacion` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -88,7 +86,3 @@ ALTER TABLE `banda_lanzamiento`
   ADD CONSTRAINT `banda_lanzamiento_ibfk_2` FOREIGN KEY (`lanzamiento_id`) REFERENCES `lanzamiento` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 SET FOREIGN_KEY_CHECKS=1;
 COMMIT;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

@@ -30,6 +30,16 @@ class Lanzamiento_model extends CI_Model {
 			return $enum;
         }
 
+        public function get_bandas_lanzamientoid($id)
+        {        	
+        	$query = $this->db->query("SELECT `banda`.`id`, `banda`.`nombre`
+				FROM `banda`
+				INNER JOIN `banda_lanzamiento` ON `banda`.`id` = `banda_lanzamiento`.`banda_id` 
+				INNER JOIN `lanzamiento` ON `banda_lanzamiento`.`lanzamiento_id` = `lanzamiento`.`id`
+				WHERE `lanzamiento`.`id` = ".$id);
+        	return $query->result_array();
+        }
+
         public function get_lanzamientos($limit = 10, $page = 1)
         {
 			/*

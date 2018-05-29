@@ -21,6 +21,16 @@ class Banda_model extends CI_Model {
         	}
         }
 
+        public function get_lanzamientos_bandaid($id)
+        {        	
+        	$query = $this->db->query("SELECT `lanzamiento`.`id`, `lanzamiento`.`nombre`
+				FROM `lanzamiento`
+				INNER JOIN `banda_lanzamiento` ON `lanzamiento`.`id` = `banda_lanzamiento`.`lanzamiento_id` 
+				INNER JOIN `banda` ON `banda_lanzamiento`.`banda_id` = `banda`.`id`
+				WHERE `banda`.`id` =".$id);
+        	return $query->result_array();
+        }
+
 		public function get_banda($id = FALSE)
 		{
 				if ($id === FALSE)
