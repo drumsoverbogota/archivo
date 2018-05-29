@@ -17,8 +17,8 @@ class Bandalanzamiento extends CI_Controller {
 		{
 			$this->load->helper('form');
 			$this->load->library('form_validation');
-			
-			if (empty($this->input->post('banda_id'))){
+			echo "-".$this->input->post('banda_id')."-";
+			if ($this->input->post('banda_id') == ""){
 				
 				$data['banda'] = $this->banda_model->get_banda();
 				$data['title'] = 'Escoga la banda';		
@@ -44,7 +44,7 @@ class Bandalanzamiento extends CI_Controller {
 		}		
 		public function create_banda()
 		{
-			if(!empty($this->input->post('banda'))){				
+			if($this->input->post('banda')){				
 				$this->bandalanzamiento_model->set_lanzamiento($this->input->post('banda'));				
 			}
 			$this->asignar_banda();
@@ -55,7 +55,7 @@ class Bandalanzamiento extends CI_Controller {
 			$this->load->helper('form');
 			$this->load->library('form_validation');
 			
-			if (empty($this->input->post('lanzamiento_id'))){
+			if ($this->input->post('lanzamiento_id') == ""){
 				
 				$data['lanzamiento'] = $this->lanzamiento_model->get_lanzamiento();
 				$data['title'] = 'Escoga el lanzamiento';		
@@ -82,7 +82,7 @@ class Bandalanzamiento extends CI_Controller {
 		
 		public function create_lanzamiento()
 		{
-			if(!empty($this->input->post('lanzamiento'))){				
+			if($this->input->post('lanzamiento')){				
 				$this->bandalanzamiento_model->set_banda($this->input->post('lanzamiento'));				
 			}
 			$this->asignar_lanzamiento();
