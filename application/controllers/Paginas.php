@@ -4,9 +4,10 @@ class Paginas extends CI_Controller {
         public function __construct()
         {
                 parent::__construct();
+                $this->load->library('ion_auth');
                 $this->load->helper('url_helper');
 				$this->load->helper('url');
-				$this->load->library('ion_auth');
+				
         }
 
         public function index()
