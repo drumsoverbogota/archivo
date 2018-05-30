@@ -38,6 +38,6 @@
     <input type="input" name="link" value ="<?php echo $lanzamiento_item['link'] ?>"><br />		
 
 	<input type="hidden" name="id" value="<?php echo $lanzamiento_item['id']; ?>" />
-    <input type="submit" name="submit" value="Editar lanzamiento />
+    <input type="submit" name="submit" value="Editar lanzamiento" />
 
 </form>
