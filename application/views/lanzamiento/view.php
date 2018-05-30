@@ -11,12 +11,25 @@
 
 
 <?php if ($lanzamiento_item['imagen'] == NULL){ ?>
-	<P><IMG SRC="<?php echo base_url('images/placeholder.jpg'); ?>" ALIGN="RIGHT"><B>Banda</B></P>
+	<P><IMG SRC="<?php echo base_url('images/placeholder.jpg'); ?>" ALIGN="RIGHT">
 <?php } else{?>
-	<P><IMG SRC="<?php echo base_url('images/'.$lanzamiento_item['imagen']); ?>" ALIGN="RIGHT"><B>Banda</B></P>
+	<P><IMG SRC="<?php echo base_url('images/'.$lanzamiento_item['imagen']); ?>" ALIGN="RIGHT">
 <?php }?>
+	
+</P>
 <p><H3><?php echo $lanzamiento_item['nombre'];?> (<?php echo $lanzamiento_item['anho'];?>)</H3></p>
-<P><?php echo $lanzamiento_item['referencia'];?><BR CLEAR="ALL">
+<P><?php echo $lanzamiento_item['referencia'];?></P>
+<P><B>Banda</B>
+	<ul>
+		<?php foreach ($banda as $banda_item): ?>
+			<li>	
+				<a href="<?php echo site_url('banda/'.$banda_item['id']); ?>"><?php echo $banda_item['nombre']; ?></a>			
+			</li>		
+		<?php endforeach; ?>
+	</ul>
+</P>
+
+<BR CLEAR="ALL">
 
 <hr>
 
@@ -26,13 +39,7 @@
 
 <?php echo nl2br($lanzamiento_item['creditos']);?>
 <?php echo nl2br($lanzamiento_item['notas']);?>
-	<ul>
-		<?php foreach ($banda as $banda_item): ?>
-			<li>	
-				<a href="<?php echo site_url('banda/'.$banda_item['id']); ?>"><?php echo $banda_item['nombre']; ?></a>			
-			</li>		
-		<?php endforeach; ?>
-	</ul>
+
 
 <?php 	
 if ($this->ion_auth->logged_in()){
