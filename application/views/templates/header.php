@@ -31,7 +31,31 @@
 			padding: 0;
 		}		
 		*/
-		
+		select {
+		    width: 100%;
+		    padding: 16px 20px;
+		    border: none;
+		    border-radius: 4px;
+		    background-color: #f1f1f1;
+		}
+
+		input[type=input] {
+		    width: 100%;
+		    padding: 6px 10px;
+		    margin: 8px 0;
+		    box-sizing: border-box;
+		}
+		textarea {
+		    width: 100%;
+		    height: 150px;
+		    padding: 12px 20px;
+		    box-sizing: border-box;
+		    border: 2px solid #ccc;
+		    border-radius: 4px;
+		    background-color: #f8f8f8;
+		    resize: none;
+		}		
+
 		table {
 			border-collapse: collapse;
 		}
