@@ -86,3 +86,7 @@ ALTER TABLE `banda_lanzamiento`
   ADD CONSTRAINT `banda_lanzamiento_ibfk_2` FOREIGN KEY (`lanzamiento_id`) REFERENCES `lanzamiento` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 SET FOREIGN_KEY_CHECKS=1;
 COMMIT;
+
+---Modificaciones despues del inicial
+ALTER TABLE `lanzamiento` ADD `visible` BOOLEAN NOT NULL DEFAULT TRUE AFTER `fecha_modificacion`;
+ALTER TABLE `lanzamiento` CHANGE `formato` `formato` ENUM('CD','Digipack','12"','10"','7"','Flexi','Cassette','Digital','Mini CD','DVD','Otros','Bootleg') CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL;

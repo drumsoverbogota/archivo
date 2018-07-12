@@ -54,6 +54,7 @@ class Lanzamiento_model extends CI_Model {
 			FROM `lanzamiento`
 			LEFT JOIN `banda_lanzamiento` ON `lanzamiento`.`id` = `banda_lanzamiento`.`lanzamiento_id` 
 			LEFT JOIN `banda` ON `banda_lanzamiento`.`banda_id` = `banda`.`id`  
+            WHERE `lanzamiento`.`visible` = 1			
 			GROUP BY `lanzamiento`.`id` ORDER BY `lanzamiento`.`nombre`
         		LIMIT '.$limit.' OFFSET '.(($page-1)*$limit));
 			return $query->result_array();
@@ -75,6 +76,10 @@ class Lanzamiento_model extends CI_Model {
 			$this->load->helper('url');
 			date_default_timezone_set('America/Bogota');
 			
+			$visible = 0;
+			if ($this->input->post('visible') == 'on'){
+				$visible = 1;
+			}			
 
 			$data = array(
 				//'slug' => $slug,
@@ -87,7 +92,8 @@ class Lanzamiento_model extends CI_Model {
 				'notas' => $this->input->post('notas'),
 				'link' => $this->input->post('link'),
 				'fecha_creacion' => date('Y-m-d H:i:s'),
-				'fecha_modificacion' => date('Y-m-d H:i:s')
+				'fecha_modificacion' => date('Y-m-d H:i:s'),
+				'visible' => $visible,
 			);
 
 			$this->db->insert('lanzamiento', $data);
@@ -98,6 +104,11 @@ class Lanzamiento_model extends CI_Model {
 		{
 			$this->load->helper('url');
 			date_default_timezone_set('America/Bogota');
+
+			$visible = 0;
+			if ($this->input->post('visible') == 'on'){
+				$visible = 1;
+			}				
 			
 			$id = $this->input->post('id');
 			$data = array(									
@@ -109,7 +120,8 @@ class Lanzamiento_model extends CI_Model {
 				'creditos' => $this->input->post('creditos'),
 				'notas' => $this->input->post('notas'),
 				'link' => $this->input->post('link'),
-				'fecha_modificacion' => date('Y-m-d H:i:s')
+				'fecha_modificacion' => date('Y-m-d H:i:s'),
+				'visible' => $visible,
 			);
 
 			$this->db->where('id', $id);

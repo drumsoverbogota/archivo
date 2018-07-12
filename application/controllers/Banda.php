@@ -73,7 +73,7 @@ class Banda extends CI_Controller {
 				$this->form_validation->set_rules('otros', 'Otros nombres', '');
 				$this->form_validation->set_rules('integrantes', 'Integrantes', '');
 				$this->form_validation->set_rules('comentarios', 'Comentarios', '');
-				$this->form_validation->set_rules('extranjera', 'Comentarios', '');
+				$this->form_validation->set_rules('extranjera', 'Extranjera', '');
 
 				if ($this->form_validation->run() === FALSE)
 				{
