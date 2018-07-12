@@ -40,7 +40,7 @@ class Lanzamiento_model extends CI_Model {
         	return $query->result_array();
         }
 
-        public function get_lanzamientos($limit = 10, $page = 1)
+        public function get_lanzamientos($limit = 10, $page = 1, $visible = 'false')
         {
 			/*
 			SELECT `lanzamiento`.*, group_concat(DISTINCT `banda`.`nombre` ORDER BY `banda`.`nombre` DESC SEPARATOR ', ')
@@ -50,26 +50,44 @@ class Lanzamiento_model extends CI_Model {
 			GROUP BY `lanzamiento`.`id`
 			*/
 
-        	$query = $this->db->query('SELECT `lanzamiento`.*, group_concat(DISTINCT `banda`.`nombre` ORDER BY `banda`.`nombre` DESC SEPARATOR \'\n \') AS `bandas`
-			FROM `lanzamiento`
-			LEFT JOIN `banda_lanzamiento` ON `lanzamiento`.`id` = `banda_lanzamiento`.`lanzamiento_id` 
-			LEFT JOIN `banda` ON `banda_lanzamiento`.`banda_id` = `banda`.`id`  
-            WHERE `lanzamiento`.`visible` = 1			
-			GROUP BY `lanzamiento`.`id` ORDER BY `lanzamiento`.`nombre`
-        		LIMIT '.$limit.' OFFSET '.(($page-1)*$limit));
+			if($visible == 'false'){
+	        	$query = $this->db->query('SELECT `lanzamiento`.*, group_concat(DISTINCT `banda`.`nombre` ORDER BY `banda`.`nombre` DESC SEPARATOR \'\n \') AS `bandas`
+				FROM `lanzamiento`
+				LEFT JOIN `banda_lanzamiento` ON `lanzamiento`.`id` = `banda_lanzamiento`.`lanzamiento_id` 
+				LEFT JOIN `banda` ON `banda_lanzamiento`.`banda_id` = `banda`.`id`  
+	            WHERE `lanzamiento`.`visible` = 1			
+				GROUP BY `lanzamiento`.`id` ORDER BY `lanzamiento`.`nombre`
+	        		LIMIT '.$limit.' OFFSET '.(($page-1)*$limit));				
+			}
+			else{
+	        	$query = $this->db->query('SELECT `lanzamiento`.*, group_concat(DISTINCT `banda`.`nombre` ORDER BY `banda`.`nombre` DESC SEPARATOR \'\n \') AS `bandas`
+				FROM `lanzamiento`
+				LEFT JOIN `banda_lanzamiento` ON `lanzamiento`.`id` = `banda_lanzamiento`.`lanzamiento_id` 
+				LEFT JOIN `banda` ON `banda_lanzamiento`.`banda_id` = `banda`.`id`  
+				GROUP BY `lanzamiento`.`id` ORDER BY `lanzamiento`.`nombre`
+	        		LIMIT '.$limit.' OFFSET '.(($page-1)*$limit));				
+
+			}
 			return $query->result_array();
         }
 		
-		public function get_lanzamiento($id = FALSE)
+		public function get_lanzamiento($id = FALSE, $visible = 'false')
 		{
 				if ($id === FALSE)
-				{
-						$query = $this->db->get('lanzamiento');
+				{	
+					if($visible == 'false'){
+						$query = $this->db->get_where('lanzamiento', array('visible' => 1));
 						return $query->result_array();
+					}
+					else{
+						$query = $this->db->get('lanzamiento');
+						return $query->result_array();						
+					}
 				}
-
 				$query = $this->db->get_where('lanzamiento', array('id' => $id));
-				return $query->row_array();
+				return $query->row_array();						
+				
+				
 		}
 		public function set_lanzamiento()
 		{

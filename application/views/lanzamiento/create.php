@@ -34,7 +34,7 @@
     <input type="input" name="link"><br />		
 
     <label for="visible">¿Es visible?</label>
-    <input name="visible" type="checkbox"><br />
+    <input name="visible" type="checkbox" checked><br />
 
     <input type="submit" name="submit" value="Crear nuevo lanzamiento" />
 

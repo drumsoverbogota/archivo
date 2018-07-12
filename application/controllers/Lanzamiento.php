@@ -17,15 +17,17 @@ class Lanzamiento extends CI_Controller {
 				$this->load->library('ion_auth');
         }
 
-        public function index($pagina = 1)
+        public function index($pagina = 1, $visible = 'false')
         {			
+        		
         		$limite = 10;
-                $data['lanzamiento']	= $this->lanzamiento_model->get_lanzamientos($limite, $pagina);
-				$data['total']			= count($this->lanzamiento_model->get_lanzamiento()); 
+                $data['lanzamiento']	= $this->lanzamiento_model->get_lanzamientos($limite, $pagina, $visible);
+				$data['total']			= count($this->lanzamiento_model->get_lanzamiento(FALSE, $visible)); 
 				$data['title'] 			= 'Lista de lanzamientos';
 				$data['limite']			= $limite;
 				$data['pagina']			= $pagina;
-				
+				$data['visible']		= $visible;
+
 				$this->load->view('templates/header', $data);
 				$this->load->view('lanzamiento/index', $data);
 				$this->load->view('templates/footer');
