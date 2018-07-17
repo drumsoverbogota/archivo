@@ -74,22 +74,18 @@ if ($this->ion_auth->logged_in()){
 <a href="<?php echo site_url('auth/logout'); ?>">Salir</a></h5></div>
 <?php
 }
-else{
-?>
-<div align="right"><a href="<?php echo site_url('admin'); ?>">Iniciar sesión</a></div>
-<?php
-}
+
 ?>
 
 <div align="center"><h5>Un archivo de Punk Colombiano</h5></div>
-<div align="center"><h2>Sintoma de última década</h2></div>
+<div align="center"><h2>El Muladar</h2></div>
 
 
 
 <ul>
 
   <li><a href="<?php echo site_url('paginas'); ?>">Inicio</a></li>  
-  <li><a href="<?php echo site_url('paginas/about'); ?>">Acerca de</a></li>
+
   <li> Archivo  
 	  <ul>
 			<li><a href="<?php echo site_url('lanzamiento/'); ?>">Lanzamientos</a></li>
@@ -97,6 +93,7 @@ else{
 			<li><a href="<?php echo site_url('paginas/buscar/'); ?>">Buscar en el archivo</a></li>
 	  </ul>
   </li>
+  <li><a href="<?php echo site_url('paginas/about'); ?>">Acerca de</a></li>
   <li><a href="<?php echo site_url('paginas/contact'); ?>">Contacto</a></li>
   
 </ul>
