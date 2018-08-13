@@ -90,11 +90,11 @@ if ($this->ion_auth->logged_in()){
 	  <ul>
 			<li><a href="<?php echo site_url('lanzamiento/'); ?>">Lanzamientos</a></li>
 			<li><a href="<?php echo site_url('banda/'); ?>">Bandas</a></li>
-			<li><a href="<?php echo site_url('paginas/buscar/'); ?>">Buscar en el archivo</a></li>
+			<li><a href="<?php echo site_url('buscar/'); ?>">Buscar en el archivo</a></li>
 	  </ul>
   </li>
-  <li><a href="<?php echo site_url('paginas/about'); ?>">Acerca de</a></li>
-  <li><a href="<?php echo site_url('paginas/contact'); ?>">Contacto</a></li>
+  <li><a href="<?php echo site_url('about'); ?>">Acerca de</a></li>
+  <li><a href="<?php echo site_url('contact'); ?>">Contacto</a></li>
   
 </ul>
 <hr/>

@@ -6,6 +6,25 @@ class Lanzamiento_model extends CI_Model {
                 $this->load->database();
         }
 
+
+        public function search_lanzamiento($match = '')
+        {
+        	$this->db->where('visible', 1); 
+        	$this->db->group_start();
+        	$this->db->or_like('nombre', $match); 
+        	$this->db->or_like('referencia', $match); 
+        	$this->db->or_like('anho', $match); 
+        	$this->db->or_like('tracklist', $match); 
+        	$this->db->or_like('creditos', $match); 
+        	$this->db->or_like('notas', $match); 
+        	
+        	$this->db->group_end();
+        	$query = $this->db->get('lanzamiento');
+        	//echo $this->db->last_query();
+        	return $query->result_array();
+
+        }
+
         public function update_image($id = NULL, $imagen = NULL)
         {
         	if($id == NULL){

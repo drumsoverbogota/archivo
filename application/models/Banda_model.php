@@ -5,6 +5,20 @@ class Banda_model extends CI_Model {
         {
                 $this->load->database();
         }
+
+        public function search_banda($match = '')
+        {
+        	$this->db->group_start();
+        	$this->db->or_like('nombre', $match); 
+        	$this->db->or_like('otros', $match); 
+        	$this->db->or_like('integrantes', $match); 
+        	$this->db->or_like('comentarios', $match); 
+        	$this->db->group_end();
+        	$query = $this->db->get('banda');
+        	//echo $this->db->last_query();
+        	return $query->result_array();
+
+        }
 		
         public function update_image($id = NULL, $imagen = NULL)
         {

@@ -91,12 +91,8 @@ class Lanzamiento extends CI_Controller {
 				}
 				else
 				{
-					$id = $this->lanzamiento_model->set_lanzamiento();
-					//$this->load->view('lanzamiento/' + $id);
-					
-					
-					$this->view($id);
-					
+					$id = $this->lanzamiento_model->set_lanzamiento();					
+					$this->view($id);					
 				}
 			}
 		}

@@ -50,6 +50,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |		my-controller/my-method	-> my_controller/my_method
 */
 $route['admin'] = 'paginas/admin';
+$route['buscar'] = 'paginas/buscar';
 $route['bandalanzamiento/asignar_banda'] = 'bandalanzamiento/asignar_banda';
 $route['banda/create'] = 'banda/create';
 $route['banda/(:any)'] = 'banda/view/$1';
@@ -64,3 +65,4 @@ $route['lanzamiento'] = 'lanzamiento';
 $route['paginas/(:any)'] = 'paginas/view/$1';
 $route['paginas'] = 'paginas';
 $route['default_controller'] = 'paginas';
+$route['(:any)'] = 'paginas/view/$1';
