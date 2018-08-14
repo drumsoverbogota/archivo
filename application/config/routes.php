@@ -62,6 +62,7 @@ $route['lanzamiento/(:any)'] = 'lanzamiento/view/$1';
 $route['lanzamientos/(:any)'] = 'lanzamiento/index/$1';
 $route['lanzamientos/(:any)/(:any)'] = 'lanzamiento/index/$1/$2';
 $route['lanzamiento'] = 'lanzamiento';
+$route['paginas/send'] = 'paginas/send';
 $route['paginas/(:any)'] = 'paginas/view/$1';
 $route['paginas'] = 'paginas';
 $route['default_controller'] = 'paginas';

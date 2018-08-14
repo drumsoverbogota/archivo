@@ -1,4 +1,17 @@
 <?php
+
+/**
+ * @package Paginas :  Correo
+ *
+ * @author El Muladar
+ *
+ * @email  sergiomanceranom@hotmail.com
+ *   
+ * Description of Contact Controller
+ */
+
+
+
 class Paginas extends CI_Controller {
 	
         public function __construct()
@@ -80,8 +93,10 @@ class Paginas extends CI_Controller {
 
 		}
 
-		public function send($value='')
+		public function send()
 		{
+			$TO_MAIL = "sergiomanceranom@gmail.com";
+			$FROM_TEXT = "El Muladar";
 	        $this->load->library('form_validation');
 	        // field name, error message, validation rules
 	        $this->form_validation->set_rules('name', 'Nombre', 'trim|required');     
@@ -93,41 +108,54 @@ class Paginas extends CI_Controller {
 	        } else {        
 	            $name = $this->input->post('name');
 	            $email = $this->input->post('email');
-	            $comment = $this->input->post('comment');            
+	            $comment = $this->input->post('comment');
+
+	            $user = PONER_USUARIO_ACA;
+	            $pass = PONER_CLAVE_ACA;
+
+
+
 	            if(!empty($email)) {
 	                // send mail
 	                $config = array (
 	                  'mailtype' => 'html',
 	                  'charset'  => 'utf-8',
-	                  'priority' => '1'
+	                  'priority' => '1',
+
+						'protocol' => 'smtp',
+						'smtp_host' => 'ssl://smtp.gmail.com',
+						'smtp_port' => 465,
+						'smtp_user' => $user,
+						'smtp_pass' => $pass,
 	                );
 	                $message='';
-	                $bodyMsg = '<p style="font-size:14px;font-weight:normal;margin-bottom:10px;margin-top:0;">'.$comment.'</p>';   
-	                $delimeter = $name."<br>".$contact_no;
-	                $dataMail = array('topMsg'=>'Hi Team', 'bodyMsg'=>$bodyMsg, 'thanksMsg'=>'Best regards,', 'delimeter'=> $delimeter);
+	                $bodyMsg = $comment;   
+	                $delimeter = $name."<br>";
+	                $dataMail = array('topMsg'=>'Hola, hay un nuevo mensaje de '.$name, 'bodyMsg'=>$bodyMsg, 'thanksMsg'=>'¡Gracias!,', 'delimeter'=> $delimeter);
 	 
 	                $this->email->initialize($config);
+	                $this->email->set_newline("\r\n");
 	                $this->email->from($email, $name);
-	                $this->email->to(TO_MAIL);
-	                $this->email->subject('Contact Form');
-	                $message = $this->load->view('mailTemplate/contactForm', $dataMail, TRUE);
+	                $this->email->to($TO_MAIL);
+	                $this->email->subject('Nuevo mensaje de '.$name);
+	                $message = $this->load->view('paginas/contactForm', $dataMail, TRUE);
 	                $this->email->message($message);
 	                $this->email->send();
-	 
+	                
 	                // confirm mail
-	                $bodyMsg = '<p style="font-size:14px;font-weight:normal;margin-bottom:10px;margin-top:0;">Thank you for contacting us.</p>';                 
-	                $dataMail = array('topMsg'=>'Hi '.$name, 'bodyMsg'=>$bodyMsg, 'thanksMsg'=>'Best regards,', 'delimeter'=> 'Team TechArise');
+	                $bodyMsg = 'Esto es una respuesta automática, cuando podamos responderemos el mensaje (si es necesario).';                 
+	                $dataMail = array('topMsg'=>'Hola '.$name, 'bodyMsg'=>$bodyMsg, 'thanksMsg'=>'¡Gracias por escribir!,', 'delimeter'=> 'El Muladar');
 	 
 	                $this->email->initialize($config);
-	                $this->email->from(TO_MAIL, FROM_TEXT);
+	                $this->email->from($TO_MAIL, $FROM_TEXT);
 	                $this->email->to($email);
-	                $this->email->subject('Contact Form Confimation');
-	                $message = $this->load->view('mailTemplate/contactForm', $dataMail, TRUE);
+	                $this->email->subject('Respuesta automática de confirmación del El Muladar');
+	                $message = $this->load->view('paginas/contactForm', $dataMail, TRUE);
 	                $this->email->message($message);
 	                $this->email->send();                
 	            }
-	            $this->session->set_flashdata('msg', 'Thank you for your message. It has been sent.');
-	            redirect('paginas/');
+	            
+	            redirect('paginas/contact');
 	        }
 		}
 }
