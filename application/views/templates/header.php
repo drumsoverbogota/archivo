@@ -57,7 +57,7 @@ position: relative;
 }
 .scroll-left p {
 position: absolute;
-width: 150%;
+width: 170%;
 height: 100%;
 margin: 0;
 line-height: 20px;
