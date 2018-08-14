@@ -6,7 +6,6 @@
 Por favor, contáctenos acá:
 </p>
 
-<br>
 <div class="row">
     <div class="col-lg-12">
         <?php if(!empty($this->session->flashdata('msg'))){ ?>
@@ -29,7 +28,7 @@ Por favor, contáctenos acá:
                     <span class="input-group-addon">
                         <i class="fa fa-user-o"></i>
                     </span>
-                    <input type="text" name="name" class="form-control" id="name" placeholder="Nombre completo">
+                    <input type="text" name="name" class="form-control" id="name" placeholder="Nombre">
                 </div>
             </div>
         </div>

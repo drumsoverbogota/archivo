@@ -12,7 +12,7 @@
     </head>
     <body>
         <p><h4><?php print $topMsg; ?>,</h4></p>
-        <p><?php print nl2br($bodyMsg); ?></p><br/></br/>
+        <p><?php print nl2br($bodyMsg); ?></p><br/><br/>
         <p><?php print $thanksMsg; ?></p><br/>
         <p><?php print $delimeter; ?></p>
     </body>

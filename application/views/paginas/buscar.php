@@ -12,9 +12,9 @@
 <?php if ($peticion !=""){ ?>
 	<?php if (isset($banda)){ ?>
 		<?php if (count($banda) > 0){ ?>
-
+			<h3>
 			Bandas que cumplen el criterio
-
+			</h3>
 			<?php foreach ($banda as $banda_item): ?>
 				<?php if($banda_item['extranjera'] == 0 or $extranjera == 'true') { ?>
 					<li>	
@@ -33,7 +33,9 @@
 	<?php } ?>
 	<?php if (isset($lanzamiento)){ ?>
 		<?php if (count($lanzamiento) > 0){ ?>
+			<h3>
 			Lanzamientos que cumplen el criterio
+			</h3>
 			<table style="width:100%">
 
 			  <tr>
