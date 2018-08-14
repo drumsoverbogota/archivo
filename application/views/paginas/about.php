@@ -1,5 +1,4 @@
-
-<p><h2>Acerca de</h2></b></p>
+<h2>Acerca de</h2>
 
 <p>
 <em>El Muladar </em> es un archivo de Punk Colombiano que reune registros sonoros y audiovisuales desde los inicios del movimiento hasta el 2007.
@@ -21,6 +20,10 @@ Este es un proyecto autogestionado. El material acá presente se ha conseguido e
 Ningún derecho reservado, todo el material acá publicado es propiedad de sus compositor@s o autor@s. Por tanto,<b> no podemos dar la autorización de uso de nada de lo que está acá. Contacte a los autores o a sus representanets para obtener permiso.</b>
 </p>
 
+<p><h2>Formato de los archivos</h2></p>
+
+Los archivos acá subidos están en formato <a href="https://es.wikipedia.org/wiki/FLAC">FLAC</a>. No todos los sistemas operativos soportan este formato nativamente así que si tiene problemas recomendamos usar un programa como <a href="https://www.videolan.org/vlc/index.html">VLC</a>.
+
 <p><h2>Agradecimientos</h2></p>
 
 Agradecer a tanta gente que hace que esto sea posible es difícil pero no nos gustan las cosas fáciles, así que lo intentaremos.
@@ -31,3 +34,10 @@ Agradecer a tanta gente que hace que esto sea posible es difícil pero no nos gu
 	<li>A Álvaro David por más prestamos de C.D's y regalar algunas cosas de su colección.</li>
 	<li>A Memo por también prestar varias cosas incluidos ensayos y demos de Excomulgados.</li>
 </ul> 
+
+<div class="scroll-left">
+	
+		<p>EL INTERNET ES TEMPORAL Y NO TODO ESTÁ AHÍ. BAJEN TODO, GRABEN TODO, DISTRIBUYAN TODO. LA NUBE NO EXISTE, ES SOLO COMPUTADORES. EL STREAMING ES UNA MENTIRA.</p>	
+	
+
+</div>
