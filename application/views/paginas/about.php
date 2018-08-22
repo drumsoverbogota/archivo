@@ -35,9 +35,24 @@ Agradecer a tanta gente que hace que esto sea posible es difícil pero no nos gu
 	<li>A Memo por también prestar varias cosas incluidos ensayos y demos de Excomulgados.</li>
 </ul> 
 
-<div class="scroll-left">
-	
-	<p>EL INTERNET ES TEMPORAL Y NO TODO ESTÁ AHÍ. BAJEN TODO, GRABEN TODO, DISTRIBUYAN TODO. LA NUBE NO EXISTE, ES SOLO COMPUTADORES. TODO LO QUE NO ESTÁ EN SU COMPUTADOR ESTA DESTINADO A DESAPARECER. EL STREAMING ES UNA MENTIRA.</p>	
-	
-
+<div class="marquee">
+	<div id="mydiv" class="text">EL INTERNET ES TEMPORAL Y NO TODO ESTÁ AHÍ. BAJEN TODO, GRABEN TODO, DISTRIBUYAN TODO. LA NUBE NO EXISTE, ES SOLO COMPUTADORES. EL STREAMING ES UNA MENTIRA.</div>
 </div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script type="text/javascript">
+$.fn.textWidth = function(text, font) {
+  var html_org = $(this).html();
+  var html_calc = '<span>' + html_org + '</span>';
+  $(this).html(html_calc);
+  var width = $(this).find('span:first').width();
+  $(this).html(html_org);
+  return width;
+};
+	
+	var speed = 50;
+	var duration = $('#mydiv').textWidth()/speed;
+	$(".text").css("animation-duration", duration + "s", "-webkit-animation-duration", duration + "s");
+
+</script>
+

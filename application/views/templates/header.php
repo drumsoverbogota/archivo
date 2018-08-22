@@ -50,47 +50,39 @@
 				
 		}*/
 
-.scroll-left {
-height: 20px; 
-overflow: hidden;
-position: relative;
+@keyframes slide {
+  from { left:100%; transform: translate(0, 0); }
+  to { left: -100%; transform: translate(-100%, 0); }
 }
-.scroll-left p {
-position: absolute;
-width: 170%;
-height: 100%;
-margin: 0;
-line-height: 20px;
-text-align: center;
-/* Starting position */
--moz-transform:translateX(100%);
--webkit-transform:translateX(100%); 
-transform:translateX(100%);
-/* Apply animation to this element */ 
--moz-animation: scroll-left 20s linear infinite;
--webkit-animation: scroll-left 20s linear infinite;
-animation: scroll-left 20s linear infinite;
+@-webkit-keyframes slide {
+  from { left:100%; transform: translate(0, 0); }
+  to { left: -100%; transform: translate(-100%, 0); }
 }
-/* Move it (define the animation) */
-@-moz-keyframes scroll-left {
-0% { -moz-transform: translateX(100%); }
-100% { -moz-transform: translateX(-100%); }
+
+.marquee { 
+
+
+  width:100%;
+  height:120px;
+  line-height:120px;
+  overflow:hidden;
+  position:relative;
 }
-@-webkit-keyframes scroll-left {
-0% { -webkit-transform: translateX(100%); }
-100% { -webkit-transform: translateX(-100%); }
-}
-@keyframes scroll-left {
-0% { 
--moz-transform: translateX(100%); /* Browser bug fix */
--webkit-transform: translateX(100%); /* Browser bug fix */
-transform: translateX(100%); 
-}
-100% { 
--moz-transform: translateX(-100%); /* Browser bug fix */
--webkit-transform: translateX(-100%); /* Browser bug fix */
-transform: translateX(-100%); 
-}
+
+.text {
+  position:absolute;
+  top:0;
+  white-space: nowrap;
+  height:120px;
+
+  animation-name: slide;
+  animation-duration: 30s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  -webkit-animation-name: slide;
+  -webkit-animation-duration: 30s;
+  -webkit-animation-timing-function:linear;
+  -webkit-animation-iteration-count: infinite;
 }
 
 
@@ -129,6 +121,11 @@ transform: translateX(-100%);
 	
 </head>
 <body>
+
+
+
+
+
 <?php 	
 if ($this->ion_auth->logged_in()){
 ?>
