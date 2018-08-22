@@ -1,8 +1,6 @@
 
 <!-- begin page content -->
 
-ADMIN
-
 <p><b>Pagina delarchivo pun.</b></p>
 
 
@@ -14,7 +12,6 @@ ADMIN
 	<a href="<?php echo site_url('bandalanzamiento/asignar_lanzamiento'); ?>">Asignar un Lanzamiento una Banda</a> <br>
   
 
-<h5>pun</h5>
 
 <!-- end page content -->
 

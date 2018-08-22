@@ -138,7 +138,7 @@ if ($this->ion_auth->logged_in()){
 ?>
 
 <div align="center"><h5>Un archivo de Punk Colombiano</h5></div>
-<div align="center"><h2>El Muladar</h2></div>
+<div align="center"><h2>Muladar</h2></div>
 
 
 

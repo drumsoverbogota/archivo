@@ -211,12 +211,13 @@ class Lanzamiento extends CI_Controller {
 					$data['title'] = 'Editar una nuevo lanzamiento';
 				
 					$lanzamiento = $this->lanzamiento_model->get_lanzamiento($id);
-					
+					$file_name = strtolower(preg_replace('/[^A-Za-z0-9]/', '',str_replace(' ', '-', $lanzamiento['id'].$lanzamiento['nombre'].'image')));
 					//Configuraciones de la subida
 					$config['upload_path']		= './images/';
 					$config['allowed_types']	= 'gif|jpg|png';
-					$config['max_size']			= 2048;
-					$config['file_name']		= strtolower(preg_replace('/[^A-Za-z0-9]/', '',str_replace(' ', '-', $lanzamiento['id'].$lanzamiento['nombre'].'image')));
+					$config['width']			= 400;
+					$config['mantain_ration']	= TRUE;
+					$config['file_name']		= $file_name;
 					$config['overwrite'] = TRUE;
 					//$config[''] = ; 
 
@@ -234,7 +235,47 @@ class Lanzamiento extends CI_Controller {
 					else
 					{						
 						$data = array('upload_data' => $this->upload->data());
-						$this->lanzamiento_model->update_image($id, $data['upload_data']['file_name']);					
+
+
+
+						$image_data = $this->upload->data();
+
+						preg_match('/(.*)\.(.*)/',$image_data['full_path'], $match);
+						$path = $match[1];
+						$extension = $match[2];
+						
+						#crear thumbnail
+						
+	                    $config['image_library'] = 'gd2';
+	                    $config['source_image'] = $image_data['full_path']; //get original image
+	                    $config['new_image'] = $path.'_small.'.$extension;
+	                    $config['maintain_ratio'] = TRUE;
+	                    $config['width'] = 200;
+	                    $this->load->library('image_lib', $config);
+	                    if (!$this->image_lib->resize()) {
+							$error = array('error' => $this->upload->display_errors());
+							$this->load->view('templates/header', $data);
+							$this->load->view('lanzamiento/upload_form', $error);
+							$this->load->view('templates/footer');	
+                    	}
+
+                    	$this->image_lib->clear();
+						
+						#achicar imagen
+	                    $config_a['image_library'] = 'gd2';
+	                    $config_a['source_image'] = $image_data['full_path']; //get original image
+	                    $config_a['maintain_ratio'] = TRUE;
+	                    $config_a['width'] = 800;
+	                    $this->image_lib->initialize($config_a);
+	                    if (!$this->image_lib->resize()) {
+							$error = array('error' => $this->upload->display_errors());
+							$this->load->view('templates/header', $data);
+							$this->load->view('lanzamiento/upload_form', $error);
+							$this->load->view('templates/footer');	
+                    	}
+						$this->image_lib->clear();
+
+						$this->lanzamiento_model->update_image($id, $data['upload_data']['file_name']);			
 						$this->view($id);
 					}					
 				

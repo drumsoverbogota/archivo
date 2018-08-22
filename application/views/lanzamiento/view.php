@@ -10,10 +10,18 @@
 </script>
 
 
-<?php if ($lanzamiento_item['imagen'] == NULL){ ?>
+
+
+<?php 
+preg_match('/(.*)\.(.*)/',$lanzamiento_item['imagen'], $match);
+$path = $match[1];
+$extension = $match[2];
+$thumb = $path.'_small.'.$extension;
+
+if ($lanzamiento_item['imagen'] == NULL){ ?>
 	<P><IMG SRC="<?php echo base_url('images/placeholder.jpg'); ?>" ALIGN="RIGHT">
 <?php } else{?>
-	<P><IMG SRC="<?php echo base_url('images/'.$lanzamiento_item['imagen']); ?>" ALIGN="RIGHT">
+	<P><a href="<?php echo base_url('images/'.$lanzamiento_item['imagen']); ?>"><IMG SRC="<?php echo base_url('images/'.$thumb); ?>" ALIGN="RIGHT"></IMG></a>
 <?php }?>
 	
 </P>
