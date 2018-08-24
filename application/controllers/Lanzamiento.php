@@ -34,16 +34,16 @@ class Lanzamiento extends CI_Controller {
 
         }
 
-        public function view($id = NULL)
+        public function view($nombrecorto = NULL)
         {
-                $data['lanzamiento_item'] = $this->lanzamiento_model->get_lanzamiento($id);
+                $data['lanzamiento_item'] = $this->lanzamiento_model->get_lanzamiento($nombrecorto);
 		        if (empty($data['lanzamiento_item']))
 				{
 						show_404();
 				}
 
 				$data['title'] = $data['lanzamiento_item']['nombre'];
-				$data['banda'] = $this->lanzamiento_model->get_bandas_lanzamientoid($id);
+				$data['banda'] = $this->lanzamiento_model->get_bandas_lanzamientoid($nombrecorto);
 				$this->load->view('templates/header', $data);
 				$this->load->view('lanzamiento/view', $data);
 				$this->load->view('templates/footer');
@@ -91,13 +91,14 @@ class Lanzamiento extends CI_Controller {
 				}
 				else
 				{
-					$id = $this->lanzamiento_model->set_lanzamiento();					
-					$this->view($id);					
+					$row = $this->lanzamiento_model->set_lanzamiento();	
+					echo $row;
+					$this->view($row);					
 				}
 			}
 		}
 		
-		public function edit($id)
+		public function edit($nombrecorto)
 		{
 			if (!$this->ion_auth->logged_in())
 			{
@@ -112,7 +113,7 @@ class Lanzamiento extends CI_Controller {
 			else
 			{			
 		
-				$data['lanzamiento_item'] = $this->lanzamiento_model->get_lanzamiento($id);
+				$data['lanzamiento_item'] = $this->lanzamiento_model->get_lanzamiento($nombrecorto);
 				
 				$this->load->helper('form');
 				$this->load->library('form_validation');
@@ -140,14 +141,15 @@ class Lanzamiento extends CI_Controller {
 				}
 				else
 				{
-					$id = $this->lanzamiento_model->edit_lanzamiento();				
-					$this->view($id);
+					
+					$nombrecorto = $this->lanzamiento_model->edit_lanzamiento();				
+					$this->view($nombrecorto);
 					
 				}
 			}
 		}
 
-		public function delete($id)
+		public function delete($nombrecorto)
 		{
 			if (!$this->ion_auth->logged_in())
 			{
@@ -161,13 +163,13 @@ class Lanzamiento extends CI_Controller {
 			}
 			else
 			{
-				$this->lanzamiento_model->delete_lanzamiento($id);
+				$this->lanzamiento_model->delete_lanzamiento($nombrecorto);
 				$this->index();
 			}		
 		}		
 
 		
-        public function upload($id)		
+        public function upload($nombrecorto)		
         {
 			if (!$this->ion_auth->logged_in())
 			{
@@ -182,7 +184,7 @@ class Lanzamiento extends CI_Controller {
 			else
 			{
 				$data['title'] = 'Subir imagen de lanzamiento';
-				$data['id'] = $id;
+				$data['nombrecorto'] = $nombrecorto;
 				$data['error'] = '';
 				$this->load->view('templates/header', $data);
 				$this->load->view('lanzamiento/upload_form');
@@ -193,7 +195,7 @@ class Lanzamiento extends CI_Controller {
 		
 
 		
-		public function do_upload($id)
+		public function do_upload($nombrecorto)
 		{
 			if (!$this->ion_auth->logged_in())
 			{
@@ -207,10 +209,10 @@ class Lanzamiento extends CI_Controller {
 			}
 			else
 			{
-				if($id != NULL){
+				if($nombrecorto != NULL){
 					$data['title'] = 'Editar una nuevo lanzamiento';
 				
-					$lanzamiento = $this->lanzamiento_model->get_lanzamiento($id);
+					$lanzamiento = $this->lanzamiento_model->get_lanzamiento($nombrecorto);
 					$file_name = strtolower(preg_replace('/[^A-Za-z0-9]/', '',str_replace(' ', '-', $lanzamiento['id'].$lanzamiento['nombre'].'image')));
 					//Configuraciones de la subida
 					$config['upload_path']		= './images/';
@@ -221,7 +223,7 @@ class Lanzamiento extends CI_Controller {
 					$config['overwrite'] = TRUE;
 					//$config[''] = ; 
 
-					$data['id'] = $id;
+					$data['nombrecorto'] = $nombrecorto;
 
 					$this->load->library('upload', $config);
 				
@@ -275,8 +277,8 @@ class Lanzamiento extends CI_Controller {
                     	}
 						$this->image_lib->clear();
 
-						$this->lanzamiento_model->update_image($id, $data['upload_data']['file_name']);			
-						$this->view($id);
+						$this->lanzamiento_model->update_image($nombrecorto, $data['upload_data']['file_name']);			
+						$this->view($nombrecorto);
 					}					
 				
 				}

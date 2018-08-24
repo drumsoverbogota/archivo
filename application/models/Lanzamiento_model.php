@@ -25,9 +25,9 @@ class Lanzamiento_model extends CI_Model {
 
         }
 
-        public function update_image($id = NULL, $imagen = NULL)
+        public function update_image($nombrecorto = NULL, $imagen = NULL)
         {
-        	if($id == NULL){
+        	if($nombrecorto == NULL){
         		return FALSE;
         	}
         	else{
@@ -35,7 +35,7 @@ class Lanzamiento_model extends CI_Model {
 			        'imagen'  => $imagen
 				);
 
-				$this->db->where('id', $id);
+				$this->db->where('nombrecorto', $nombrecorto);
 				$this->db->update('lanzamiento', $data);
         	}
         }
@@ -49,13 +49,13 @@ class Lanzamiento_model extends CI_Model {
 			return $enum;
         }
 
-        public function get_bandas_lanzamientoid($id)
+        public function get_bandas_lanzamientoid($nombrecorto)
         {        	
-        	$query = $this->db->query("SELECT `banda`.`id`, `banda`.`nombre`
+        	$query = $this->db->query("SELECT `banda`.`id`, `banda`.`nombre`, `banda`.`nombrecorto`
 				FROM `banda`
 				INNER JOIN `banda_lanzamiento` ON `banda`.`id` = `banda_lanzamiento`.`banda_id` 
 				INNER JOIN `lanzamiento` ON `banda_lanzamiento`.`lanzamiento_id` = `lanzamiento`.`id`
-				WHERE `lanzamiento`.`id` = ".$id);
+				WHERE `lanzamiento`.`nombrecorto` = '".$nombrecorto."'");
         	return $query->result_array();
         }
 
@@ -90,9 +90,9 @@ class Lanzamiento_model extends CI_Model {
 			return $query->result_array();
         }
 		
-		public function get_lanzamiento($id = FALSE, $visible = 'false')
+		public function get_lanzamiento($nombrecorto = FALSE, $visible = 'false')
 		{
-				if ($id === FALSE)
+				if ($nombrecorto === FALSE)
 				{	
 					if($visible == 'false'){
 						$query = $this->db->get_where('lanzamiento', array('visible' => 1));
@@ -103,7 +103,7 @@ class Lanzamiento_model extends CI_Model {
 						return $query->result_array();						
 					}
 				}
-				$query = $this->db->get_where('lanzamiento', array('id' => $id));
+				$query = $this->db->get_where('lanzamiento', array('nombrecorto' => $nombrecorto));
 				return $query->row_array();						
 				
 				
@@ -118,9 +118,24 @@ class Lanzamiento_model extends CI_Model {
 				$visible = 1;
 			}			
 
+
+			$iteracion = 0;
+			$nombre = $this->input->post('nombre');
+			do {
+				$corto = strtolower(preg_replace('/[^A-Za-z0-9]/', '',str_replace(' ', '-', $nombre)));	
+				$corto = substr($corto, 0, 27);
+				if($iteracion > 0){
+					$corto = $corto.$iteracion;
+				}
+				$iteracion = $iteracion + 1;
+				$query = $this->db->get_where('lanzamiento', array('nombrecorto' => $corto));
+
+			} while (!empty($query->row_array()));
+
 			$data = array(
 				//'slug' => $slug,
-				'nombre' => $this->input->post('nombre'),				
+				'nombre' => $this->input->post('nombre'),
+				'nombrecorto' => $corto,
 				'referencia' => $this->input->post('referencia'),
 				'formato' => $this->input->post('formato'),
 				'anho' => $this->input->post('anho'),
@@ -134,7 +149,10 @@ class Lanzamiento_model extends CI_Model {
 			);
 
 			$this->db->insert('lanzamiento', $data);
-			return $this->db->insert_id();
+			$id = $this->db->insert_id();
+			$query = $this->db->get_where('lanzamiento', array('id' => $id));
+			return $query->row()->nombrecorto;
+
 		}		
 		
 		public function edit_lanzamiento()
@@ -147,7 +165,7 @@ class Lanzamiento_model extends CI_Model {
 				$visible = 1;
 			}				
 			
-			$id = $this->input->post('id');
+			$nombrecorto = $this->input->post('nombrecorto');
 			$data = array(									
 				'nombre' => $this->input->post('nombre'),				
 				'referencia' => $this->input->post('referencia'),
@@ -161,13 +179,13 @@ class Lanzamiento_model extends CI_Model {
 				'visible' => $visible,
 			);
 
-			$this->db->where('id', $id);
+			$this->db->where('nombrecorto', $nombrecorto);
 			$this->db->update('lanzamiento', $data);
-			return $this->input->post('id');
+			return $this->input->post('nombrecorto');
 		}						
 
-		public function delete_lanzamiento($id)
+		public function delete_lanzamiento($nombrecorto)
 		{
-			$this->db->delete('lanzamiento', array('id' => $id));
+			$this->db->delete('lanzamiento', array('nombrecorto' => $nombrecorto));
 		}		
 }

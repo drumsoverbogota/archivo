@@ -1,6 +1,6 @@
 <?php echo $error;?>
 
-<?php echo form_open_multipart('lanzamiento/do_upload/'.$id);?>
+<?php echo form_open_multipart('lanzamiento/do_upload/'.$nombrecorto);?>
 
 <input type="file" name="userfile" size="20" />
 

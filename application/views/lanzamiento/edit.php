@@ -2,7 +2,7 @@
 
 <?php echo validation_errors(); ?>
 
-<?php echo form_open('lanzamiento/edit/'.$lanzamiento_item['id']); ?>
+<?php echo form_open('lanzamiento/edit/'.$lanzamiento_item['nombrecorto']); ?>
 
     <label for="nombre">Nombre</label>
     <input type="input" name="nombre" value ="<?php echo $lanzamiento_item['nombre'] ?>"/><br />
@@ -42,7 +42,7 @@
         <?php if($lanzamiento_item['visible'] != 0) echo "checked";?>
     ><br />    
 
-	<input type="hidden" name="id" value="<?php echo $lanzamiento_item['id']; ?>" />
+	<input type="hidden" name="nombrecorto" value="<?php echo $lanzamiento_item['nombrecorto']; ?>" />
     <input type="submit" name="submit" value="Editar lanzamiento" />
 
 </form>

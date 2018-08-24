@@ -90,3 +90,5 @@ COMMIT;
 ---Modificaciones despues del inicial
 ALTER TABLE `lanzamiento` ADD `visible` BOOLEAN NOT NULL DEFAULT TRUE AFTER `fecha_modificacion`;
 ALTER TABLE `lanzamiento` CHANGE `formato` `formato` ENUM('CD','Digipack','12"','10"','7"','Flexi','Cassette','Digital','Mini CD','DVD','Otros','Bootleg') CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL;
+ALTER TABLE `lanzamiento` ADD `nombrecorto` VARCHAR(30) NOT NULL AFTER `nombre`, ADD UNIQUE `nombrecorto` (`nombrecorto`);
+ALTER TABLE `lanzamiento` ADD `nombrecorto` VARCHAR(30) NOT NULL AFTER `nombre`, ADD UNIQUE `nombrecorto` (`nombrecorto`);

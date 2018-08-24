@@ -3,7 +3,7 @@
     function borrar(){
 		var r=confirm("Do you want to delete this?")
 		if (r==true)
-			window.location = "<?php echo site_url('lanzamiento/delete/'.$lanzamiento_item['id']); ?>";
+			window.location = "<?php echo site_url('lanzamiento/delete/'.$lanzamiento_item['nombrecorto']); ?>";
 		else
 			return false;
 	} 
@@ -13,14 +13,16 @@
 
 
 <?php 
-preg_match('/(.*)\.(.*)/',$lanzamiento_item['imagen'], $match);
-$path = $match[1];
-$extension = $match[2];
-$thumb = $path.'_small.'.$extension;
 
 if ($lanzamiento_item['imagen'] == NULL){ ?>
-	<P><IMG SRC="<?php echo base_url('images/placeholder.jpg'); ?>" ALIGN="RIGHT">
-<?php } else{?>
+	<P><IMG SRC="<?php echo base_url('images/placeholder.gif'); ?>" ALIGN="RIGHT">
+<?php } else{
+		preg_match('/(.*)\.(.*)/',$lanzamiento_item['imagen'], $match);
+		$path = $match[1];
+		$extension = $match[2];
+		$thumb = $path.'_small.'.$extension;
+
+	?>
 	<P><a href="<?php echo base_url('images/'.$lanzamiento_item['imagen']); ?>"><IMG SRC="<?php echo base_url('images/'.$thumb); ?>" ALIGN="RIGHT"></IMG></a>
 <?php }?>
 	
@@ -31,7 +33,7 @@ if ($lanzamiento_item['imagen'] == NULL){ ?>
 	<ul>
 		<?php foreach ($banda as $banda_item): ?>
 			<li>	
-				<a href="<?php echo site_url('banda/'.$banda_item['id']); ?>"><?php echo $banda_item['nombre']; ?></a>			
+				<a href="<?php echo site_url('banda/'.$banda_item['nombrecorto']); ?>"><?php echo $banda_item['nombre']; ?></a>			
 			</li>		
 		<?php endforeach; ?>
 	</ul>
@@ -53,8 +55,8 @@ if ($lanzamiento_item['imagen'] == NULL){ ?>
 if ($this->ion_auth->logged_in()){
 ?>
 <div align="right"><h5>
-<a href="<?php echo site_url('lanzamiento/edit/'.$lanzamiento_item['id']); ?>">Editar</a>|
-<a href="<?php echo site_url('lanzamiento/upload/'.$lanzamiento_item['id']); ?>">Subir imagen</a>|
+<a href="<?php echo site_url('lanzamiento/edit/'.$lanzamiento_item['nombrecorto']); ?>">Editar</a>|
+<a href="<?php echo site_url('lanzamiento/upload/'.$lanzamiento_item['nombrecorto']); ?>">Subir imagen</a>|
 <a href="javascript:void(0);" onclick="borrar()">Borrar</a>
 
 

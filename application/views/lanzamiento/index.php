@@ -34,7 +34,7 @@ Página
 <?php foreach ($lanzamiento as $lanzamiento_item): ?>
 	<tr>
 		<th>
-			<a href="<?php echo site_url('lanzamiento/'.$lanzamiento_item['id']); ?>"><?php echo $lanzamiento_item['nombre']; ?></a></p>
+			<a href="<?php echo site_url('lanzamiento/'.$lanzamiento_item['nombrecorto']); ?>"><?php echo $lanzamiento_item['nombre']; ?></a></p>
 		</th>
 		<th>
 			<?php echo nl2br($lanzamiento_item['bandas']); ?>

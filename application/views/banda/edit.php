@@ -2,7 +2,7 @@
 
 <?php echo validation_errors(); ?>
 
-<?php echo form_open('banda/edit/'.$banda_item['id']); ?>
+<?php echo form_open('banda/edit/'.$banda_item['nombrecorto']); ?>
 
     <label for="nombre">Nombre</label>
     <input type="input" name="nombre" value ="<?php echo $banda_item['nombre'] ?>"/><br />
@@ -21,7 +21,7 @@
         <?php if($banda_item['extranjera'] != 0) echo "checked";?>
     ><br />
 
-	<input type="hidden" name="id" value="<?php echo $banda_item['id']; ?>" />
+	<input type="hidden" name="nombrecorto" value="<?php echo $banda_item['nombrecorto']; ?>" />
     <input type="submit" name="submit" value="Editar banda" />
 
 </form>
