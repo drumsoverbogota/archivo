@@ -1,4 +1,6 @@
-<h2><?php echo $title; ?></h2>
+
+
+<h2><?php echo $title;?></h2>
 
 
 <table style="width:100%">
@@ -12,13 +14,52 @@
   </tr>
 
 
-
 <?php
 	$sufijo_visible = '';
 	if($visible == 'true'){
-		$sufijo_visible = '/true';  
+		$sufijo_visible = '&visible=true';  
 	}
 ?>
+
+
+
+<div align="right">
+	<form>
+		Items a mostrar
+		<select name="numero">
+			<?php 
+				for($i = 10; $i <= 50; $i= $i + 10){ 
+					if ($i == $limite) {?>
+					<option selected="select"><?php echo $i;?></option>		
+			<?php }
+				else{ ?>
+					<option><?php echo $i;?></option>		
+			<?php 
+				}				
+			} ?>
+		</select>
+		Ordenar por
+		<?php 
+			$options = array(
+				'nombre'	=> 'Nombre',
+				'anho'		=> 'Año',
+				'formato'	=> 'Formato',
+				'Referencia'=> 'Referencia',
+			);
+			echo form_dropdown('ordenar', $options, $ordenar);
+
+			$options = array(
+				'ascendente'	=> 'Ascendente',
+				'descendente'		=> 'Descendente',
+			);
+			echo form_dropdown('ascendente', $options, $ascendente);
+
+
+		?>
+		<input type="hidden" name="visible" value="<?php echo($visible)?>" />
+		<input type="submit" value="Mostrar" />
+	</form>
+</div>
 
 <div align="center">
 Página
@@ -26,10 +67,13 @@ Página
 	<?php if ($pagina == $i){?>
 		<b><?php echo $i; ?></b>
 	<?php } else {?>
-		<a href="<?php echo site_url('lanzamientos/'.$i.$sufijo_visible); ?>"><?php echo $i; ?></a>
+		
+		<a href="<?php echo site_url('lanzamiento/?numero='.$limite.'&ascendente='.$ascendente.'&ordenar='.$ordenar.'&pagina='.$i.$sufijo_visible); ?>"><?php echo $i; ?></a>
+		
 	<?php }?>		
 <?php }?>	
 </div>
+
 
 <?php foreach ($lanzamiento as $lanzamiento_item): ?>
 	<tr>
@@ -62,7 +106,9 @@ Página
 	<?php if ($pagina == $i){?>
 		<b><?php echo $i; ?></b>
 	<?php } else {?>
-		<a href="<?php echo site_url('lanzamientos/'.$i.$sufijo_visible); ?>"><?php echo $i; ?></a>
+		
+		<a href="<?php echo site_url('lanzamiento/?numero='.$limite.'&ascendente='.$ascendente.'&ordenar='.$ordenar.'&pagina='.$i.$sufijo_visible); ?>"><?php echo $i; ?></a>
+		
 	<?php }?>		
 <?php }?>	
 </div>

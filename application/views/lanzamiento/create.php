@@ -11,7 +11,7 @@
     <input type="input" name="referencia" /><br />
 
     <label for="formato">Formato</label>
-    <select name="formato">
+    <select class="grande" name="formato">
         <?php for($i = 0; $i < count($formatos); ++$i) { ?>
             <option value="<?php echo $i+1 ?>"><?php echo $formatos[$i]; ?></option>          
         <?php } ?>

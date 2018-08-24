@@ -17,17 +17,52 @@ class Lanzamiento extends CI_Controller {
 				$this->load->library('ion_auth');
         }
 
-        public function index($pagina = 1, $visible = 'false')
+        public function index($visible = 'false')
         {			
         		
-        		$limite = 10;
-                $data['lanzamiento']	= $this->lanzamiento_model->get_lanzamientos($limite, $pagina, $visible);
+        		
+        		$limite = $this->input->get('numero');
+        		if(!$limite){
+        			$limite = 10;
+        		}
+
+        		$pagina = $this->input->get('pagina');
+        		if(!$pagina){
+        			$pagina = 1;
+        		}
+
+        		$ordenar = $this->input->get('ordenar');
+        		if(!$ordenar){
+        			$ordenar = 'nombre';
+        		}
+
+        		$visible = $this->input->get('visible');
+        		if(!$visible){
+        			$visible = 'false';
+        		}
+        		$asc = '';
+        		$ascendente = $this->input->get('ascendente');
+        		if(!$ascendente){
+        			$asc = 'ASC';
+        		}else{
+        			if ($ascendente == 'ascendente') {
+        				$asc = 'ASC';
+        			}
+        			else{
+        				$asc = 'DESC';	
+        			}
+        		}
+
+                $data['lanzamiento']	= $this->lanzamiento_model->get_lanzamientos($limite, $pagina, $visible, $ordenar, $asc);
+
 				$data['total']			= count($this->lanzamiento_model->get_lanzamiento(FALSE, $visible)); 
 				$data['title'] 			= 'Lista de lanzamientos';
 				$data['limite']			= $limite;
 				$data['pagina']			= $pagina;
 				$data['visible']		= $visible;
-
+				$data['ordenar']		= $ordenar;
+				$data['ascendente']		= $ascendente;
+				
 				$this->load->view('templates/header', $data);
 				$this->load->view('lanzamiento/index', $data);
 				$this->load->view('templates/footer');
@@ -92,7 +127,7 @@ class Lanzamiento extends CI_Controller {
 				else
 				{
 					$row = $this->lanzamiento_model->set_lanzamiento();	
-					echo $row;
+
 					$this->view($row);					
 				}
 			}

@@ -86,7 +86,8 @@
 }
 
 
-		select {
+
+		select.grande {
 		    width: 100%;
 		    padding: 16px 20px;
 		    border: none;

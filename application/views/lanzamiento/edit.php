@@ -11,7 +11,7 @@
     <input type="input" name="referencia" value ="<?php echo $lanzamiento_item['referencia'] ?>"/><br />
 
     <label for="formato">Formato</label>
-    <select name="formato">
+    <select class="grande" name="formato">
         <?php for($i = 0; $i < count($formatos); ++$i) { ?>
             <?php if ($lanzamiento_item['formato'] == $formatos[$i]) {?>
                 <option value="<?php echo $i+1 ?>" selected = "selected"><?php echo $formatos[$i]; ?></option> 

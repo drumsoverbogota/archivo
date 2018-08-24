@@ -59,15 +59,9 @@ class Lanzamiento_model extends CI_Model {
         	return $query->result_array();
         }
 
-        public function get_lanzamientos($limit = 10, $page = 1, $visible = 'false')
+        public function get_lanzamientos($limit = 10, $page = 1, $visible = 'false', $order = 'nombre', $ascendent = 'ASC')
         {
-			/*
-			SELECT `lanzamiento`.*, group_concat(DISTINCT `banda`.`nombre` ORDER BY `banda`.`nombre` DESC SEPARATOR ', ')
-			FROM `lanzamiento`
-			INNER JOIN `banda_lanzamiento` ON `lanzamiento`.`id` = `banda_lanzamiento`.`lanzamiento_id` 
-			INNER JOIN `banda` ON `banda_lanzamiento`.`banda_id` = `banda`.`id`  
-			GROUP BY `lanzamiento`.`id`
-			*/
+        	
 
 			if($visible == 'false'){
 	        	$query = $this->db->query('SELECT `lanzamiento`.*, group_concat(DISTINCT `banda`.`nombre` ORDER BY `banda`.`nombre` DESC SEPARATOR \'\n \') AS `bandas`
@@ -75,18 +69,16 @@ class Lanzamiento_model extends CI_Model {
 				LEFT JOIN `banda_lanzamiento` ON `lanzamiento`.`id` = `banda_lanzamiento`.`lanzamiento_id` 
 				LEFT JOIN `banda` ON `banda_lanzamiento`.`banda_id` = `banda`.`id`  
 	            WHERE `lanzamiento`.`visible` = 1			
-				GROUP BY `lanzamiento`.`id` ORDER BY `lanzamiento`.`nombre`
-	        		LIMIT '.$limit.' OFFSET '.(($page-1)*$limit));				
+				GROUP BY `lanzamiento`.`id` ORDER BY `lanzamiento`.`'.$order.'` '.$ascendent.' LIMIT '.$limit.' OFFSET '.(($page-1)*$limit));				
 			}
 			else{
+
 	        	$query = $this->db->query('SELECT `lanzamiento`.*, group_concat(DISTINCT `banda`.`nombre` ORDER BY `banda`.`nombre` DESC SEPARATOR \'\n \') AS `bandas`
 				FROM `lanzamiento`
 				LEFT JOIN `banda_lanzamiento` ON `lanzamiento`.`id` = `banda_lanzamiento`.`lanzamiento_id` 
 				LEFT JOIN `banda` ON `banda_lanzamiento`.`banda_id` = `banda`.`id`  
-				GROUP BY `lanzamiento`.`id` ORDER BY `lanzamiento`.`nombre`
-	        		LIMIT '.$limit.' OFFSET '.(($page-1)*$limit));				
-
-			}
+				GROUP BY `lanzamiento`.`id` ORDER BY `lanzamiento`.`'.$order.'` '.$ascendent.' LIMIT '.$limit.' OFFSET '.(($page-1)*$limit));					
+			}						
 			return $query->result_array();
         }
 		
