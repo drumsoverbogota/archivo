@@ -8,7 +8,7 @@ Por favor, contáctenos acá:
 
 <div class="row">
     <div class="col-lg-12">
-        <?php if(!empty($this->session->flashdata('msg'))){ ?>
+        <?php if($this->session->flashdata('msg')){ ?>
             <div class="alert alert-success">
                 <?php echo $this->session->flashdata('msg'); ?>
             </div>        

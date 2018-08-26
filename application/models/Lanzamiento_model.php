@@ -122,7 +122,7 @@ class Lanzamiento_model extends CI_Model {
 				$iteracion = $iteracion + 1;
 				$query = $this->db->get_where('lanzamiento', array('nombrecorto' => $corto));
 
-			} while (!empty($query->row_array()));
+			} while ($query->row_array());
 
 			$data = array(
 				//'slug' => $slug,
