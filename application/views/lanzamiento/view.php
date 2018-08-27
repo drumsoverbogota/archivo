@@ -49,6 +49,18 @@ if ($lanzamiento_item['imagen'] == NULL){ ?>
 
 <?php echo nl2br($lanzamiento_item['creditos']);?>
 <?php echo nl2br($lanzamiento_item['notas']);?>
+<hr>
+
+<?php 
+if ($lanzamiento_item['link'] != ""){ ?>
+	<a href="<?php echo($lanzamiento_item['link']) ?>">Link de descarga</a>
+<?php 
+}else{
+?>
+	¡No hay link disponible!
+<?php 
+}
+?>
 
 
 <?php 	
