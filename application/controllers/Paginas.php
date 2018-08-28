@@ -46,6 +46,9 @@ class Paginas extends CI_Controller {
 
 				$this->load->view('templates/header', $data);
 				$this->load->view('paginas/'.$page, $data);
+				if ($page == 'home') {
+					$this->load->view('paginas/about', $data);
+				}
 				$this->load->view('templates/footer', $data);
 		}
 		
@@ -95,7 +98,7 @@ class Paginas extends CI_Controller {
 
 		public function send()
 		{
-			$TO_MAIL = "sergiomanceranom@gmail.com";
+			$TO_MAIL = PONER_MAIL_ACA;
 			$FROM_TEXT = "El Muladar";
 	        $this->load->library('form_validation');
 	        // field name, error message, validation rules

@@ -3,9 +3,14 @@
 ?>
 <html>
 <head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
     <title><?php echo $title; ?></title>
 	
 	<style>
+
+		body{
+			font-size: 1em;
+		}
 		/*
 		ul {
 			list-style-type: none;
@@ -118,6 +123,8 @@
 		table, th, td {
 			border: 1px solid black;
 		}		
+
+
 	</style>
 	
 </head>
@@ -159,4 +166,5 @@ if ($this->ion_auth->logged_in()){
   
 </ul>
 <hr/>
+
 <!-- end header -->
