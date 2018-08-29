@@ -41,7 +41,7 @@ class Banda_model extends CI_Model {
 				FROM `lanzamiento`
 				INNER JOIN `banda_lanzamiento` ON `lanzamiento`.`id` = `banda_lanzamiento`.`lanzamiento_id` 
 				INNER JOIN `banda` ON `banda_lanzamiento`.`banda_id` = `banda`.`id`
-				WHERE `banda`.`nombrecorto` ='".$nombrecorto."' ORDER BY `lanzamiento`.`anho`");
+				WHERE `banda`.`nombrecorto` =".$this->db->escape($nombrecorto)." ORDER BY `lanzamiento`.`anho`");
         	return $query->result_array();
         }
 

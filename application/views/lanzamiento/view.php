@@ -15,7 +15,7 @@
 <?php 
 
 if ($lanzamiento_item['imagen'] == NULL){ ?>
-	<P><IMG SRC="<?php echo base_url('images/placeholder.gif'); ?>" ALIGN="RIGHT">
+	<P><IMG class = 'view-image' SRC="<?php echo base_url('images/placeholder.gif'); ?>" ALIGN="RIGHT">
 <?php } else{
 		preg_match('/(.*)\.(.*)/',$lanzamiento_item['imagen'], $match);
 		$path = $match[1];
@@ -23,7 +23,7 @@ if ($lanzamiento_item['imagen'] == NULL){ ?>
 		$thumb = $path.'_small.'.$extension;
 
 	?>
-	<P><a href="<?php echo base_url('images/'.$lanzamiento_item['imagen']); ?>"><IMG SRC="<?php echo base_url('images/'.$thumb); ?>" ALIGN="RIGHT"></IMG></a>
+	<P><a href="<?php echo base_url('images/'.$lanzamiento_item['imagen']); ?>"><IMG class = 'view-image' SRC="<?php echo base_url('images/'.$thumb); ?>" ALIGN="RIGHT"></IMG></a>
 <?php }?>
 	
 </P>

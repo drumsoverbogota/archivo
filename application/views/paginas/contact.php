@@ -1,3 +1,4 @@
+<div class="center-justified">
 
 <p><b>Contacto</b></p>
 
@@ -62,3 +63,5 @@ Por favor, contáctenos acá:
         </div>
     </div>  
 </form>
+
+</div>

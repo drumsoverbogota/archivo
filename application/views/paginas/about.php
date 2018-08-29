@@ -1,7 +1,9 @@
+<div class="center-justified">
+
 <h2>Acerca de</h2>
 
 <p>
-<em>Muladar </em> es un archivo de Punk Colombiano que reune registros sonoros y audiovisuales desde los inicios del movimiento hasta el 2007.
+<em>El Muladar </em> es un archivo de Punk Colombiano que reune registros sonoros y audiovisuales desde los inicios del movimiento hasta el 2007.
 </p>
 <p>
 Hace 6 años empezamos un proyecto llamado <em>Síntoma de última década </em> <a href="https://sintomadeultimadecada.wordpress.com">en forma de Blog</a>  con la idea de subir discos que no habían sido re-editados y que no estaban digitalizados, acompañados con algún pequeño escrito acerca del disco o como se obtuvo.
@@ -38,6 +40,8 @@ Agradecer a tanta gente que hace que esto sea posible es difícil pero no nos gu
 <p><h2>Otras cosas</h2></p>
 
 El código de esta página que ve esta disponible en <a href="https://github.com/drumsoverbogota/archivo">Github</a> por si quiere montar su propio archivo o algo así.
+
+</div>
 
 <div class="marquee">
 	<div id="mydiv" class="text">EL INTERNET ES TEMPORAL, NO TODO ESTÁ AHÍ. BAJEN, GRABEN Y DISTRIBUYAN TODO. LA NUBE NO EXISTE, ES SOLO COMPUTADORES. EL STREAMING ES UNA MENTIRA.</div>

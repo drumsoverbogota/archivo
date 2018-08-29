@@ -55,6 +55,12 @@
 				
 		}*/
 
+.center-justified {
+    margin: 0 auto;
+    text-align: justify;
+    width: 90%;
+}
+
 @keyframes slide {
   from { left:100%; transform: translate(0, 0); }
   to { left: -100%; transform: translate(-100%, 0); }
@@ -125,6 +131,25 @@
 		}		
 
 
+		.top-image {
+		    display: block;
+		    margin-left: auto;
+		    margin-right: auto;					    						
+			/*width: 25%;*/
+			width: 20vw;
+			min-width: 218px;			
+
+		}		
+
+		.view-image {
+			width: 40vw;
+			max-width: 400px;
+			min-width: 100px;
+			height: auto;				
+
+		}				
+
+
 	</style>
 	
 </head>
@@ -145,9 +170,13 @@ if ($this->ion_auth->logged_in()){
 
 ?>
 
-<div align="center"><h5>Un archivo de Punk Colombiano</h5></div>
-<div align="center"><h2>Muladar</h2></div>
 
+
+
+
+<!--<div align="center"><h2>El Muladar</h2></div>-->
+<div align="center"><h5>Un archivo de Punk Colombiano</h5></div>
+<a href="<?php echo site_url('/'); ?>"><img class="top-image" src="<?php echo base_url('images/muladarlogo.png'); ?>"></a>
 
 
 <ul>
@@ -161,7 +190,7 @@ if ($this->ion_auth->logged_in()){
 			<li><a href="<?php echo site_url('buscar/'); ?>">Buscar en el archivo</a></li>
 	  </ul>
   </li>
-  <li><a href="<?php echo site_url('about'); ?>">Acerca de</a></li>
+  <!--<li><a href="<?php echo site_url('about'); ?>">Acerca de</a></li>-->
   <li><a href="<?php echo site_url('contact'); ?>">Contacto</a></li>
   
 </ul>

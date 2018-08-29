@@ -55,7 +55,7 @@ class Lanzamiento_model extends CI_Model {
 				FROM `banda`
 				INNER JOIN `banda_lanzamiento` ON `banda`.`id` = `banda_lanzamiento`.`banda_id` 
 				INNER JOIN `lanzamiento` ON `banda_lanzamiento`.`lanzamiento_id` = `lanzamiento`.`id`
-				WHERE `lanzamiento`.`nombrecorto` = '".$nombrecorto."'");
+				WHERE `lanzamiento`.`nombrecorto` = ".$this->db->escape($nombrecorto));
         	return $query->result_array();
         }
 
@@ -69,7 +69,7 @@ class Lanzamiento_model extends CI_Model {
 				LEFT JOIN `banda_lanzamiento` ON `lanzamiento`.`id` = `banda_lanzamiento`.`lanzamiento_id` 
 				LEFT JOIN `banda` ON `banda_lanzamiento`.`banda_id` = `banda`.`id`  
 	            WHERE `lanzamiento`.`visible` = 1			
-				GROUP BY `lanzamiento`.`id` ORDER BY `lanzamiento`.`'.$order.'` '.$ascendent.' LIMIT '.$limit.' OFFSET '.(($page-1)*$limit));				
+				GROUP BY `lanzamiento`.`id` ORDER BY `lanzamiento`.`'.$this->db->escape_str($order).'` '.$this->db->escape_str($ascendent).' LIMIT '.$this->db->escape_str($limit).' OFFSET '.(($page-1)*$limit));				
 			}
 			else{
 
@@ -77,7 +77,7 @@ class Lanzamiento_model extends CI_Model {
 				FROM `lanzamiento`
 				LEFT JOIN `banda_lanzamiento` ON `lanzamiento`.`id` = `banda_lanzamiento`.`lanzamiento_id` 
 				LEFT JOIN `banda` ON `banda_lanzamiento`.`banda_id` = `banda`.`id`  
-				GROUP BY `lanzamiento`.`id` ORDER BY `lanzamiento`.`'.$order.'` '.$ascendent.' LIMIT '.$limit.' OFFSET '.(($page-1)*$limit));					
+				GROUP BY `lanzamiento`.`id` ORDER BY `lanzamiento`.`'.$this->db->escape_str($order).'` '.$this->db->escape_str($ascendent).' LIMIT '.$this->db->escape_str($limit).' OFFSET '.(($page-1)*$limit));					
 			}						
 			return $query->result_array();
         }
