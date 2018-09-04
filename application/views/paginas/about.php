@@ -19,7 +19,7 @@ Este es un proyecto autogestionado. El material acá presente se ha conseguido e
 
 
 <p>
-Ningún derecho reservado, todo el material acá publicado es propiedad de sus compositor@s o autor@s. Por tanto,<b> no podemos dar la autorización de uso de nada de lo que está acá. Contacte a los autores o a sus representanets para obtener permiso.</b>
+Ningún derecho reservado, todo el material acá publicado es propiedad de sus compositor@s o autor@s. Por tanto,<b> no podemos dar la autorización de uso de nada de lo que está acá. Contacte a los autores o a sus representantes para obtener permiso.</b>
 </p>
 
 <p><h2>Formato de los archivos</h2></p>

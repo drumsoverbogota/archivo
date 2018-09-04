@@ -20,7 +20,7 @@ if ($banda_item['imagen'] == NULL){ ?>
 		$thumb = $path.'_small.'.$extension;
 
 	?>
-	<P><a href="<?php echo base_url('images/'.$banda_item['imagen']); ?>"><IMG class = 'view-image' SRC="<?php echo base_url('images/'.$thumb); ?>" ALIGN="RIGHT"></IMG></a>
+	<P><a href="<?php echo base_url('images/'.$banda_item['imagen']); ?>"><IMG class = 'view-na' SRC="<?php echo base_url('images/'.$thumb); ?>" ALIGN="RIGHT"></IMG></a>
 <?php }?>
 </P>
 

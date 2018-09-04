@@ -11,49 +11,6 @@
 		body{
 			font-size: 1em;
 		}
-		/*
-		ul {
-			list-style-type: none;
-			margin: 10;
-			padding: 10	;
-			overflow: hidden;
-			
-		}
-
-		li {
-			float: left;
-		}
-			
-		li a {
-			padding: 2em;
-		}
-		hr {
-			display: block;
-			height: 1px;
-			border: 0;
-			border-top: 1px solid #ccc;
-			margin: 1em 0;
-			padding: 0;
-		}		
-		*/
-
-		/*.marquee {
-		    width: 450px;
-		    margin: 0 auto;
-		    white-space: nowrap;
-		    overflow: hidden;
-		    box-sizing: border-box;
-		    
-		    position: relative;
-		    left: 40%;
-			
-			color: #a9a9a9;
-			font-family: 'Source Sans Pro', sans-serif;
-			letter-spacing: 2px; 
-			font-weight: 100;
-			font-size: 16px;
-				
-		}*/
 
 .center-justified {
     margin: 0 auto;
@@ -146,8 +103,14 @@
 			max-width: 400px;
 			min-width: 100px;
 			height: auto;				
-
 		}				
+
+		.view-na {
+			width: 40vw;
+			max-width: 200px;
+			min-width: 100px;
+			height: auto;				
+		}						
 
 
 	</style>
