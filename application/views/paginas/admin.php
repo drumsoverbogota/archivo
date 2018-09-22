@@ -10,6 +10,7 @@
 	<a href="<?php echo site_url('lanzamiento/create'); ?>">Crear Lanzamiento</a> <br>
 	<a href="<?php echo site_url('bandalanzamiento/asignar_banda'); ?>">Asignar a una Banda un Lanzamiento</a> <br>
 	<a href="<?php echo site_url('bandalanzamiento/asignar_lanzamiento'); ?>">Asignar un Lanzamiento una Banda</a> <br>
+	<a href="<?php echo site_url('entrada/create'); ?>">Crear nueva entrada a Blog/Noticias</a> <br>
   
   	<a href="<?php echo site_url('cambiarpswd'); ?>">Cambiar Password</a> <br>
 

@@ -92,3 +92,13 @@ ALTER TABLE `lanzamiento` ADD `visible` BOOLEAN NOT NULL DEFAULT TRUE AFTER `fec
 ALTER TABLE `lanzamiento` CHANGE `formato` `formato` ENUM('CD','Digipack','12"','10"','7"','Flexi','Cassette','Digital','Mini CD','DVD','Otros','Bootleg') CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL;
 ALTER TABLE `lanzamiento` ADD `nombrecorto` VARCHAR(30) NOT NULL AFTER `nombre`, ADD UNIQUE `nombrecorto` (`nombrecorto`);
 ALTER TABLE `banda` ADD `nombrecorto` VARCHAR(30) NOT NULL AFTER `nombre`, ADD UNIQUE `nombrecorto` (`nombrecorto`);
+
+CREATE TABLE IF NOT EXISTS `entrada` (
+  `id` int(11) NOT NULL,
+  `titulo` varchar(100) NOT NULL,
+  `contenido` text NOT NULL,
+  `resumen` text NOT NULL,
+  `tipo` varchar(10) NOT NULL DEFAULT '0',
+  `fecha` date NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;

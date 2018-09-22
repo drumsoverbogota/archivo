@@ -47,7 +47,7 @@ class Paginas extends CI_Controller {
 				$this->load->view('templates/header', $data);
 				$this->load->view('paginas/'.$page, $data);
 				if ($page == 'home') {
-					$this->load->view('paginas/about', $data);
+					//$this->load->view('paginas/about', $data);
 				}
 				$this->load->view('templates/footer', $data);
 		}
