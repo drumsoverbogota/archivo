@@ -8,6 +8,7 @@ class Entrada extends CI_Controller {
 				$this->load->helper('url');
 				$this->load->helper(array('form', 'url'));
 				$this->load->library('ion_auth');
+				$this->load->model('entrada_model');
 				
         }
 

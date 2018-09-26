@@ -24,6 +24,7 @@ class Paginas extends CI_Controller {
 				$this->load->helper(array('form', 'url'));
 				$this->load->model('banda_model');
 				$this->load->model('lanzamiento_model');
+				$this->load->model('entrada_model');
         }
 
         public function index()
@@ -43,12 +44,11 @@ class Paginas extends CI_Controller {
 				}
 
 				$data['title'] = ucfirst($page); // Capitalize the first letter
-
-				$this->load->view('templates/header', $data);
-				$this->load->view('paginas/'.$page, $data);
 				if ($page == 'home') {
-					//$this->load->view('paginas/about', $data);
+					$data['noticias'] = $this->entrada_model->get_noticias(10, 1);
 				}
+				$this->load->view('templates/header', $data);
+				$this->load->view('paginas/'.$page, $data);				
 				$this->load->view('templates/footer', $data);
 		}
 		

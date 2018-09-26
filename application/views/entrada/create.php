@@ -5,13 +5,13 @@
 <?php echo form_open('entrada/create'); ?>
 
     <label for="titulo">Titulo</label>
-    <input type="input" name="nombre" /><br />
+    <input type="input" name="titulo" /><br />
 	
     <label for="resumen">Resumen (solo blog)</label>
-    <textarea name="otros"></textarea><br />	
+    <textarea name="resumen"></textarea><br />	
 
     <label for="contenido">Contenido</label>
-    <textarea name="integrantes"></textarea><br />
+    <textarea name="contenido"></textarea><br />
 	
     <select class="grande" name="tipo">
         <option value="blog">Blog</option>

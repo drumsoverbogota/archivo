@@ -6,6 +6,19 @@
 
 <p>El Muladar es un archivo de Punk Colombiano. Pueden ver todos los discos acá en <a href="<?php echo site_url('lanzamiento/'); ?>">Lanzamientos</a>, las bandas acá en <a href="<?php echo site_url('banda/'); ?>">Bandas</a> o usar el <a href="<?php echo site_url('buscar/'); ?>">buscador</a>.</p>
 
+<p><h2>Noticias</h2></p>
+
+
+<?php foreach ($noticias as $noticia_item): ?>
+
+	<h3><?php echo $noticia_item['titulo'].' ('.$noticia_item['fecha'].')'?></h3>
+	<p>
+		<?php echo $noticia_item['contenido']?>
+	</p>
+<?php endforeach; ?>
+
 </div>
 <!-- end page content -->
+
+
 

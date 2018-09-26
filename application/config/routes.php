@@ -66,6 +66,7 @@ $route['paginas/send'] = 'paginas/send';
 $route['paginas/(:any)'] = 'paginas/view/$1';
 $route['paginas'] = 'paginas';
 $route['entrada/create'] = 'entrada/create';
+$route['entrada/(:any)'] = 'entrada/view/$1';
 $route['entrada'] = 'entrada';
 $route['default_controller'] = 'paginas';
 $route['(:any)'] = 'paginas/view/$1';

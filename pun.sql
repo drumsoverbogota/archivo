@@ -94,11 +94,11 @@ ALTER TABLE `lanzamiento` ADD `nombrecorto` VARCHAR(30) NOT NULL AFTER `nombre`,
 ALTER TABLE `banda` ADD `nombrecorto` VARCHAR(30) NOT NULL AFTER `nombre`, ADD UNIQUE `nombrecorto` (`nombrecorto`);
 
 CREATE TABLE IF NOT EXISTS `entrada` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `titulo` varchar(100) NOT NULL,
   `contenido` text NOT NULL,
   `resumen` text NOT NULL,
   `tipo` varchar(10) NOT NULL DEFAULT '0',
   `fecha` date NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;

@@ -6,19 +6,22 @@ class Entrada_model extends CI_Model {
                 $this->load->database();
         }
 
-		public function get_entrada($nombrecorto = FALSE)
+		public function get_entrada($id = FALSE)
 		{
-				if ($nombrecorto === FALSE)
-				{
-						$this->db->order_by('nombre', 'ASC');
-						$query = $this->db->get('banda');
-						return $query->result_array();
-				}
-
-				$query = $this->db->get_where('banda', array('nombrecorto' => $nombrecorto));
+				$query = $this->db->get_where('entrada', array('id' => $id));
 				return $query->row_array();
 		}
-		public function set_banda()
+
+		public function get_noticias($limit = 10, $page = 1)
+		{
+				$this->db->order_by('fecha', 'DESC');
+				$this->db->limit($limit, ($page-1)*$limit);
+				$query = $this->db->get_where('entrada', array('tipo' => 'noticia'));
+				//echo $this->db->last_query();
+				return $query->result_array();
+		}
+
+		public function set_entrada()
 		{
 			$this->load->helper('url');
 			date_default_timezone_set('America/Bogota');
