@@ -66,7 +66,7 @@ class Entrada extends CI_Controller {
 			}
 		}		
 		
-		public function edit($nombrecorto)
+		public function edit($id)
 		{
 			if (!$this->ion_auth->logged_in())
 			{
@@ -81,30 +81,31 @@ class Entrada extends CI_Controller {
 			else
 			{			
 		
-				$data['banda_item'] = $this->banda_model->get_banda($nombrecorto);
+				$data['entrada_item'] = $this->entrada_model->get_entrada($id);
+				print_r($data['entrada_item']);
 				
 				$this->load->helper('form');
 				$this->load->library('form_validation');
 
-				$data['title'] = 'Editar Banda';
+				$data['title'] = 'Editar Entrada';
 
-				$this->form_validation->set_rules('nombre', 'Nombre', 'required');
-				$this->form_validation->set_rules('otros', 'Otros nombres', '');
-				$this->form_validation->set_rules('integrantes', 'Integrantes', '');
-				$this->form_validation->set_rules('comentarios', 'Comentarios', '');
+				$this->form_validation->set_rules('titulo', 'Titulo', 'required');
+				$this->form_validation->set_rules('resumen', 'Resumen', '');
+				$this->form_validation->set_rules('contenido', 'Contenido', '');
+				$this->form_validation->set_rules('tipo', 'Tipo', '');
 				
 
 				if ($this->form_validation->run() === FALSE)
 				{
 					$this->load->view('templates/header', $data);
-					$this->load->view('banda/edit');
+					$this->load->view('entrada/edit');
 					$this->load->view('templates/footer');
 
 				}
 				else
 				{
-					$nombrecorto = $this->banda_model->edit_banda();				
-					$this->view($nombrecorto);
+					$id = $this->entrada_model->edit_entrada();				
+					$this->view($id);
 					
 				}
 			}

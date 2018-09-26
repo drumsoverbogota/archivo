@@ -2,26 +2,29 @@
 
 <?php echo validation_errors(); ?>
 
-<?php echo form_open('banda/edit/'.$banda_item['nombrecorto']); ?>
+<?php echo form_open('entrada/edit/'.$entrada_item['id']); ?>
 
-    <label for="nombre">Nombre</label>
-    <input type="input" name="nombre" value ="<?php echo $banda_item['nombre'] ?>"/><br />
-	
-    <label for="otros">Otros nombres</label>
-    <textarea name="otros"><?php echo str_replace("<br />", "", $banda_item['otros']); ?></textarea><br />	
+    <label for="titulo">Titulo</label>
+    <input type="input" name="titulo" value ="<?php echo $entrada_item['titulo'] ?>"/><br />
+    
+    <label for="resumen">Resumen (solo blog)</label>
+    <textarea name="resumen"><?php echo $entrada_item['resumen'] ?></textarea><br />  
 
-    <label for="integrantes">Integrantes</label>
-    <textarea name="integrantes"><?php echo str_replace("<br />", "", $banda_item['integrantes']); ?></textarea><br />
-	
-    <label for="comentarios">Comentarios</label>
-    <textarea name="comentarios"><?php echo str_replace("<br />", "", $banda_item['comentarios']); ?></textarea><br />
+    <label for="contenido">Contenido</label>
+    <textarea name="contenido"><?php echo $entrada_item['contenido'] ?></textarea><br />
+    
+    <select class="grande" name="tipo">
+        <?php if ($entrada_item['tipo']== 'blog'): ?>
+            <option value="blog" selected = "selected">Blog</option>
+            <option value="noticia">Noticia</option>            
+        <?php else: ?>
+            <option value="blog">Blog</option>
+            <option value="noticia" selected = "selected">Noticia</option>            
+        <?php endif ?>
 
-    <label for="extranjera">¿Es extranjera?</label>
-    <input name="extranjera" type="checkbox"
-        <?php if($banda_item['extranjera'] != 0) echo "checked";?>
-    ><br />
+    </select><br />
 
-	<input type="hidden" name="nombrecorto" value="<?php echo $banda_item['nombrecorto']; ?>" />
-    <input type="submit" name="submit" value="Editar banda" />
+
+    <input type="submit" name="submit" value="Editar Entrada" />
 
 </form>

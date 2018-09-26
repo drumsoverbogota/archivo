@@ -27,7 +27,6 @@ class Entrada_model extends CI_Model {
 			date_default_timezone_set('America/Bogota');
 	
 			$data = array(
-				//'slug' => $slug,
 				'titulo' => $this->input->post('titulo'),					
 				'contenido' => $this->input->post('contenido'),				
 				'resumen' => $this->input->post('resumen'),
@@ -39,27 +38,22 @@ class Entrada_model extends CI_Model {
 			return $this->db->insert_id();
 		}		
 		
-		public function edit_banda()
+		public function edit_entrada()
 		{
 			$this->load->helper('url');
 			date_default_timezone_set('America/Bogota');
 
-			$extranjera = 0;
-			if ($this->input->post('extranjera') == 'on'){
-				$extranjera = 1;
-			}			
-			$nombrecorto = $this->input->post('nombrecorto');	
+			$id = $this->input->post('id');	
 			$data = array(
-				'nombre' => $this->input->post('nombre'),				
-				'otros' => $this->input->post('otros'),				
-				'integrantes' => $this->input->post('integrantes'),
-				'comentarios' => $this->input->post('comentarios'),
-				'extranjera' => $extranjera,
-				'fecha_modificacion' => date('Y-m-d H:i:s')
+				'titulo' => $this->input->post('titulo'),					
+				'contenido' => $this->input->post('contenido'),				
+				'resumen' => $this->input->post('resumen'),
+				'tipo' => $this->input->post('tipo'),				
+				'fecha' => date('Y-m-d H:i:s')
 			);
-			$this->db->where('nombrecorto', $nombrecorto);
-			$this->db->update('banda', $data);
-			return $this->input->post('nombrecorto');
+			$this->db->where('id', $id);
+			$this->db->update('entrada', $entrada);
+			return $this->input->post('id');
 		}				
 		
 		public function delete_banda($nombrecorto)

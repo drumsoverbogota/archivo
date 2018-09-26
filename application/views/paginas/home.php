@@ -12,9 +12,8 @@
 <?php foreach ($noticias as $noticia_item): ?>
 
 	<h3><?php echo $noticia_item['titulo'].' ('.$noticia_item['fecha'].')'?></h3>
-	<p>
-		<?php echo $noticia_item['contenido']?>
-	</p>
+	<?php echo $noticia_item['contenido']?>
+
 <?php endforeach; ?>
 
 </div>
