@@ -23,8 +23,9 @@
         <?php endif ?>
 
     </select><br />
-
-
+    
+    <input type="hidden" name="id" value="<?php echo $entrada_item['id']; ?>" />
     <input type="submit" name="submit" value="Editar Entrada" />
+
 
 </form>

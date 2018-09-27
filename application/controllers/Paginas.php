@@ -39,14 +39,18 @@ class Paginas extends CI_Controller {
 
 				if ( ! file_exists(APPPATH.'views/paginas/'.$page.'.php'))
 				{
-						// Whoops, we don't have a page for that!						
+						// Whoops, we don't have a page for that!		
 						show_404();
 				}
 
-				$data['title'] = ucfirst($page); // Capitalize the first letter
+				$data['title'] = ucfirst($page);
 				if ($page == 'home') {
 					$data['noticias'] = $this->entrada_model->get_noticias(10, 1);
 				}
+				if ($page == 'blog') {
+					$data['blog'] = $this->entrada_model->get_blogs(10, 1);
+				}				
+				
 				$this->load->view('templates/header', $data);
 				$this->load->view('paginas/'.$page, $data);				
 				$this->load->view('templates/footer', $data);

@@ -17,9 +17,16 @@ class Entrada_model extends CI_Model {
 				$this->db->order_by('fecha', 'DESC');
 				$this->db->limit($limit, ($page-1)*$limit);
 				$query = $this->db->get_where('entrada', array('tipo' => 'noticia'));
-				//echo $this->db->last_query();
 				return $query->result_array();
 		}
+
+		public function get_blogs($limit = 10, $page = 1)
+		{
+				$this->db->order_by('fecha', 'DESC');
+				$this->db->limit($limit, ($page-1)*$limit);
+				$query = $this->db->get_where('entrada', array('tipo' => 'blog'));
+				return $query->result_array();
+		}		
 
 		public function set_entrada()
 		{
@@ -48,22 +55,15 @@ class Entrada_model extends CI_Model {
 				'titulo' => $this->input->post('titulo'),					
 				'contenido' => $this->input->post('contenido'),				
 				'resumen' => $this->input->post('resumen'),
-				'tipo' => $this->input->post('tipo'),				
-				'fecha' => date('Y-m-d H:i:s')
+				'tipo' => $this->input->post('tipo')
 			);
 			$this->db->where('id', $id);
-			$this->db->update('entrada', $entrada);
-			return $this->input->post('id');
+			$this->db->update('entrada', $data);
+			return $id;
 		}				
 		
-		public function delete_banda($nombrecorto)
+		public function delete_entrada($id)
 		{
-			$this->db->delete('banda', array('nombrecorto' => $nombrecorto));
-		}
-		
-		public function set_image($id, $link){
-			$data = $this->db->get_where('banda', array('id' => $id))->row_array();
-			$data['imagen'] = $link;
-			$this->db->replace('table', $data);
+			$this->db->delete('entrada', array('id' => $id));
 		}			
 }

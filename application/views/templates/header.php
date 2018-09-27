@@ -12,47 +12,46 @@
 			font-size: 1em;
 		}
 
-.center-justified {
-    margin: 0 auto;
-    text-align: justify;
-    width: 90%;
-}
+		.center-justified {
+		    margin: 0 auto;
+		    text-align: justify;
+		    width: 90%;
+		}
 
-@keyframes slide {
-  from { left:100%; transform: translate(0, 0); }
-  to { left: -100%; transform: translate(-100%, 0); }
-}
-@-webkit-keyframes slide {
-  from { left:100%; transform: translate(0, 0); }
-  to { left: -100%; transform: translate(-100%, 0); }
-}
+		@keyframes slide {
+		  from { left:100%; transform: translate(0, 0); }
+		  to { left: -100%; transform: translate(-100%, 0); }
+		}
+		@-webkit-keyframes slide {
+		  from { left:100%; transform: translate(0, 0); }
+		  to { left: -100%; transform: translate(-100%, 0); }
+		}
 
-.marquee { 
+		.marquee { 
 
 
-  width:100%;
-  height:120px;
-  line-height:120px;
-  overflow:hidden;
-  position:relative;
-}
+		  width:100%;
+		  height:120px;
+		  line-height:120px;
+		  overflow:hidden;
+		  position:relative;
+		}
 
-.text {
-  position:absolute;
-  top:0;
-  white-space: nowrap;
-  height:120px;
+		.text {
+		  position:absolute;
+		  top:0;
+		  white-space: nowrap;
+		  height:120px;
 
-  animation-name: slide;
-  animation-duration: 30s;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
-  -webkit-animation-name: slide;
-  -webkit-animation-duration: 30s;
-  -webkit-animation-timing-function:linear;
-  -webkit-animation-iteration-count: infinite;
-}
-
+		  animation-name: slide;
+		  animation-duration: 30s;
+		  animation-timing-function: linear;
+		  animation-iteration-count: infinite;
+		  -webkit-animation-name: slide;
+		  -webkit-animation-duration: 30s;
+		  -webkit-animation-timing-function:linear;
+		  -webkit-animation-iteration-count: infinite;
+		}
 
 
 		select.grande {
@@ -71,7 +70,7 @@
 		}
 		textarea {
 		    width: 100%;
-		    height: 150px;
+		    height: 200px;
 		    padding: 12px 20px;
 		    box-sizing: border-box;
 		    border: 2px solid #ccc;
@@ -118,10 +117,6 @@
 </head>
 <body>
 
-
-
-
-
 <?php 	
 if ($this->ion_auth->logged_in()){
 ?>
@@ -132,10 +127,6 @@ if ($this->ion_auth->logged_in()){
 }
 
 ?>
-
-
-
-
 
 <!--<div align="center"><h2>El Muladar</h2></div>-->
 <div align="center"><h5>Un archivo de Punk Colombiano</h5></div>
@@ -153,6 +144,7 @@ if ($this->ion_auth->logged_in()){
 			<li><a href="<?php echo site_url('buscar/'); ?>">Buscar en el archivo</a></li>
 	  </ul>
   </li>
+  <li><a href="<?php echo site_url('blog'); ?>">Blog</a></li>  
   <li><a href="<?php echo site_url('about'); ?>">Acerca de</a></li>
   <li><a href="<?php echo site_url('contact'); ?>">Contacto</a></li>
   

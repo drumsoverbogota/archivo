@@ -82,7 +82,7 @@ class Entrada extends CI_Controller {
 			{			
 		
 				$data['entrada_item'] = $this->entrada_model->get_entrada($id);
-				print_r($data['entrada_item']);
+				
 				
 				$this->load->helper('form');
 				$this->load->library('form_validation');
@@ -111,7 +111,7 @@ class Entrada extends CI_Controller {
 			}
 		}		
 		
-		public function delete($nombrecorto)
+		public function delete($id)
 		{
 			if (!$this->ion_auth->logged_in())
 			{
@@ -124,9 +124,12 @@ class Entrada extends CI_Controller {
 				return show_error('You must be an administrator to view this page.');
 			}
 			else
+			
 			{
-				$this->banda_model->delete_banda($nombrecorto);
-				$this->index();
+
+				$this->entrada_model->delete_entrada($id);
+
+				redirect('paginas');
 			}		
 		}
 }
