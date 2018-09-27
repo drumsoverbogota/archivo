@@ -139,9 +139,9 @@ if ($this->ion_auth->logged_in()){
 
   <li> Archivo  
 	  <ul>
-			<li><a href="<?php echo site_url('lanzamiento/'); ?>">Lanzamientos</a></li>
-			<li><a href="<?php echo site_url('banda/'); ?>">Bandas</a></li>
-			<li><a href="<?php echo site_url('buscar/'); ?>">Buscar en el archivo</a></li>
+			<li><a href="<?php echo site_url('lanzamiento'); ?>">Lanzamientos</a></li>
+			<li><a href="<?php echo site_url('banda'); ?>">Bandas</a></li>
+			<li><a href="<?php echo site_url('buscar'); ?>">Buscar en el archivo</a></li>
 	  </ul>
   </li>
   <li><a href="<?php echo site_url('blog'); ?>">Blog</a></li>  

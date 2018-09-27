@@ -102,3 +102,19 @@ CREATE TABLE IF NOT EXISTS `entrada` (
   `fecha` date NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+
+
+CREATE TABLE `log_conteo_visitas` (
+  `url` varchar(300) NOT NULL,
+  `conteo` int(11) NOT NULL DEFAULT '1'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `log_conteo_visitas`
+--
+ALTER TABLE `log_conteo_visitas`
+  ADD PRIMARY KEY (`url`);
