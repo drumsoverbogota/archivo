@@ -6,7 +6,7 @@ class Log_model extends CI_Model {
                 $this->load->database();
         }
 
-		public function set_log_visitas($url)
+		public function set_log_visitas($url, $http_referer = 'NA')
 		{
 
 			$this->db->where('url',$url);	
@@ -26,8 +26,15 @@ class Log_model extends CI_Model {
 					'url' => $url
 				);
 				$this->db->insert('log_conteo_visitas',$data);
-			}			
-			return $this->db->insert_id();
+			}
+
+			$data = array(
+				'url' => $url,
+				'http_referer' => $http_referer
+			);
+			$this->db->insert('log_visitas',$data);
+
+			return;
 		}		
 
 		public function test(){

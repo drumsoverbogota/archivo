@@ -11,6 +11,7 @@ class Lanzamiento extends CI_Controller {
         {
                 parent::__construct();
                 $this->load->model('lanzamiento_model');
+                $this->load->model('log_model');
                 $this->load->helper('url_helper');
 				$this->load->helper('url');
 				$this->load->helper(array('form', 'url'));
@@ -318,5 +319,16 @@ class Lanzamiento extends CI_Controller {
 				
 				}
 			}		
+		}
+
+		public function link($link)
+		{	
+			$http_referer = 'NA';
+			if (array_key_exists('HTTP_REFERER',$_SERVER)) {
+				$http_referer = $_SERVER['HTTP_REFERER'];
+			}          
+			$url = prep_url(base64_decode($link));
+			$this->log_model->set_log_visitas($url, $http_referer);
+			redirect($url);
 		}				
 }

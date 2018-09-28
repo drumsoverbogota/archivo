@@ -53,7 +53,7 @@ if ($lanzamiento_item['imagen'] == NULL){ ?>
 
 <?php 
 if ($lanzamiento_item['link'] != ""){ ?>
-	<a href="<?php echo($lanzamiento_item['link']) ?>">Link de descarga</a>
+	<a href="<?php echo site_url('lanzamiento/link/'.base64_encode($lanzamiento_item['link'])); ?>">Link de descarga</a>
 <?php 
 }else{
 ?>

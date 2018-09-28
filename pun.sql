@@ -110,11 +110,21 @@ CREATE TABLE `log_conteo_visitas` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Indexes for dumped tables
---
-
---
 -- Indexes for table `log_conteo_visitas`
 --
 ALTER TABLE `log_conteo_visitas`
   ADD PRIMARY KEY (`url`);
+
+
+CREATE TABLE `log_visitas` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `url` varchar(300) NOT NULL,
+  `http_referer` varchar(2083) NOT NULL,
+  `fecha` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Indexes for table `log_visitas`
+--
+ALTER TABLE `log_visitas`
+  ADD PRIMARY KEY (`id`);
