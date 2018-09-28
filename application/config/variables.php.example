@@ -1,0 +1,6 @@
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+
+$config['user'] = PONER_USUARIO_ACA;
+$config['pass'] = PONER_PASSWORD_ACA;
+$config['to_mail'] = PONER_EMAIL_ACA;

@@ -25,6 +25,7 @@ class Paginas extends CI_Controller {
 				$this->load->model('banda_model');
 				$this->load->model('lanzamiento_model');
 				$this->load->model('entrada_model');
+				$this->load->config('variables');
         }
 
         public function index()
@@ -50,7 +51,7 @@ class Paginas extends CI_Controller {
 				if ($page == 'blog') {
 					$data['blog'] = $this->entrada_model->get_blogs(10, 1);
 				}				
-				
+					
 				$this->load->view('templates/header', $data);
 				$this->load->view('paginas/'.$page, $data);				
 				$this->load->view('templates/footer', $data);
@@ -102,7 +103,7 @@ class Paginas extends CI_Controller {
 
 		public function send()
 		{
-			$TO_MAIL = PONER_MAIL_ACA;
+			$TO_MAIL = $this->config->item('to_mail');
 			$FROM_TEXT = "El Muladar";
 	        $this->load->library('form_validation');
 	        // field name, error message, validation rules
@@ -117,8 +118,8 @@ class Paginas extends CI_Controller {
 	            $email = $this->input->post('email');
 	            $comment = $this->input->post('comment');
 
-	            $user = PONER_USUARIO_ACA;
-	            $pass = PONER_CLAVE_ACA;
+	            $user = $this->config->item('user');
+	            $pass = $this->config->item('pass');
 
 
 
