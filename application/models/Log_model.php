@@ -36,9 +36,4 @@ class Log_model extends CI_Model {
 
 			return;
 		}		
-
-		public function test(){
-			echo "sirve";
-		}
-
 }

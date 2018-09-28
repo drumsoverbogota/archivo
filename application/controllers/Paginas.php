@@ -103,8 +103,7 @@ class Paginas extends CI_Controller {
 
 		public function send()
 		{
-			$TO_MAIL = $this->config->item('to_mail');
-			$FROM_TEXT = "El Muladar";
+
 	        $this->load->library('form_validation');
 	        // field name, error message, validation rules
 	        $this->form_validation->set_rules('name', 'Nombre', 'trim|required');     
@@ -118,23 +117,29 @@ class Paginas extends CI_Controller {
 	            $email = $this->input->post('email');
 	            $comment = $this->input->post('comment');
 
-	            $user = $this->config->item('user');
-	            $pass = $this->config->item('pass');
+
+				$TO_MAIL = $this->config->item('to_mail');
+				$FROM_TEXT = "El Muladar";
+	            $USER = $this->config->item('user');
+	            $PASS = $this->config->item('pass');
+	            $PROTOCOL = $this->config->item('protocol');
+	            $HOST = $this->config->item('host');
+	            $PORT = $this->config->item('port');
 
 
 
 	            if(!empty($email)) {
 	                // send mail
 	                $config = array (
-	                  'mailtype' => 'html',
-	                  'charset'  => 'utf-8',
-	                  'priority' => '1',
+						'mailtype' => 'html',
+						'charset'  => 'utf-8',
+						'priority' => '1',
 
-						'protocol' => 'smtp',
-						'smtp_host' => 'ssl://smtp.gmail.com',
-						'smtp_port' => 465,
-						'smtp_user' => $user,
-						'smtp_pass' => $pass,
+						'protocol' => $PROTOCOL,
+						'smtp_host' => $HOST,
+						'smtp_port' => $PORT,
+						'smtp_user' => $USER,
+						'smtp_pass' => $PASS,
 	                );
 	                $message='';
 	                $bodyMsg = $comment;   
