@@ -87,11 +87,18 @@ ALTER TABLE `banda_lanzamiento`
 SET FOREIGN_KEY_CHECKS=1;
 COMMIT;
 
+
+
+
+
+
 ---Modificaciones despues del inicial
 ALTER TABLE `lanzamiento` ADD `visible` BOOLEAN NOT NULL DEFAULT TRUE AFTER `fecha_modificacion`;
 ALTER TABLE `lanzamiento` CHANGE `formato` `formato` ENUM('CD','Digipack','12"','10"','7"','Flexi','Cassette','Digital','Mini CD','DVD','Otros','Bootleg') CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL;
 ALTER TABLE `lanzamiento` ADD `nombrecorto` VARCHAR(30) NOT NULL AFTER `nombre`, ADD UNIQUE `nombrecorto` (`nombrecorto`);
 ALTER TABLE `banda` ADD `nombrecorto` VARCHAR(30) NOT NULL AFTER `nombre`, ADD UNIQUE `nombrecorto` (`nombrecorto`);
+
+-- Modificaciones despues de lanzamiento
 
 CREATE TABLE IF NOT EXISTS `entrada` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -122,3 +129,21 @@ CREATE TABLE IF NOT EXISTS `log_visitas` (
   `fecha` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+DROP TABLE IF EXISTS `publicacion`;
+CREATE TABLE IF NOT EXISTS `publicacion` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nombre` text NOT NULL,
+  `nombrecorto` varchar(30)  NOT NULL,
+  `fecha` text,
+  `numero` int(11) DEFAULT NULL,
+  `notas` text,
+  `link` text,
+  `imagen` text,
+  `fecha_creacion` datetime DEFAULT NULL,
+  `fecha_modificacion` datetime DEFAULT NULL,
+  `visible` tinyint(1) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`id`),
+  KEY `nombrecorto` (`nombrecorto`)
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;

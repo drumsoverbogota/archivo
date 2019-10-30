@@ -126,7 +126,7 @@ class CI_Exceptions {
 		else
 		{
 			$heading = '404 Page Not Found';
-			$message = 'The page you requested was not found.';
+			$message = 'Esta página no existe.';
 		}
 
 		// By default we log this, but allow a dev to skip it
