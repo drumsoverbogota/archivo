@@ -24,6 +24,7 @@ class Paginas extends CI_Controller {
 				$this->load->helper(array('form', 'url'));
 				$this->load->model('banda_model');
 				$this->load->model('lanzamiento_model');
+				$this->load->model('publicacion_model');
 				$this->load->model('entrada_model');
 				$this->load->config('variables');
         }
@@ -91,6 +92,7 @@ class Paginas extends CI_Controller {
 		        	$data['peticion'] = $peticion;
 		        	$data['banda'] = $this->banda_model->search_banda($peticion);
 		        	$data['lanzamiento'] = $this->lanzamiento_model->search_lanzamiento($peticion);
+		        	$data['publicacion'] = $this->publicacion_model->search_publicacion($peticion);
 		        }
 
 

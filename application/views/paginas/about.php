@@ -3,10 +3,10 @@
 <h2>Acerca de</h2>
 
 <p>
-<em>El Muladar </em> es un archivo de Punk Colombiano que reune registros sonoros y audiovisuales desde los inicios del movimiento hasta el 2007.
+<em>El Muladar </em> es un archivo de Punk Colombiano que reune registros sonoros, audiovisuales y escritos desde los inicios del movimiento hasta el 2007.
 </p>
 <p>
-Hace 6 años empezamos un proyecto llamado <em>Síntoma de última década </em> <a href="https://sintomadeultimadecada.wordpress.com">en forma de Blog</a>  con la idea de subir discos que no habían sido re-editados y que no estaban digitalizados, acompañados con algún pequeño escrito acerca del disco o como se obtuvo.
+Hace 7 años empezamos un proyecto llamado <em>Síntoma de última década </em> <a href="https://sintomadeultimadecada.wordpress.com">en forma de Blog</a>  con la idea de subir discos que no habían sido re-editados y que no estaban digitalizados, acompañados con algún pequeño escrito acerca del disco o como se obtuvo.
 </p>
 
 <p>
@@ -31,7 +31,7 @@ Los archivos acá subidos están en formato <a href="https://es.wikipedia.org/wi
 Agradecer a tanta gente que hace que esto sea posible es difícil pero no nos gustan las cosas fáciles, así que lo intentaremos.
 
 <ul>
-	<li>A <a href="http://volcanmudo.com/">Kevin Mancera</a> por darme un espacio en su servidor para subir esta página que acá leen.</li> 
+	<li>A <a href="http://volcanmudo.com/">Kevin Mancera</a> por darme un espacio en su servidor para subir esta página que acá leen.</li>
 	<li>A Sergio Galán por prestar varias de las cosas que están acá y ayudar a la ripeada de varias cosas.</li>
 	<li>A Álvaro David por más prestamos de C.D's y regalar algunas cosas de su colección.</li>
 	<li>A Memo por también prestar varias cosas incluidos ensayos y demos de Excomulgados.</li>

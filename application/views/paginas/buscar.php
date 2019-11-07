@@ -25,12 +25,9 @@
 					</li>
 				<?php } ?>
 			<?php endforeach; ?>
-
-
-
-			
 		<?php } ?>
 	<?php } ?>
+
 	<?php if (isset($lanzamiento)){ ?>
 		<?php if (count($lanzamiento) > 0){ ?>
 			<h3>
@@ -63,12 +60,28 @@
 			        
 				</tr>
 			<?php endforeach; ?>
-				
-			</table>
-
-			
+			</table>		
 		<?php } ?>
 	<?php } ?>		
+
+	<?php if (isset($publicacion)){ ?>
+		<?php if (count($publicacion) > 0){ ?>
+			<h3>
+			Publicaciones que cumplen el criterio
+			</h3>
+			<?php foreach ($publicacion as $publicacion_item): ?>
+				
+				<li>	
+				<a href="<?php echo site_url('publicacion/'.$publicacion_item['nombrecorto']); ?>">
+					<?php echo $publicacion_item['nombre'];?> <?php echo $publicacion_item['numero'];?> (<?php echo $publicacion_item['fecha'];?>)
+				</a>
+				</li>
+				
+			<?php endforeach; ?>
+		<?php } ?>
+	<?php } ?>
+
+
 <?php } ?>
 
 

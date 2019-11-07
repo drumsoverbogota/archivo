@@ -527,3 +527,10 @@ $config['proxy_ips'] = '';
 #$config['base_url'] = 'http://volcanmudo.com/archivo/';
 #$config['index_page'] = 'index.php?';
 #$config['uri_protocol']	= 'QUERY_STRING';
+
+/*
+$config['base_url'] = 'http://elmuladar.com/';
+$config['index_page'] = 'index.php?';
+$config['index_page'] = '';
+$config['uri_protocol']	= 'REQUEST_URI';
+*/
