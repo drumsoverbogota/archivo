@@ -41,7 +41,7 @@ class Publicacion extends CI_Controller {
 				}
 				$data['title'] = $data['publicacion_item']['nombre'];
 				$data['imagen'] = $data['publicacion_item']['imagen'];
-				$data['descripcion'] = $data['lanzamiento_item']['notas'];				
+				$data['descripcion'] = $data['publicacion_item']['notas'];				
 				$this->load->view('templates/header', $data);
 				$this->load->view('publicacion/view', $data);
 				$this->load->view('templates/footer');
