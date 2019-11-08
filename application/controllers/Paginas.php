@@ -32,7 +32,6 @@ class Paginas extends CI_Controller {
         public function index()
         {
 				$this->view();
-          				
         }		
 
 
@@ -51,6 +50,7 @@ class Paginas extends CI_Controller {
 				}
 				if ($page == 'blog') {
 					$data['blog'] = $this->entrada_model->get_blogs(10, 1);
+					$data['descripcion']	= 'Acá se pueden ver todos las entradas del blog.';
 				}				
 					
 				$this->load->view('templates/header', $data);
@@ -84,6 +84,7 @@ class Paginas extends CI_Controller {
 		{
 				$peticion = $this->input->get('peticion');				
 				$data['title'] = 'Busqueda';
+				$data['descripcion'] = 'Acá se puede hacer las busquedas en el Blog.';
 		        if ($peticion == "")
 		        {
 		        	$data['peticion'] = "";
