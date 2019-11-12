@@ -44,8 +44,16 @@ class Banda extends CI_Controller {
 
 				$data['lanzamiento'] = $this->banda_model->get_lanzamientos_bandaid($id);
 
+				if ($data['banda_item']['imagen'] != NULL) {
+					preg_match('/(.*)\.(.*)/',$data['banda_item']['imagen'], $match);
+					$path = $match[1];
+					$extension = $match[2];
+					$thumb = $path.'_small.'.$extension;				
+					$data['imagen'] = $thumb;
+				}
+
+
 				$data['title'] = $data['banda_item']['nombre'];
-				$data['imagen'] = $data['banda_item']['imagen'];	
 				$data['descripcion'] = $data['banda_item']['comentarios'];;
 
 				$this->load->view('templates/header', $data);
