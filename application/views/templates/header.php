@@ -5,13 +5,47 @@
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
     <title><?php echo $title; ?></title>
-	
-	<meta prefix="og: http://ogp.me/ns#" property="og:type" content="El Muladar" />
-	<meta prefix="og: http://ogp.me/ns#" property="og:title" content="Un archivo de Punk Colombiano" />
-	<meta prefix="og: http://ogp.me/ns#" property="og:description" content="El Muladar es un archivo de Punk Colombiano de libre acceso.." />
-	<meta prefix="og: http://ogp.me/ns#" property="og:image" content="<?php echo base_url('images/logo.png'); ?>" />
-	<meta prefix="og: http://ogp.me/ns#" property="og:url" content="http://elmuladar.com" />
 
+	<?php
+	if (isset($title)){
+	?>
+	<meta property="og:title" content="El Muladar: <?php echo $title; ?>" />
+	<?php
+	} else{
+	?>
+	<meta property="og:title" content="El Muladar" />
+	<?php
+	}
+	?>
+	<?php
+	if (isset($descripcion)){
+	?>
+	<meta property="og:description" content="<?php echo $descripcion;?>" />
+	<?php
+	} else{
+	?>
+	<meta property="og:description" content="El Muladar es un archivo de Punk Colombiano de libre acceso." />
+	<?php
+	}
+	?>
+	<?php
+	if (isset($imagen)){
+		if ($imagen != NULL){
+	?>
+	<meta property="og:image" content="<?php echo base_url('images/'.$imagen);?>"/>
+	<?php
+		}
+		else{
+	?>
+	<meta property="og:image" content="<?php echo base_url('images/logo.png');?>"/>
+	<?php
+	}} else{
+	?>
+	<meta property="og:image" content="<?php echo base_url('images/logo.png');?>"/>
+	<?php
+	}
+	?>
+	<meta property="og:type" content="website"/>
 	<style>
 
 		body{

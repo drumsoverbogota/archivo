@@ -9,7 +9,7 @@
 	} 
 </script>
 
-<p><h1><?php echo $publicacion_item['nombre'].' ('.$publicacion_item['fecha'].')'?></h1><p>
+<p><h1><?php echo $publicacion_item['nombre'].' '.$publicacion_item['numero'].' ('.$publicacion_item['fecha'].')'?></h1><p>
 
 
 <?php 

@@ -24,6 +24,7 @@ class Publicacion extends CI_Controller {
                 $data['publicacion']	= $this->publicacion_model->get_publicacion(FALSE, $visible);
 				$data['total']			= count($this->publicacion_model->get_publicacion(FALSE, $visible)); 
 				$data['title'] 			= 'Lista de Fanzines y otras publicaciones';
+				$data['descripcion']	= 'Acá se pueden ver todos las publicaciones que están en el archivo.';
 				
 				$this->load->view('templates/header', $data);
 				$this->load->view('publicacion/index', $data);
@@ -38,7 +39,17 @@ class Publicacion extends CI_Controller {
 				{
 						show_404();
 				}
+
+				if ($data['publicacion_item']['imagen'] != NULL) {
+					preg_match('/(.*)\.(.*)/',$data['publicacion_item']['imagen'], $match);
+					$path = $match[1];
+					$extension = $match[2];
+					$thumb = $path.'_small.'.$extension;
+					$data['imagen'] = $thumb;
+				}
+
 				$data['title'] = $data['publicacion_item']['nombre'];
+				$data['descripcion'] = $data['publicacion_item']['notas'];				
 				$this->load->view('templates/header', $data);
 				$this->load->view('publicacion/view', $data);
 				$this->load->view('templates/footer');

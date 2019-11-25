@@ -20,8 +20,7 @@ class Lanzamiento extends CI_Controller {
 
         public function index($visible = 'false')
         {			
-        		
-        		
+
         		$limite = $this->input->get('numero');
         		if(!$limite){
         			$limite = 10;
@@ -57,7 +56,8 @@ class Lanzamiento extends CI_Controller {
                 $data['lanzamiento']	= $this->lanzamiento_model->get_lanzamientos($limite, $pagina, $visible, $ordenar, $asc);
 
 				$data['total']			= count($this->lanzamiento_model->get_lanzamiento(FALSE, $visible)); 
-				$data['title'] 			= 'Lista de lanzamientos';
+				$data['title'] 			= 'Lanzamientos';
+				$data['descripcion']	= 'Acá se pueden ver todos los lanzamientos que están en el archivo';
 				$data['limite']			= $limite;
 				$data['pagina']			= $pagina;
 				$data['visible']		= $visible;
@@ -78,7 +78,16 @@ class Lanzamiento extends CI_Controller {
 						show_404();
 				}
 
+				if ($data['lanzamiento_item']['imagen'] != NULL) {
+					preg_match('/(.*)\.(.*)/',$data['lanzamiento_item']['imagen'], $match);
+					$path = $match[1];
+					$extension = $match[2];
+					$thumb = $path.'_small.'.$extension;						
+					$data['imagen'] = $thumb;
+				}
+
 				$data['title'] = $data['lanzamiento_item']['nombre'];
+				$data['descripcion'] = $data['lanzamiento_item']['tracklist'];
 				$data['banda'] = $this->lanzamiento_model->get_bandas_lanzamientoid($nombrecorto);
 				$this->load->view('templates/header', $data);
 				$this->load->view('lanzamiento/view', $data);

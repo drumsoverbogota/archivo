@@ -23,6 +23,7 @@ class Banda extends CI_Controller {
         {
                 $data['banda'] = $this->banda_model->get_banda();
 				$data['title'] = 'Lista de bandas';
+				$data['descripcion'] = 'Acá se pueden ver todos las bandas que están en el archivo.';
 				$data['extranjera'] = 'false';
 				if ($extranjera == 'true'){
 					$data['extranjera'] = 'true';
@@ -43,7 +44,17 @@ class Banda extends CI_Controller {
 
 				$data['lanzamiento'] = $this->banda_model->get_lanzamientos_bandaid($id);
 
+				if ($data['banda_item']['imagen'] != NULL) {
+					preg_match('/(.*)\.(.*)/',$data['banda_item']['imagen'], $match);
+					$path = $match[1];
+					$extension = $match[2];
+					$thumb = $path.'_small.'.$extension;				
+					$data['imagen'] = $thumb;
+				}
+
+
 				$data['title'] = $data['banda_item']['nombre'];
+				$data['descripcion'] = $data['banda_item']['comentarios'];;
 
 				$this->load->view('templates/header', $data);
 				$this->load->view('banda/view', $data);
