@@ -47,7 +47,8 @@ if ($publicacion_item['link'] != ""){ ?>
 <?php 
 }
 ?>
-
+<br>
+<p class="gray">Id de referencia: <?php echo $publicacion_item['indice_referencia']; ?></p>
 
 
 <?php 	

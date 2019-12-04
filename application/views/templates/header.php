@@ -151,6 +151,10 @@
 			height: auto;				
 		}						
 
+		p.gray {
+			color: gray;
+		}
+
 
 	</style>
 	
