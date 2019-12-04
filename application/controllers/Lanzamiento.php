@@ -124,6 +124,7 @@ class Lanzamiento extends CI_Controller {
 				$this->form_validation->set_rules('creditos', 'Creditos', '');
 				$this->form_validation->set_rules('notas', 'Notas', '');
 				$this->form_validation->set_rules('link', 'Link', '');
+				$this->form_validation->set_rules('indice_referencia', 'ID de referencia en el archivo', '');
 				$this->form_validation->set_rules('visible', 'Visible', '');
 				
 
@@ -174,6 +175,7 @@ class Lanzamiento extends CI_Controller {
 				$this->form_validation->set_rules('creditos', 'Creditos', '');
 				$this->form_validation->set_rules('notas', 'Notas', '');
 				$this->form_validation->set_rules('link', 'Link', '');
+				$this->form_validation->set_rules('indice_referencia', 'ID de referencia en el archivo', '');
 				$this->form_validation->set_rules('visible', 'Visible', '');
 				
 

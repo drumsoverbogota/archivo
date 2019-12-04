@@ -147,3 +147,24 @@ CREATE TABLE IF NOT EXISTS `publicacion` (
   PRIMARY KEY (`id`),
   KEY `nombrecorto` (`nombrecorto`)
 ) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+
+ALTER TABLE `lanzamiento` ADD `indice_referencia` TEXT NULL DEFAULT NULL AFTER `link`;
+ALTER TABLE `publicacion` ADD `indice_referencia` TEXT NULL DEFAULT NULL AFTER `link`;
+
+--
+-- El Siguiente Script asigna un valor por defecto a todos las filas de las tablas
+--
+
+
+SET @id = 0;
+
+UPDATE lanzamiento
+  SET indice_referencia = (SELECT  CONCAT('ELMA', LPAD(@id := @id + 1, 4, '0')))
+  ORDER BY id;
+
+SET @id = 0;
+
+UPDATE publicacion
+  SET indice_referencia = (SELECT  CONCAT('ELMP', LPAD(@id := @id + 1, 4, '0')))
+  ORDER BY id;

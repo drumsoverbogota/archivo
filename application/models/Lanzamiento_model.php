@@ -16,7 +16,8 @@ class Lanzamiento_model extends CI_Model {
         	$this->db->or_like('anho', $match); 
         	$this->db->or_like('tracklist', $match); 
         	$this->db->or_like('creditos', $match); 
-        	$this->db->or_like('notas', $match); 
+        	$this->db->or_like('notas', $match);
+        	$this->db->or_like('indice_referencia', $match);
         	
         	$this->db->group_end();
         	$query = $this->db->get('lanzamiento');
@@ -125,7 +126,6 @@ class Lanzamiento_model extends CI_Model {
 			} while ($query->row_array());
 
 			$data = array(
-				//'slug' => $slug,
 				'nombre' => $this->input->post('nombre'),
 				'nombrecorto' => $corto,
 				'referencia' => $this->input->post('referencia'),
@@ -135,6 +135,7 @@ class Lanzamiento_model extends CI_Model {
 				'creditos' => $this->input->post('creditos'),
 				'notas' => $this->input->post('notas'),
 				'link' => $this->input->post('link'),
+				'indice_referencia' => $this->input->post('indice_referencia'),
 				'fecha_creacion' => date('Y-m-d H:i:s'),
 				'fecha_modificacion' => date('Y-m-d H:i:s'),
 				'visible' => $visible,
@@ -167,6 +168,7 @@ class Lanzamiento_model extends CI_Model {
 				'creditos' => $this->input->post('creditos'),
 				'notas' => $this->input->post('notas'),
 				'link' => $this->input->post('link'),
+				'indice_referencia' => $this->input->post('indice_referencia'),
 				'fecha_modificacion' => date('Y-m-d H:i:s'),
 				'visible' => $visible,
 			);
