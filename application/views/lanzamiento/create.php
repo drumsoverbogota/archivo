@@ -31,7 +31,10 @@
     <textarea name="notas"></textarea><br />	
 	
 	<label for="link">Link</label>
-    <input type="input" name="link"><br />		
+    <input type="input" name="link"><br />
+
+    <label for="indice_referencia">ID de referencia en el archivo</label>
+    <input type="input" name="indice_referencia"><br />    
 
     <label for="visible">¿Es visible?</label>
     <input name="visible" type="checkbox" checked><br />

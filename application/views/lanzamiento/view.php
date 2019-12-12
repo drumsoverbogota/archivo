@@ -61,7 +61,8 @@ if ($lanzamiento_item['link'] != ""){ ?>
 <?php 
 }
 ?>
-
+<br>
+<p class="gray">Id de referencia: <?php echo $lanzamiento_item['indice_referencia']; ?></p>
 
 <?php 	
 if ($this->ion_auth->logged_in()){

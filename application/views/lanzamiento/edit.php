@@ -37,6 +37,9 @@
 	<label for="link">Link</label>
     <input type="input" name="link" value ="<?php echo $lanzamiento_item['link'] ?>"><br />		
 
+    <label for="indice_referencia">ID de referencia en el archivo</label>
+    <input type="input" name="indice_referencia" value ="<?php echo $lanzamiento_item['indice_referencia'] ?>"><br />        
+
     <label for="visible">¿Es visible?</label>
     <input name="visible" type="checkbox"
         <?php if($lanzamiento_item['visible'] != 0) echo "checked";?>

@@ -79,6 +79,7 @@ class Publicacion extends CI_Controller {
 				$this->form_validation->set_rules('numero', 'Numero', '');
 				$this->form_validation->set_rules('notas', 'Notas', '');
 				$this->form_validation->set_rules('link', 'Link', '');
+				$this->form_validation->set_rules('indice_referencia', 'ID de referencia en el archivo', '');
 				$this->form_validation->set_rules('visible', 'Visible', '');
 				
 
@@ -125,6 +126,7 @@ class Publicacion extends CI_Controller {
 				$this->form_validation->set_rules('numero', 'Numero', '');
 				$this->form_validation->set_rules('notas', 'Notas', '');
 				$this->form_validation->set_rules('link', 'Link', '');
+				$this->form_validation->set_rules('indice_referencia', 'ID de referencia en el archivo', '');
 				$this->form_validation->set_rules('visible', 'Visible', '');
 				
 

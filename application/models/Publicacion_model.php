@@ -14,6 +14,7 @@ class Publicacion_model extends CI_Model {
         	$this->db->or_like('nombre', $match); 
         	$this->db->or_like('fecha', $match);
         	$this->db->or_like('notas', $match); 
+        	$this->db->or_like('indice_referencia', $match);
         	
         	$this->db->group_end();
         	$query = $this->db->get('publicacion');
@@ -81,6 +82,7 @@ class Publicacion_model extends CI_Model {
 				'numero' => $this->input->post('numero'),
 				'notas' => $this->input->post('notas'),
 				'link' => $this->input->post('link'),
+				'indice_referencia' => $this->input->post('indice_referencia'),
 				'fecha_creacion' => date('Y-m-d H:i:s'),
 				'fecha_modificacion' => date('Y-m-d H:i:s'),
 				'visible' => $visible,
@@ -110,6 +112,7 @@ class Publicacion_model extends CI_Model {
 				'numero' => $this->input->post('numero'),
 				'notas' => $this->input->post('notas'),
 				'link' => $this->input->post('link'),
+				'indice_referencia' => $this->input->post('indice_referencia'),
 				'fecha_modificacion' => date('Y-m-d H:i:s'),
 				'visible' => $visible,				
 			);
