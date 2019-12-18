@@ -38,22 +38,24 @@ class Publicacion_model extends CI_Model {
         }
 
 
-		public function get_publicacion($nombrecorto = FALSE, $visible = 'false')
+		public function get_publicacion($nombrecorto = FALSE, $visible = 'false', $lista = 'false')
 		{
 				if ($nombrecorto === FALSE)
 				{	
-					if($visible == 'false'){
+					if ($lista === 'false') {
 						$this->db->order_by('nombre', 'ASC');
 						$this->db->order_by('numero', 'ASC');
-						$query = $this->db->get_where('publicacion', array('visible' => 1));
-						return $query->result_array();
 					}
 					else{
-						$this->db->order_by('nombre', 'ASC');
-						$this->db->order_by('numero', 'ASC');						
-						$query = $this->db->get('publicacion');
-						return $query->result_array();						
+						$this->db->order_by('indice_referencia', 'ASC');
 					}
+					if($visible == 'false'){
+						$query = $this->db->get_where('publicacion', array('visible' => 1));
+					}
+					else{
+						$query = $this->db->get('publicacion');
+					}
+					return $query->result_array();					
 				}
 				$query = $this->db->get_where('publicacion', array('nombrecorto' => $nombrecorto));
 				return $query->row_array();						
