@@ -51,7 +51,12 @@ class Paginas extends CI_Controller {
 				if ($page == 'blog') {
 					$data['blog'] = $this->entrada_model->get_blogs(10, 1);
 					$data['descripcion']	= 'Acá se pueden ver todos las entradas del blog.';
-				}				
+				}		
+				if ($page == 'lista') {
+					$data['lanzamiento']	= $this->lanzamiento_model->get_all_lanzamientos('indice_referencia', 'ASC');
+					$data['publicacion']	= $this->publicacion_model->get_publicacion(FALSE, 'true', 'true');
+					$data['descripcion']	= 'Lista total del archivo';
+				}	
 					
 				$this->load->view('templates/header', $data);
 				$this->load->view('paginas/'.$page, $data);				

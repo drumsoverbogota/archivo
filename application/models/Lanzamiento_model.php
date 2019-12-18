@@ -65,7 +65,7 @@ class Lanzamiento_model extends CI_Model {
         	
 
 			if($visible == 'false'){
-	        	$query = $this->db->query('SELECT `lanzamiento`.*, group_concat(DISTINCT `banda`.`nombre` ORDER BY `banda`.`nombre` DESC SEPARATOR \'\n \') AS `bandas`
+	        	$query = $this->db->query('SELECT `lanzamiento`.*, group_concat(DISTINCT `banda`.`nombre` ORDER BY `banda`.`nombre` ASC SEPARATOR \'\n \') AS `bandas`
 				FROM `lanzamiento`
 				LEFT JOIN `banda_lanzamiento` ON `lanzamiento`.`id` = `banda_lanzamiento`.`lanzamiento_id` 
 				LEFT JOIN `banda` ON `banda_lanzamiento`.`banda_id` = `banda`.`id`  
@@ -74,7 +74,7 @@ class Lanzamiento_model extends CI_Model {
 			}
 			else{
 
-	        	$query = $this->db->query('SELECT `lanzamiento`.*, group_concat(DISTINCT `banda`.`nombre` ORDER BY `banda`.`nombre` DESC SEPARATOR \'\n \') AS `bandas`
+	        	$query = $this->db->query('SELECT `lanzamiento`.*, group_concat(DISTINCT `banda`.`nombre` ORDER BY `banda`.`nombre` ASC SEPARATOR \'\n \') AS `bandas`
 				FROM `lanzamiento`
 				LEFT JOIN `banda_lanzamiento` ON `lanzamiento`.`id` = `banda_lanzamiento`.`lanzamiento_id` 
 				LEFT JOIN `banda` ON `banda_lanzamiento`.`banda_id` = `banda`.`id`  
@@ -83,6 +83,18 @@ class Lanzamiento_model extends CI_Model {
 			return $query->result_array();
         }
 		
+        public function get_all_lanzamientos($order = 'nombre', $ascendent = 'ASC')
+        {
+        	
+        	$query = $this->db->query('SELECT `lanzamiento`.*, group_concat(DISTINCT `banda`.`nombre` ORDER BY `banda`.`nombre` ASC SEPARATOR \'\n \') AS `bandas`
+			FROM `lanzamiento`
+			LEFT JOIN `banda_lanzamiento` ON `lanzamiento`.`id` = `banda_lanzamiento`.`lanzamiento_id` 
+			LEFT JOIN `banda` ON `banda_lanzamiento`.`banda_id` = `banda`.`id`  
+			GROUP BY `lanzamiento`.`id` ORDER BY `lanzamiento`.`'.$this->db->escape_str($order).'` '.$this->db->escape_str($ascendent));					
+							
+			return $query->result_array();
+        }
+
 		public function get_lanzamiento($nombrecorto = FALSE, $visible = 'false')
 		{
 				if ($nombrecorto === FALSE)

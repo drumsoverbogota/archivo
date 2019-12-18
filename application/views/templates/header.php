@@ -155,6 +155,9 @@
 			color: gray;
 		}
 
+		p.rojo {
+			color: red;
+		}
 
 	</style>
 	
