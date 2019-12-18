@@ -55,6 +55,7 @@
   <tr>
     <th>Referencia</th>
 	<th>Nombre</th>  
+	<th>Número</th>  
     <th>Visible</th>
     <th>Link</th>
   </tr>
@@ -66,7 +67,10 @@
 			</th>
 			<th>
 				<?php echo $publicacion_item['nombre']; ?>
-			</th>			
+			</th>	
+			<th>
+				<?php echo $publicacion_item['numero']; ?>
+			</th>					
 			<th>
 				<?php if ($publicacion_item['visible'] === '1') {
 					echo "Sí";
