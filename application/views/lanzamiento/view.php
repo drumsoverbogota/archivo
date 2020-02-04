@@ -62,6 +62,15 @@ if ($lanzamiento_item['link'] != ""){ ?>
 }
 ?>
 <br>
+
+<?php 
+if ($lanzamiento_item['link_youtube'] != ""){ ?>
+	<a href="<?php echo $lanzamiento_item['link_youtube']; ?>">Link a Youtube</a>
+<?php 
+}
+?>
+<br>
+
 <p class="gray">Id de referencia: <?php echo $lanzamiento_item['indice_referencia']; ?></p>
 
 <?php 	

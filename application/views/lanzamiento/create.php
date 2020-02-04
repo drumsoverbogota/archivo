@@ -33,6 +33,9 @@
 	<label for="link">Link</label>
     <input type="input" name="link"><br />
 
+    <label for="link_youtube">Link de Youtube</label>
+    <input type="input" name="link_youtube"><br />    
+
     <label for="indice_referencia">ID de referencia en el archivo</label>
     <input type="input" name="indice_referencia"><br />    
 

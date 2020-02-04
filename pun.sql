@@ -150,6 +150,7 @@ CREATE TABLE IF NOT EXISTS `publicacion` (
 
 
 ALTER TABLE `lanzamiento` ADD `indice_referencia` TEXT NULL DEFAULT NULL AFTER `link`;
+ALTER TABLE `lanzamiento` ADD `link_youtube` TEXT NULL DEFAULT NULL AFTER `link`;
 ALTER TABLE `publicacion` ADD `indice_referencia` TEXT NULL DEFAULT NULL AFTER `link`;
 
 --

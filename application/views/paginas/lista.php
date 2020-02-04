@@ -6,6 +6,7 @@
 	<th>Nombre</th>  
     <th>Visible</th>
     <th>Link</th>
+    <th>Youtube</th>
     <th>Bandas</th>
   </tr>
 <p><h2>Lanzamientos</h2></p>
@@ -33,7 +34,17 @@
 			else{
 				echo "<p class=\"rojo\">No</p>";
 			}?>
-		</th> 		 
+		</th> 
+
+		<th>
+			<?php if ($lanzamiento_item['link_youtube'] != null) {
+				echo "Sí";
+			}
+			else{
+				echo "<p class=\"rojo\">No</p>";
+			}?>
+		</th> 
+
 		<th>
 			<?php if ($lanzamiento_item['bandas'] != null) {
 				echo "Sí";
