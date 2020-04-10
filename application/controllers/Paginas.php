@@ -117,10 +117,17 @@ class Paginas extends CI_Controller {
 	        $this->form_validation->set_rules('name', 'Nombre', 'trim|required');     
 	        $this->form_validation->set_rules('email', 'Correo', 'trim|required|valid_email');
 	        $this->form_validation->set_rules('comment', 'Comentario', 'trim|required');
+
+	        $recaptcha_url = 'https://www.google.com/recaptcha/api/siteverify';
+	        $recaptcha_response = $this->input->post('recaptcha_response');
+	        $recaptcha_secret = 'LA_KEY_PRIVADA';
+	        $recaptcha = file_get_contents($recaptcha_url . '?secret=' . $recaptcha_secret . '&response=' . $recaptcha_response);
+	        $recaptcha = json_decode($recaptcha);
 	                   
-	        if($this->form_validation->run() == FALSE) {
+	        if($this->form_validation->run() == FALSE and $recaptcha->success <= 0.5) {
 	          	$this->index();
 	        } else {        
+
 	            $name = $this->input->post('name');
 	            $email = $this->input->post('email');
 	            $comment = $this->input->post('comment');

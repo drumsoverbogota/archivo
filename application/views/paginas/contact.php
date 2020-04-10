@@ -1,3 +1,12 @@
+<script src="https://www.google.com/recaptcha/api.js?render=6LfuWugUAAAAAI40yQW0DDegrVSTkmXBqizA6wpj"></script>
+<script>
+    grecaptcha.ready(function () {
+        grecaptcha.execute('6LfuWugUAAAAAI40yQW0DDegrVSTkmXBqizA6wpj', { action: 'contact' }).then(function (token) {
+            var recaptchaResponse = document.getElementById('recaptchaResponse');
+            recaptchaResponse.value = token;
+        });
+    });
+</script>
 <div class="center-justified">
 
 <p><b>Contacto</b></p>
@@ -62,6 +71,7 @@ Por favor, contáctenos acá:
             <button type="submit" name="add_emp" id="submit-emp" class="btn btn-primary"><i class="fa fa-paper-plane"></i> Send</button>
         </div>
     </div>  
+    <input type="hidden" name="recaptcha_response" id="recaptchaResponse">
 </form>
 
 </div>
