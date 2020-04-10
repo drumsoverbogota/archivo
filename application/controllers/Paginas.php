@@ -57,6 +57,9 @@ class Paginas extends CI_Controller {
 					$data['publicacion']	= $this->publicacion_model->get_publicacion(FALSE, 'true', 'true');
 					$data['descripcion']	= 'Lista total del archivo';
 				}	
+				if ($page == 'contact') {
+					$data['public_key'] = $this->config->item('public_key');
+				}
 					
 				$this->load->view('templates/header', $data);
 				$this->load->view('paginas/'.$page, $data);				
@@ -120,7 +123,7 @@ class Paginas extends CI_Controller {
 
 	        $recaptcha_url = 'https://www.google.com/recaptcha/api/siteverify';
 	        $recaptcha_response = $this->input->post('recaptcha_response');
-	        $recaptcha_secret = 'LA_KEY_PRIVADA';
+	        $recaptcha_secret = $this->config->item('secret_key');
 	        $recaptcha = file_get_contents($recaptcha_url . '?secret=' . $recaptcha_secret . '&response=' . $recaptcha_response);
 	        $recaptcha = json_decode($recaptcha);
 	                   

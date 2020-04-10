@@ -19,3 +19,11 @@ $config['protocol'] = 'smtp';
 $config['host'] = 'ssl://smtp.gmail.com';
 $config['port'] = 465;
 */
+
+/*
+Las siguientes son variables para el reCAPTCHA
+
+$config['public_key'] = 'KEY_PUBLICA';
+$config['secret_key'] = 'KEY_PRIVADA';
+
+*/

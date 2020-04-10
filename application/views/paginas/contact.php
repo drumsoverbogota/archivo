@@ -1,7 +1,7 @@
-<script src="https://www.google.com/recaptcha/api.js?render=6LfuWugUAAAAAI40yQW0DDegrVSTkmXBqizA6wpj"></script>
+<script src="https://www.google.com/recaptcha/api.js?render=<?php echo $public_key ?>"></script>
 <script>
     grecaptcha.ready(function () {
-        grecaptcha.execute('6LfuWugUAAAAAI40yQW0DDegrVSTkmXBqizA6wpj', { action: 'contact' }).then(function (token) {
+        grecaptcha.execute('<?php echo $public_key ?>', { action: 'contact' }).then(function (token) {
             var recaptchaResponse = document.getElementById('recaptchaResponse');
             recaptchaResponse.value = token;
         });
