@@ -58,7 +58,20 @@ class Paginas extends CI_Controller {
 					$data['descripcion']	= 'Lista total del archivo';
 				}	
 				if ($page == 'contact') {
-					$data['public_key'] = $this->config->item('public_key');
+					$public_key = $this->config->item('public_key');
+
+					if($public_key['enable_contact'] == TRUE){
+						if ($public_key == FALSE){
+							echo "Falta información de la public_key";
+							$public_key = 'none';
+						}						
+					}
+					else{
+						$public_key = 'none';
+					}
+					$data['public_key'] = $public_key;
+					$data['enable_contact'] = $this->config->item('enable_contact');
+					$data['contact_email'] = $this->config->item('contact_email');
 				}
 					
 				$this->load->view('templates/header', $data);

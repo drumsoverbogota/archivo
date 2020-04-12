@@ -1,6 +1,9 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+$config['enable_contact'] = FALSE;
+$config['contact_email'] = PONER_EMAIL_ACA;
+
 /*
 Para GoDaddy
 $config['user'] = '';

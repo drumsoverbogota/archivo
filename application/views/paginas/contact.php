@@ -1,3 +1,7 @@
+<?php   
+    if ($enable_contact){
+?>
+
 <script src="https://www.google.com/recaptcha/api.js?render=<?php echo $public_key ?>"></script>
 <script>
     grecaptcha.ready(function () {
@@ -7,6 +11,7 @@
         });
     });
 </script>
+<?php } ?>
 <div class="center-justified">
 
 <p><b>Contacto</b></p>
@@ -16,6 +21,9 @@
 Por favor, contáctenos acá:
 </p>
 
+<?php   
+    if ($enable_contact){
+?>
 <div class="row">
     <div class="col-lg-12">
         <?php if($this->session->flashdata('msg')){ ?>
@@ -73,5 +81,10 @@ Por favor, contáctenos acá:
     </div>  
     <input type="hidden" name="recaptcha_response" id="recaptchaResponse">
 </form>
-
+<?php   
+    }
+    else{
+        echo mailto($contact_email, $contact_email);
+    } 
+?>
 </div>
