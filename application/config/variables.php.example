@@ -1,6 +1,9 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+$config['enable_contact'] = FALSE;
+$config['contact_email'] = PONER_EMAIL_ACA;
+
 /*
 Para GoDaddy
 $config['user'] = '';
@@ -18,4 +21,12 @@ $config['to_mail'] = PONER_EMAIL_ACA;
 $config['protocol'] = 'smtp';
 $config['host'] = 'ssl://smtp.gmail.com';
 $config['port'] = 465;
+*/
+
+/*
+Las siguientes son variables para el reCAPTCHA
+
+$config['public_key'] = 'KEY_PUBLICA';
+$config['secret_key'] = 'KEY_PRIVADA';
+
 */

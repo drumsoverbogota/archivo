@@ -57,6 +57,22 @@ class Paginas extends CI_Controller {
 					$data['publicacion']	= $this->publicacion_model->get_publicacion(FALSE, 'true', 'true');
 					$data['descripcion']	= 'Lista total del archivo';
 				}	
+				if ($page == 'contact') {
+					$public_key = $this->config->item('public_key');
+
+					if($public_key['enable_contact'] == TRUE){
+						if ($public_key == FALSE){
+							echo "Falta información de la public_key";
+							$public_key = 'none';
+						}						
+					}
+					else{
+						$public_key = 'none';
+					}
+					$data['public_key'] = $public_key;
+					$data['enable_contact'] = $this->config->item('enable_contact');
+					$data['contact_email'] = $this->config->item('contact_email');
+				}
 					
 				$this->load->view('templates/header', $data);
 				$this->load->view('paginas/'.$page, $data);				
@@ -117,10 +133,17 @@ class Paginas extends CI_Controller {
 	        $this->form_validation->set_rules('name', 'Nombre', 'trim|required');     
 	        $this->form_validation->set_rules('email', 'Correo', 'trim|required|valid_email');
 	        $this->form_validation->set_rules('comment', 'Comentario', 'trim|required');
+
+	        $recaptcha_url = 'https://www.google.com/recaptcha/api/siteverify';
+	        $recaptcha_response = $this->input->post('recaptcha_response');
+	        $recaptcha_secret = $this->config->item('secret_key');
+	        $recaptcha = file_get_contents($recaptcha_url . '?secret=' . $recaptcha_secret . '&response=' . $recaptcha_response);
+	        $recaptcha = json_decode($recaptcha);
 	                   
-	        if($this->form_validation->run() == FALSE) {
+	        if($this->form_validation->run() == FALSE and $recaptcha->success <= 0.5) {
 	          	$this->index();
 	        } else {        
+
 	            $name = $this->input->post('name');
 	            $email = $this->input->post('email');
 	            $comment = $this->input->post('comment');

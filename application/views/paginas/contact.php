@@ -1,3 +1,17 @@
+<?php   
+    if ($enable_contact){
+?>
+
+<script src="https://www.google.com/recaptcha/api.js?render=<?php echo $public_key ?>"></script>
+<script>
+    grecaptcha.ready(function () {
+        grecaptcha.execute('<?php echo $public_key ?>', { action: 'contact' }).then(function (token) {
+            var recaptchaResponse = document.getElementById('recaptchaResponse');
+            recaptchaResponse.value = token;
+        });
+    });
+</script>
+<?php } ?>
 <div class="center-justified">
 
 <p><b>Contacto</b></p>
@@ -7,6 +21,9 @@
 Por favor, contáctenos acá:
 </p>
 
+<?php   
+    if ($enable_contact){
+?>
 <div class="row">
     <div class="col-lg-12">
         <?php if($this->session->flashdata('msg')){ ?>
@@ -62,6 +79,12 @@ Por favor, contáctenos acá:
             <button type="submit" name="add_emp" id="submit-emp" class="btn btn-primary"><i class="fa fa-paper-plane"></i> Send</button>
         </div>
     </div>  
+    <input type="hidden" name="recaptcha_response" id="recaptchaResponse">
 </form>
-
+<?php   
+    }
+    else{
+        echo mailto($contact_email, $contact_email);
+    } 
+?>
 </div>
