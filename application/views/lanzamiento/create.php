@@ -42,6 +42,9 @@
     <label for="visible">¿Es visible?</label>
     <input name="visible" type="checkbox" checked><br />
 
+    <label for="disponible">¿Está disponible?</label>
+    <input name="disponible" type="checkbox" checked><br />
+
     <input type="submit" name="submit" value="Crear nuevo lanzamiento" />
 
 </form>

@@ -18,12 +18,12 @@ class Lanzamiento extends CI_Controller {
 				$this->load->library('ion_auth');
         }
 
-        public function index($visible = 'false')
+        public function index()
         {			
 
         		$limite = $this->input->get('numero');
         		if(!$limite){
-        			$limite = 10;
+        			$limite = 20;
         		}
 
         		$pagina = $this->input->get('pagina');
@@ -40,6 +40,15 @@ class Lanzamiento extends CI_Controller {
         		if(!$visible){
         			$visible = 'false';
         		}
+
+        		$no_disponibles = $this->input->get('no_disponibles');
+        		if(!$no_disponibles or $no_disponibles == 'false'){
+        			$no_disponibles = 'false';
+        		}
+        		else{
+        			$no_disponibles = 'true';
+        		}
+
         		$asc = '';
         		$ascendente = $this->input->get('ascendente');
         		if(!$ascendente){
@@ -53,7 +62,7 @@ class Lanzamiento extends CI_Controller {
         			}
         		}
 
-                $data['lanzamiento']	= $this->lanzamiento_model->get_lanzamientos($limite, $pagina, $visible, $ordenar, $asc);
+                $data['lanzamiento']	= $this->lanzamiento_model->get_lanzamientos($limite, $pagina, $visible, $ordenar, $asc, $no_disponibles);
 
 				$data['total']			= count($this->lanzamiento_model->get_lanzamiento(FALSE, $visible)); 
 				$data['title'] 			= 'Lanzamientos';
@@ -61,9 +70,10 @@ class Lanzamiento extends CI_Controller {
 				$data['limite']			= $limite;
 				$data['pagina']			= $pagina;
 				$data['visible']		= $visible;
+				$data['no_disponibles']	= $no_disponibles;
 				$data['ordenar']		= $ordenar;
 				$data['ascendente']		= $ascendente;
-				
+
 				$this->load->view('templates/header', $data);
 				$this->load->view('lanzamiento/index', $data);
 				$this->load->view('templates/footer');
@@ -126,6 +136,7 @@ class Lanzamiento extends CI_Controller {
 				$this->form_validation->set_rules('link', 'Link', '');
 				$this->form_validation->set_rules('indice_referencia', 'ID de referencia en el archivo', '');
 				$this->form_validation->set_rules('visible', 'Visible', '');
+				$this->form_validation->set_rules('disponible', 'Disponible', '');
 				
 
 				if ($this->form_validation->run() === FALSE)
@@ -177,6 +188,7 @@ class Lanzamiento extends CI_Controller {
 				$this->form_validation->set_rules('link', 'Link', '');
 				$this->form_validation->set_rules('indice_referencia', 'ID de referencia en el archivo', '');
 				$this->form_validation->set_rules('visible', 'Visible', '');
+				$this->form_validation->set_rules('disponible', 'Disponible', '');
 				
 
 				if ($this->form_validation->run() === FALSE)

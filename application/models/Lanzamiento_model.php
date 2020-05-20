@@ -60,27 +60,53 @@ class Lanzamiento_model extends CI_Model {
         	return $query->result_array();
         }
 
-        public function get_lanzamientos($limit = 10, $page = 1, $visible = 'false', $order = 'nombre', $ascendent = 'ASC')
+
+        public function build_query_get_lanzamientos($limit, $page, $visible, $order, $ascendent, $disponible)
+        {
+
+        	$query = 'SELECT `lanzamiento`.*, group_concat(DISTINCT `banda`.`nombre` ORDER BY `banda`.`nombre` ASC SEPARATOR \'\n \') AS `bandas`
+				FROM `lanzamiento`
+				LEFT JOIN `banda_lanzamiento` ON `lanzamiento`.`id` = `banda_lanzamiento`.`lanzamiento_id` 
+				LEFT JOIN `banda` ON `banda_lanzamiento`.`banda_id` = `banda`.`id`';
+			if($visible == 'true'){
+				$query.= ' WHERE `lanzamiento`.`visible` = 1';
+			}
+			if($disponible == 'false'){
+				$query.= ' WHERE `lanzamiento`.`disponible` = 1';
+			}			
+
+			$query .= ' GROUP BY `lanzamiento`.`id` ORDER BY `lanzamiento`.`'.$this->db->escape_str($order).'` '.$this->db->escape_str($ascendent).' LIMIT '.$this->db->escape_str($limit).' OFFSET '.(($page-1)*$limit);
+			
+			return $query;
+        }
+
+        public function get_lanzamientos($limit = 10, $page = 1, $visible = 'false', $order = 'nombre', $ascendent = 'ASC', $disponible = 'false')
         {
         	
+        	$this->db->select('lanzamiento.*, group_concat(DISTINCT banda.nombre ORDER BY banda.nombre ASC SEPARATOR \'\n \') AS bandas'); 
+        	$this->db->join('banda_lanzamiento', 'lanzamiento.id = banda_lanzamiento.lanzamiento_id', 'left');
+        	$this->db->join('banda', 'banda_lanzamiento.banda_id = banda.id', 'left');
 
-			if($visible == 'false'){
-	        	$query = $this->db->query('SELECT `lanzamiento`.*, group_concat(DISTINCT `banda`.`nombre` ORDER BY `banda`.`nombre` ASC SEPARATOR \'\n \') AS `bandas`
-				FROM `lanzamiento`
-				LEFT JOIN `banda_lanzamiento` ON `lanzamiento`.`id` = `banda_lanzamiento`.`lanzamiento_id` 
-				LEFT JOIN `banda` ON `banda_lanzamiento`.`banda_id` = `banda`.`id`  
-	            WHERE `lanzamiento`.`visible` = 1			
-				GROUP BY `lanzamiento`.`id` ORDER BY `lanzamiento`.`'.$this->db->escape_str($order).'` '.$this->db->escape_str($ascendent).' LIMIT '.$this->db->escape_str($limit).' OFFSET '.(($page-1)*$limit));				
+			if($visible == 'true'){
+				$this->db->where('lanzamiento.visible', 1);
 			}
-			else{
+			if($disponible == 'false'){
+				$this->db->where('lanzamiento.disponible', 1);
+			}	
 
-	        	$query = $this->db->query('SELECT `lanzamiento`.*, group_concat(DISTINCT `banda`.`nombre` ORDER BY `banda`.`nombre` ASC SEPARATOR \'\n \') AS `bandas`
-				FROM `lanzamiento`
-				LEFT JOIN `banda_lanzamiento` ON `lanzamiento`.`id` = `banda_lanzamiento`.`lanzamiento_id` 
-				LEFT JOIN `banda` ON `banda_lanzamiento`.`banda_id` = `banda`.`id`  
-				GROUP BY `lanzamiento`.`id` ORDER BY `lanzamiento`.`'.$this->db->escape_str($order).'` '.$this->db->escape_str($ascendent).' LIMIT '.$this->db->escape_str($limit).' OFFSET '.(($page-1)*$limit));					
-			}						
-			return $query->result_array();
+        	$this->db->group_by('lanzamiento.id');
+        	$this->db->order_by('lanzamiento.'.$this->db->escape_str($order), $ascendent);
+        	$this->db->limit($limit, ($page-1)*$limit);
+
+        	$query = $this->db->get('lanzamiento');
+ 	
+        	return $query->result_array();
+
+
+        	/*$query = $this->build_query_get_lanzamientos($limit, $page, $visible, $order, $ascendent, $disponible);
+			$result = $this->db->query($query);
+			return $result->result_array();*/
+
         }
 		
         public function get_all_lanzamientos($order = 'nombre', $ascendent = 'ASC')
@@ -123,6 +149,12 @@ class Lanzamiento_model extends CI_Model {
 				$visible = 1;
 			}			
 
+			
+			$disponible = 0;
+			if ($this->input->post('disponible') == 'on'){
+				$disponible = 1;
+			}			
+
 
 			$iteracion = 0;
 			$nombre = $this->input->post('nombre');
@@ -152,6 +184,7 @@ class Lanzamiento_model extends CI_Model {
 				'fecha_creacion' => date('Y-m-d H:i:s'),
 				'fecha_modificacion' => date('Y-m-d H:i:s'),
 				'visible' => $visible,
+				'disponible' => $disponible,
 			);
 
 			$this->db->insert('lanzamiento', $data);
@@ -169,7 +202,12 @@ class Lanzamiento_model extends CI_Model {
 			$visible = 0;
 			if ($this->input->post('visible') == 'on'){
 				$visible = 1;
-			}				
+			}
+
+			$disponible = 0;
+			if ($this->input->post('disponible') == 'on'){
+				$disponible = 1;
+			}					
 			
 			$nombrecorto = $this->input->post('nombrecorto');
 			$data = array(									
@@ -185,6 +223,7 @@ class Lanzamiento_model extends CI_Model {
 				'indice_referencia' => $this->input->post('indice_referencia'),
 				'fecha_modificacion' => date('Y-m-d H:i:s'),
 				'visible' => $visible,
+				'disponible' => $disponible,
 			);
 
 			$this->db->where('nombrecorto', $nombrecorto);
