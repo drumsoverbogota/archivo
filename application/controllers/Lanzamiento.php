@@ -16,6 +16,7 @@ class Lanzamiento extends CI_Controller {
 				$this->load->helper('url');
 				$this->load->helper(array('form', 'url'));
 				$this->load->library('ion_auth');
+				$this->load->config('variables');
         }
 
         public function index()
@@ -82,6 +83,7 @@ class Lanzamiento extends CI_Controller {
 
         public function view($nombrecorto = NULL)
         {
+
                 $data['lanzamiento_item'] = $this->lanzamiento_model->get_lanzamiento($nombrecorto);
 		        if (empty($data['lanzamiento_item']))
 				{
@@ -99,6 +101,8 @@ class Lanzamiento extends CI_Controller {
 				$data['title'] = $data['lanzamiento_item']['nombre'];
 				$data['descripcion'] = $data['lanzamiento_item']['tracklist'];
 				$data['banda'] = $this->lanzamiento_model->get_bandas_lanzamientoid($nombrecorto);
+				$data['disponible_blog'] = $this->config->item('disponible_blog');
+
 				$this->load->view('templates/header', $data);
 				$this->load->view('lanzamiento/view', $data);
 				$this->load->view('templates/footer');

@@ -38,6 +38,7 @@ class Banda_model extends CI_Model {
         public function get_lanzamientos_bandaid($nombrecorto)
         {        	
         	$query = $this->db->query("SELECT `lanzamiento`.`id`, `lanzamiento`.`nombre`, `lanzamiento`.`nombrecorto` ,`lanzamiento`.`anho`
+        		, `lanzamiento`.`disponible`
 				FROM `lanzamiento`
 				INNER JOIN `banda_lanzamiento` ON `lanzamiento`.`id` = `banda_lanzamiento`.`lanzamiento_id` 
 				INNER JOIN `banda` ON `banda_lanzamiento`.`banda_id` = `banda`.`id`

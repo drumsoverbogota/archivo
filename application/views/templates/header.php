@@ -1,6 +1,7 @@
 <html>
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="shortcut icon" href="<?php echo base_url('images/favicon.ico');?>">
     <title><?php echo $title; ?></title>
 
 	<?php

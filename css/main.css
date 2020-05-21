@@ -109,3 +109,20 @@ p.rojo {
 	color: red;
 }
 
+p.center {
+    margin-left: auto;
+    margin-right: auto;
+    width: 13em;
+    font-style: italic;
+    text-align: center;
+}
+
+b.rojo {
+  color: red;
+}
+
+iframe.centered{
+  display: block;
+  margin-left: auto;
+  margin-right: auto
+}

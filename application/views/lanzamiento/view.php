@@ -57,7 +57,10 @@ if ($lanzamiento_item['link'] != ""){ ?>
 <?php 
 }else{
 ?>
-	¡No hay link disponible!
+	¡No hay link disponible para descarga! 
+	<?php if ($lanzamiento_item['disponible'] == 0){ ?>
+		<a href="<?php echo site_url('entrada/'.$disponible_blog);?>">Para más información dar click acá.</a>
+	<?php } ?>
 <?php 
 }
 ?>

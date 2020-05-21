@@ -11,6 +11,8 @@
 
 <?php 
 
+$no_disponible = false;
+
 if ($banda_item['imagen'] == NULL){ ?>
 	<P><IMG class = 'view-image' SRC="<?php echo base_url('images/placeholder.gif'); ?>" ALIGN="RIGHT">
 <?php } else{
@@ -47,22 +49,34 @@ if ($banda_item['imagen'] == NULL){ ?>
 <?php foreach ($lanzamiento as $lanzamiento_item): ?>
 	<li>
 		<a href="<?php echo site_url('lanzamiento/'.$lanzamiento_item['nombrecorto']); ?>">
+			<?php if ($lanzamiento_item['disponible'] == 0){?>
+			<b class="rojo">
+			<?php }?>	
 			<?php echo $lanzamiento_item['nombre']; ?>
 			(<?php echo $lanzamiento_item['anho']; ?>)
+			<?php if ($lanzamiento_item['disponible'] == 0){?>
+				*</b>
+			<?php
+			$no_disponible = true;
+			 }?>
 			</a>
 	</li>	
 <?php endforeach; ?>
 </ul>
+
+<?php if ($banda_item['comentarios']){?>
 <hr>
 <p>
-<?php if ($banda_item['comentarios']){?>
 <b>Notas</b>
 <pre>
 <?php echo $banda_item['comentarios']; ?>
 </pre>
-<?php }?>
 </p>
-
+<?php }?>
+<hr>
+<?php if ($no_disponible == true){?>
+<b class="rojo">Los discos marcados con * no los tenemos disponibles para descarga, más <a href="<?php echo site_url('entrada/'.$disponible_blog);?>">información acá.</a></b>
+<?php }?>
 <?php 	
 if ($this->ion_auth->logged_in()){
 ?>
