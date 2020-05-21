@@ -25,6 +25,7 @@ images/*
 !images/placeholder.gif
 !images/muladarlogo.png
 !images/logo.png
+!images/favicon.ico
 
 # IDE Files
 #-------------------------
