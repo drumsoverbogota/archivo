@@ -57,7 +57,7 @@ class Bandalanzamiento extends CI_Controller {
 			
 			if ($this->input->post('lanzamiento_id') == ""){
 				
-				$data['lanzamiento'] = $this->lanzamiento_model->get_lanzamiento();
+				$data['lanzamiento'] = $this->lanzamiento_model->get_lanzamiento(FALSE, 'true');
 				$data['title'] = 'Escoga el lanzamiento';		
 				$this->load->view('templates/header', $data);
 				$this->load->view('bandalanzamiento/lanzamiento', $data);
