@@ -65,7 +65,7 @@ class Lanzamiento extends CI_Controller {
 
                 $data['lanzamiento']	= $this->lanzamiento_model->get_lanzamientos($limite, $pagina, $visible, $ordenar, $asc, $no_disponibles);
 
-				$data['total']			= count($this->lanzamiento_model->get_lanzamiento(FALSE, $visible)); 
+				$data['total']			= count($this->lanzamiento_model->get_lanzamiento(FALSE, $visible, $no_disponibles)); 
 				$data['title'] 			= 'Lanzamientos';
 				$data['descripcion']	= 'Acá se pueden ver todos los lanzamientos que están en el archivo';
 				$data['limite']			= $limite;

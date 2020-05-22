@@ -121,10 +121,13 @@ class Lanzamiento_model extends CI_Model {
 			return $query->result_array();
         }
 
-		public function get_lanzamiento($nombrecorto = FALSE, $visible = 'false')
+		public function get_lanzamiento($nombrecorto = FALSE, $visible = 'false', $disponible = 'false')
 		{
 				if ($nombrecorto === FALSE)
 				{	
+					if($disponible == 'false'){
+						$this->db->where('lanzamiento.disponible', 1);
+					}					
 					if($visible == 'false'){
 						$query = $this->db->get_where('lanzamiento', array('visible' => 1));
 						return $query->result_array();
@@ -133,6 +136,7 @@ class Lanzamiento_model extends CI_Model {
 						$query = $this->db->get('lanzamiento');
 						return $query->result_array();						
 					}
+
 				}
 				$query = $this->db->get_where('lanzamiento', array('nombrecorto' => $nombrecorto));
 				return $query->row_array();						
