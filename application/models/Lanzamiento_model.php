@@ -87,7 +87,7 @@ class Lanzamiento_model extends CI_Model {
         	$this->db->join('banda_lanzamiento', 'lanzamiento.id = banda_lanzamiento.lanzamiento_id', 'left');
         	$this->db->join('banda', 'banda_lanzamiento.banda_id = banda.id', 'left');
 
-			if($visible == 'true'){
+			if($visible == 'false'){
 				$this->db->where('lanzamiento.visible', 1);
 			}
 			if($disponible == 'false'){
