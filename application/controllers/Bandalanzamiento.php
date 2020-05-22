@@ -28,7 +28,7 @@ class Bandalanzamiento extends CI_Controller {
 			}
 			else{ 	
 				$data['banda_id'] = $this->input->post('banda_id');
-				$data['lanzamiento'] = $this->lanzamiento_model->get_lanzamiento();
+				$data['lanzamiento'] = $this->lanzamiento_model->get_lanzamiento(FALSE, 'true');
 				$data['asignados'] = [];
 				$bandalanzamiento = $this->bandalanzamiento_model->get_lanzamiento_bandaid_array($data['banda_id']);
 				for($i=0 ; $i < count($bandalanzamiento) ; $i++){
