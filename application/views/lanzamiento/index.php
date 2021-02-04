@@ -1,4 +1,13 @@
 
+<?php
+	$sufijo = '';
+	if($visible == 'true'){
+		$sufijo .= '&visible=true';  
+	}
+	if($no_disponibles == 'true'){
+		$sufijo .= '&no_disponibles=true';  
+	}	
+?>
 
 <h2><?php echo $title;?></h2>
 
@@ -11,16 +20,14 @@
 	<th>Referencia</th>  	
     <th>Formato</th> 
     <th>Año</th>
+	<?php
+		if($no_disponibles == 'true'){
+	?>
+	<th>Disponible</th>
+	<?php	
+		}
+	?>    
   </tr>
-
-
-<?php
-	$sufijo_visible = '';
-	if($visible == 'true'){
-		$sufijo_visible = '&visible=true';  
-	}
-?>
-
 
 
 <div align="right">
@@ -28,7 +35,7 @@
 		Items a mostrar
 		<select name="numero">
 			<?php 
-				for($i = 10; $i <= 50; $i= $i + 10){ 
+				for($i = 10; $i <= 100; $i= $i + 10){ 
 					if ($i == $limite) {?>
 					<option selected="select"><?php echo $i;?></option>		
 			<?php }
@@ -50,13 +57,14 @@
 
 			$options = array(
 				'ascendente'	=> 'Ascendente',
-				'descendente'		=> 'Descendente',
+				'descendente'	=> 'Descendente',
 			);
 			echo form_dropdown('ascendente', $options, $ascendente);
 
 
 		?>
 		<input type="hidden" name="visible" value="<?php echo($visible)?>" />
+		<input type="hidden" name="no_disponibles" value="<?php echo($no_disponibles)?>" />
 		<input type="submit" value="Mostrar" />
 	</form>
 </div>
@@ -68,7 +76,7 @@ Página
 		<b><?php echo $i; ?></b>
 	<?php } else {?>
 		
-		<a href="<?php echo site_url('lanzamiento/?numero='.$limite.'&ascendente='.$ascendente.'&ordenar='.$ordenar.'&pagina='.$i.$sufijo_visible); ?>"><?php echo $i; ?></a>
+		<a href="<?php echo site_url('lanzamiento/?numero='.$limite.'&ascendente='.$ascendente.'&ordenar='.$ordenar.'&pagina='.$i.$sufijo); ?>"><?php echo $i; ?></a>
 		
 	<?php }?>		
 <?php }?>	
@@ -91,9 +99,21 @@ Página
 		</th>
 		<th>
 			<?php echo $lanzamiento_item['anho']; ?>
-		</th>
-        
-        
+		</th>      
+		<?php
+			if($no_disponibles == 'true'){
+				if($lanzamiento_item['disponible'] == 1){
+		?>
+		<th>Sí</th>
+		<?php	
+			}
+			else{
+		?>
+		<th><p class="rojo">No</p></th>
+		<?php				
+				}
+			}
+		?>            
 	</tr>
 <?php endforeach; ?>
 	
@@ -107,7 +127,7 @@ Página
 		<b><?php echo $i; ?></b>
 	<?php } else {?>
 		
-		<a href="<?php echo site_url('lanzamiento/?numero='.$limite.'&ascendente='.$ascendente.'&ordenar='.$ordenar.'&pagina='.$i.$sufijo_visible); ?>"><?php echo $i; ?></a>
+		<a href="<?php echo site_url('lanzamiento/?numero='.$limite.'&ascendente='.$ascendente.'&ordenar='.$ordenar.'&pagina='.$i.$sufijo); ?>"><?php echo $i; ?></a>
 		
 	<?php }?>		
 <?php }?>	

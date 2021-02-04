@@ -8,7 +8,7 @@
 			return false;
 	} 
 </script>
-
+<div class="center-justified">
 
 <h1><?php echo $entrada_item['titulo'].' ('.$entrada_item['fecha'].')'?></h1>
 <?php echo $entrada_item['contenido']?>
@@ -24,3 +24,4 @@
 	}
 ?>
 
+</div>

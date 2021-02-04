@@ -14,7 +14,9 @@
 
 <p><h2>¡Bienvenidos a El Muladar!</h2></p>
 
-<p>El Muladar es un archivo de Punk Colombiano. Pueden ver todos los discos acá en <a href="<?php echo site_url('lanzamiento/'); ?>">Lanzamientos</a>, las bandas acá en <a href="<?php echo site_url('banda/'); ?>">Bandas</a>, los fanzines acá en <a href="<?php echo site_url('publicacion/'); ?>">Publicaciones</a> o usar el <a href="<?php echo site_url('buscar/'); ?>">buscador</a>.</p>
+<p>El Muladar es un archivo de Punk Colombiano. Pueden ver todos los discos disponibles para descarga acá en <a href="<?php echo site_url('lanzamiento/'); ?>">Lanzamientos Disponibles</a>, las bandas acá en <a href="<?php echo site_url('banda/'); ?>">Bandas</a>, los fanzines acá en <a href="<?php echo site_url('publicacion/'); ?>">Publicaciones</a> o usar el <a href="<?php echo site_url('buscar/'); ?>">buscador</a>.</p>
+<p>
+También empezamos a agregar los discos que aún no tenemos disponibles acá en <a href="<?php echo site_url('lanzamiento?no_disponibles=true'); ?>"> Todos los lanzamientos </a>. Ahí están los discos que sabemos que existen pero no tenemos acceso el disco en físico para digitalizarlo. </p>
 
 <hr/>
 

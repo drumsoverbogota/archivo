@@ -8,13 +8,24 @@
     <th>Link</th>
     <th>Youtube</th>
     <th>Bandas</th>
+    <th>Disponible</th>
   </tr>
 <p><h2>Lanzamientos</h2></p>
 
 <?php foreach ($lanzamiento as $lanzamiento_item): ?>
 	<tr>
 		<th>
-			<a href="<?php echo site_url('lanzamiento/'.$lanzamiento_item['nombrecorto']); ?>"><?php echo $lanzamiento_item['indice_referencia']; ?></a></p>
+			<a href="<?php echo site_url('lanzamiento/'.$lanzamiento_item['nombrecorto']); ?>">
+				<?php 
+					if($lanzamiento_item['indice_referencia']){
+				 		echo $lanzamiento_item['indice_referencia'];
+				 	}
+				 	else{
+				 		echo "ND";
+				 	} 
+				?>
+				
+			</a></p>
 		</th>
 		<th>
 			<?php echo $lanzamiento_item['nombre']; ?>
@@ -52,7 +63,15 @@
 			else{
 				echo "<p class=\"rojo\">No</p>";
 			}?>
-		</th> 	        
+		</th>
+		<th>
+			<?php if ($lanzamiento_item['disponible']  === '1') {
+				echo "Sí";
+			}
+			else{
+				echo "<p class=\"rojo\">No</p>";
+			}?>
+		</th> 	   		
 
 	</tr>
 <?php endforeach; ?>

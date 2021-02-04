@@ -21,7 +21,7 @@ class Entrada extends CI_Controller {
 				}
 
 				$data['title'] = $data['entrada_item']['titulo'];
-				$data['descripcion'] = $data['entrada_item']['resumen'];
+				$data['descripcion_blog'] = $data['entrada_item']['resumen'];
 
 				$this->load->view('templates/header', $data);
 				$this->load->view('entrada/view', $data);

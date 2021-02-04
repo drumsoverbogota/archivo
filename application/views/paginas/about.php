@@ -3,10 +3,10 @@
 <h2>Acerca de</h2>
 
 <p>
-<em>El Muladar </em> es un archivo de Punk Colombiano que reune registros sonoros, audiovisuales y escritos desde los inicios del movimiento hasta el 2007.
+<strong>El Muladar </strong> es un archivo de Punk Colombiano que reune registros sonoros, audiovisuales y escritos desde los inicios del movimiento hasta el 2007.
 </p>
 <p>
-Hace 7 años empezamos un proyecto llamado <em>Síntoma de última década </em> <a href="https://sintomadeultimadecada.wordpress.com">en forma de Blog</a>  con la idea de subir discos que no habían sido re-editados y que no estaban digitalizados, acompañados con algún pequeño escrito acerca del disco o como se obtuvo.
+Hace 7 años empezamos un proyecto llamado <strong>Síntoma de última década</strong> <a href="https://sintomadeultimadecada.wordpress.com">en forma de Blog</a>  con la idea de subir discos que no habían sido re-editados y que no estaban digitalizados, acompañados con algún pequeño escrito acerca del disco o como se obtuvo.
 </p>
 
 <p>

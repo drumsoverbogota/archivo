@@ -1992,7 +1992,8 @@ class Ion_auth_model extends CI_Model
 		set_cookie(array(
 			'name'   => 'lang_code',
 			'value'  => $lang,
-			'expire' => $expire
+			'expire' => $expire,
+			'sameSite' => 'lax'
 		));
 
 		return TRUE;
@@ -2065,13 +2066,15 @@ class Ion_auth_model extends CI_Model
 			set_cookie(array(
 			    'name'   => $this->config->item('identity_cookie_name', 'ion_auth'),
 			    'value'  => $user->{$this->identity_column},
-			    'expire' => $expire
+			    'expire' => $expire,
+			    'sameSite' => 'lax'
 			));
 
 			set_cookie(array(
 			    'name'   => $this->config->item('remember_cookie_name', 'ion_auth'),
 			    'value'  => $salt,
-			    'expire' => $expire
+			    'expire' => $expire,
+			    'sameSite' => 'lax'
 			));
 
 			$this->trigger_events(array('post_remember_user', 'remember_user_successful'));

@@ -152,6 +152,7 @@ CREATE TABLE IF NOT EXISTS `publicacion` (
 ALTER TABLE `lanzamiento` ADD `indice_referencia` TEXT NULL DEFAULT NULL AFTER `link`;
 ALTER TABLE `lanzamiento` ADD `link_youtube` TEXT NULL DEFAULT NULL AFTER `link`;
 ALTER TABLE `publicacion` ADD `indice_referencia` TEXT NULL DEFAULT NULL AFTER `link`;
+ALTER TABLE `lanzamiento` ADD `disponible` BOOLEAN NOT NULL DEFAULT TRUE AFTER `visible`;
 
 --
 -- El Siguiente Script asigna un valor por defecto a todos las filas de las tablas

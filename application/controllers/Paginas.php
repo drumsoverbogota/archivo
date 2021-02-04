@@ -46,18 +46,21 @@ class Paginas extends CI_Controller {
 
 				$data['title'] = ucfirst($page);
 				if ($page == 'home') {
+					$data['title'] = "El Muladar";
 					$data['noticias'] = $this->entrada_model->get_noticias(10, 1);
 				}
 				if ($page == 'blog') {
+					$data['title'] = "El Muladar - Blog";
 					$data['blog'] = $this->entrada_model->get_blogs(10, 1);
 					$data['descripcion']	= 'Acá se pueden ver todos las entradas del blog.';
 				}		
 				if ($page == 'lista') {
-					$data['lanzamiento']	= $this->lanzamiento_model->get_all_lanzamientos('indice_referencia', 'ASC');
-					$data['publicacion']	= $this->publicacion_model->get_publicacion(FALSE, 'true', 'true');
-					$data['descripcion']	= 'Lista total del archivo';
+					$data['lanzamiento'] = $this->lanzamiento_model->get_all_lanzamientos('indice_referencia', 'ASC');
+					$data['publicacion'] = $this->publicacion_model->get_publicacion(FALSE, 'true', 'true');
+					$data['descripcion'] = 'Lista total del archivo';
 				}	
 				if ($page == 'contact') {
+					$data['title'] = "Contacto";
 					$public_key = $this->config->item('public_key');
 
 					if($public_key['enable_contact'] == TRUE){
@@ -94,7 +97,7 @@ class Paginas extends CI_Controller {
 					return show_error('You must be an administrator to view this page.');
 				}
 
-				$data['title'] = 'admin';
+				$data['title'] = 'Admin - El Muladar';
 
 				$this->load->view('templates/header', $data);
 				$this->load->view('paginas/admin', $data);

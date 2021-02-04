@@ -16,14 +16,15 @@ class Lanzamiento extends CI_Controller {
 				$this->load->helper('url');
 				$this->load->helper(array('form', 'url'));
 				$this->load->library('ion_auth');
+				$this->load->config('variables');
         }
 
-        public function index($visible = 'false')
+        public function index()
         {			
 
         		$limite = $this->input->get('numero');
         		if(!$limite){
-        			$limite = 10;
+        			$limite = 20;
         		}
 
         		$pagina = $this->input->get('pagina');
@@ -40,6 +41,15 @@ class Lanzamiento extends CI_Controller {
         		if(!$visible){
         			$visible = 'false';
         		}
+
+        		$no_disponibles = $this->input->get('no_disponibles');
+        		if(!$no_disponibles or $no_disponibles == 'false'){
+        			$no_disponibles = 'false';
+        		}
+        		else{
+        			$no_disponibles = 'true';
+        		}
+
         		$asc = '';
         		$ascendente = $this->input->get('ascendente');
         		if(!$ascendente){
@@ -53,17 +63,18 @@ class Lanzamiento extends CI_Controller {
         			}
         		}
 
-                $data['lanzamiento']	= $this->lanzamiento_model->get_lanzamientos($limite, $pagina, $visible, $ordenar, $asc);
+                $data['lanzamiento']	= $this->lanzamiento_model->get_lanzamientos($limite, $pagina, $visible, $ordenar, $asc, $no_disponibles);
 
-				$data['total']			= count($this->lanzamiento_model->get_lanzamiento(FALSE, $visible)); 
+				$data['total']			= count($this->lanzamiento_model->get_lanzamiento(FALSE, $visible, $no_disponibles)); 
 				$data['title'] 			= 'Lanzamientos';
 				$data['descripcion']	= 'Acá se pueden ver todos los lanzamientos que están en el archivo';
 				$data['limite']			= $limite;
 				$data['pagina']			= $pagina;
 				$data['visible']		= $visible;
+				$data['no_disponibles']	= $no_disponibles;
 				$data['ordenar']		= $ordenar;
 				$data['ascendente']		= $ascendente;
-				
+
 				$this->load->view('templates/header', $data);
 				$this->load->view('lanzamiento/index', $data);
 				$this->load->view('templates/footer');
@@ -72,6 +83,7 @@ class Lanzamiento extends CI_Controller {
 
         public function view($nombrecorto = NULL)
         {
+
                 $data['lanzamiento_item'] = $this->lanzamiento_model->get_lanzamiento($nombrecorto);
 		        if (empty($data['lanzamiento_item']))
 				{
@@ -89,6 +101,8 @@ class Lanzamiento extends CI_Controller {
 				$data['title'] = $data['lanzamiento_item']['nombre'];
 				$data['descripcion'] = $data['lanzamiento_item']['tracklist'];
 				$data['banda'] = $this->lanzamiento_model->get_bandas_lanzamientoid($nombrecorto);
+				$data['disponible_blog'] = $this->config->item('disponible_blog');
+
 				$this->load->view('templates/header', $data);
 				$this->load->view('lanzamiento/view', $data);
 				$this->load->view('templates/footer');
@@ -126,6 +140,7 @@ class Lanzamiento extends CI_Controller {
 				$this->form_validation->set_rules('link', 'Link', '');
 				$this->form_validation->set_rules('indice_referencia', 'ID de referencia en el archivo', '');
 				$this->form_validation->set_rules('visible', 'Visible', '');
+				$this->form_validation->set_rules('disponible', 'Disponible', '');
 				
 
 				if ($this->form_validation->run() === FALSE)
@@ -177,6 +192,7 @@ class Lanzamiento extends CI_Controller {
 				$this->form_validation->set_rules('link', 'Link', '');
 				$this->form_validation->set_rules('indice_referencia', 'ID de referencia en el archivo', '');
 				$this->form_validation->set_rules('visible', 'Visible', '');
+				$this->form_validation->set_rules('disponible', 'Disponible', '');
 				
 
 				if ($this->form_validation->run() === FALSE)

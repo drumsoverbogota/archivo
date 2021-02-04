@@ -16,6 +16,7 @@ class Banda extends CI_Controller {
 				$this->load->helper('url');
 				$this->load->helper(array('form', 'url'));
 				$this->load->library('ion_auth');
+				$this->load->config('variables');
 				
         }
 
@@ -52,9 +53,9 @@ class Banda extends CI_Controller {
 					$data['imagen'] = $thumb;
 				}
 
-
-				$data['title'] = $data['banda_item']['nombre'];
-				$data['descripcion'] = $data['banda_item']['comentarios'];;
+				$data['title'] 			= $data['banda_item']['nombre'];
+				$data['descripcion'] 	= $data['banda_item']['comentarios'];
+				$data['disponible_blog'] = $this->config->item('disponible_blog');
 
 				$this->load->view('templates/header', $data);
 				$this->load->view('banda/view', $data);

@@ -46,6 +46,11 @@
     <label for="visible">¿Es visible?</label>
     <input name="visible" type="checkbox"
         <?php if($lanzamiento_item['visible'] != 0) echo "checked";?>
+    ><br />
+
+    <label for="disponible">¿Está disponible?</label>
+    <input name="disponible" type="checkbox"
+        <?php if($lanzamiento_item['disponible'] != 0) echo "checked";?>
     ><br />    
 
 	<input type="hidden" name="nombrecorto" value="<?php echo $lanzamiento_item['nombrecorto']; ?>" />
